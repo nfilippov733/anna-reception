@@ -1,8 +1,10 @@
 # ANNA Reception — Landing Page Design Spec
 
-**Date:** 2026-05-26 · **Revision:** v2 (post-council)
+**Date:** 2026-05-26 · **Revision:** v3 (post-verification-council)
 **Status:** Approved for implementation planning
-**Revision notes:** Reviewed by a 4-agent council (UX, Product, Critical-Thinker, Vertical-Expert via claude/codex/gemini). Consensus fixes applied: HIPAA→UK-aligned compliance, ROI numbers restated as defensible ranges with source-citation policy, trust-signal copy corrected, ROI-calc default removed, demo form gains email field, §05 ↔ §06 swap (audio before calculator), hero audit CTA promoted to ghost button, integrations rebalanced UK-first, §3.4 CIS/VAT category-error fix, deposit-at-booking smart-behaviour added to dental + beauty, human-in-the-loop fail-safe added, white-label open questions promoted to launch-acceptance gates. Strategic decisions revised: market pivots to UK-first for v1; pubs scoped to gastropubs only; ICP launches all 4 verticals equally (no beachhead).
+**Revision notes:**
+- **v2 (first council pass):** Reviewed by a 4-agent council (UX, Product, Critical-Thinker, Vertical-Expert). UK-first pivot, gastropub scoping, HIPAA→UK-aligned compliance, ROI ranges + source policy, trust-signal rewrite, §05 ↔ §06 swap, hero audit CTA → ghost button, integrations rebalanced UK-first, §3.4 CIS/VAT category-error fix, deposit-at-booking added (dental + beauty), human-in-the-loop fail-safe added, white-label open questions → launch-acceptance gates.
+- **v3 (verification council pass):** Same 4 reviewers re-read v2. Applied: dropped "HIPAA-aligned for US" from §3.1 on UK-first launch (T1a); fixed §7 ↔ §14 FAQ drift (T1b); corrected dental integrations — Practice-Web moved to US row, Kodak duplicate removed, Cliniko + Systems for Dentists added (T1c); rewrote NHS payment-route phrasing (T1d, "NHS is not a membership plan"); feature strip reduced 7→6 tiles, dropped "60+ languages" for UK-first (T1e); added §13 audit re-entry banner replacing the removed compliance row (T1f + T2c); rewrote gastropub deposit copy (T1g, "8+ covers / private hire"); added build-time guard G8 for `[source: TBD]` tokens (T1h); pricing teaser gained range qualifier "£99–£299/mo" (T2a); test-call dropped from hero (T2b, zone discipline); §13 SOC2/uptime claims removed pending ANNA-owned certifications (T2c); deposit-at-booking copy hedged with "where your booking system supports it" (T3c). Decisions held: keep all 4 verticals equal launch (T3a); keep gastropub tile (T3b).
 **Product:** ANNA Reception (white-label of newo.ai, sub-brand of ANNA.money)
 **Audience:** Construction/trades · Beauty salons · Gastropubs · Dental clinics
 **Market:** UK-first for v1; pricing in GBP (£). Internationalise in phase 2.
@@ -30,7 +32,7 @@ Cactus is single-vertical (trades) with a desert metaphor. ANNA Reception spans 
 | Primary CTA | Book a demo | High-intent path; user choice |
 | Secondary CTAs | Free revenue audit + Make a test call | Cactus-style lead-magnet and zero-friction trial |
 | Brand identity | Sub-brand of ANNA (green primary, playful no-nonsense tone, 3D iconography) | Inherits ANNA's UK SMB trust halo |
-| Pricing on page | "From £99/mo" teaser only; no full table | Drives demo bookings; full tiers inside funnel |
+| Pricing on page | "From £99–£299/mo" teaser only; no full table | Drives demo bookings while filtering bad-fit leads |
 | Conversion approach | Trust-led ANNA halo + Cactus-style revenue-leak mechanics | Hybrid: ANNA brand, Cactus tactics |
 | ICP scope | All 4 verticals launch equally (no beachhead) | Trust the multi-vertical IA to self-segment via tile module + paid-ad URL params |
 | Pubs scope | Gastropubs / reservation-led only (not wet-led) | Wet-led pubs don't take reservations; targeting would dilute conversion |
@@ -81,16 +83,26 @@ Sixteen sections, single page, mobile-first. Sticky "Book a demo" engages at her
 
 09  Testimonial wall           3–5 named operators with photo, business, quote, metric
 
-10  Feature strip (light)      7 tiles: 24/7 answer · Books in your calendar · 60+ languages
-                               · SMS follow-up · Smart human transfer (with full call context)
-                               · Deposit at booking (Stripe via SMS) · 200+ integrations
+10  Feature strip (light)      6 tiles: 24/7 answer · Books in your calendar · SMS follow-up
+                               · Smart human transfer (with full call context)
+                               · Deposit at booking (Stripe via SMS, where supported)
+                               · 200+ integrations
+                              [60+ languages dropped for UK-first v1; restore in phase 2]
 
 11  Integrations marquee       ~20 logos: Google Calendar, Stripe, Square, Calendly, WhatsApp, etc.
 
-12  Pricing teaser             Single card: "From £99/mo · No long contracts · Setup in 3 minutes"
+12  Pricing teaser             Single card: "From £99–£299/mo (depending on call volume) ·
+                               No long contracts · Setup in 3 minutes"
                                → "Book a demo for full pricing"
+                              [Range qualifier added per PM review — filters bad-fit leads
+                               before they reach the demo team]
 
-13  Security & compliance      One-line row: SOC 2 Type II · GDPR · 256-bit · 99.99% uptime
+13  Audit re-entry banner     Slim row: "Skipped the calculator? Get your free revenue audit →"
+                               + single ghost-button audit CTA
+                              [Closing-zone toehold for comparison-shopper Path B per UX review]
+                              [Old §13 'Security & compliance' row removed — claims are
+                               newo.ai's, not ANNA's; surfacing them as ANNA's risks
+                               misrepresentation. Re-add when ANNA owns the certifications.]
 
 14  FAQ accordion              6–8 questions, single flat accordion (no tabs — tabs-in-accordion is double disclosure per UX review). Must include one question on the human-transfer fail-safe.
 
@@ -170,11 +182,11 @@ All four tiles share the same shape — collapsed card → expanded reveal. Same
 | Card hook | "Never miss a new patient call." |
 | Headline ROI | "Avg new-patient lifetime value: **£1,800–£3,000** *[source: TBD]* — one missed call = one lost patient." |
 | Pain framing | New-patient enquiries spike outside 9–5. Your reception is closed; your competitors' aren't. ANNA answers at 11pm, triages urgency, books an exam. |
-| Audio sample (30s) | Caller: "Hi, my crown fell out, can someone see me tomorrow?" → ANNA: empathy + triage urgency + offers same-day emergency slot + collects DOB + confirms membership plan (NHS / Denplan / private / insurance) + SMSes the address. |
-| Smart behaviours | Distinguishes emergency vs routine · confirms membership plan · routes after-hours vs in-hours overflow differently · **takes deposit at booking (Stripe link via SMS)** · never gives clinical advice. |
+| Audio sample (30s) | Caller: "Hi, my crown fell out, can someone see me tomorrow?" → ANNA: empathy + triage urgency + offers same-day emergency slot + collects DOB + confirms payment route (NHS band + exemption status / Denplan or Practice Plan / private / US insurance) + SMSes the address. |
+| Smart behaviours | Distinguishes emergency vs routine · confirms payment route · routes after-hours vs in-hours overflow differently · **takes deposit at booking via Stripe SMS (where your booking system supports it)** · never gives clinical advice. |
 | Testimonial slot | Practice principal · business name · "X new patients captured in month 1" |
-| Integrations | **UK:** Dentally · SOE/EXACT · R4 (Carestream) · Practice-Web · Kodak · **US/intl:** Dentrix · Open Dental · NexHealth · Curve · Google Calendar |
-| Compliance line | UK GDPR & DPA 2018 · HIPAA-aligned for US · ISO 27001 |
+| Integrations | **UK:** Dentally · SOE/EXACT · Carestream R4 · Systems for Dentists · Cliniko · **US/intl:** Dentrix · Open Dental · NexHealth · Curve · Practice-Web · Google Calendar |
+| Compliance line | UK GDPR & DPA 2018 · ISO 27001-aligned (re-add HIPAA when US launches in phase 2) |
 
 ### 3.2 Beauty salons
 
@@ -184,7 +196,7 @@ All four tiles share the same shape — collapsed card → expanded reveal. Same
 | Headline ROI | "Avg booking £40–£90 · 30% of calls come while stylists' hands are full *[source: TBD]*." |
 | Pain framing | Phone rings mid-colour. You can't pick up. By the time you call back, she booked round the corner. ANNA knows your menu, your stylists, your slots. |
 | Audio sample (30s) | Caller: "Can I book a balayage with Jess for Saturday?" → ANNA: checks Jess's calendar, offers 11am or 3pm, confirms add-on toner question, sends a calendar invite. |
-| Smart behaviours | Knows service menu + price list · knows which stylist does what · **takes deposit at booking (Stripe link via SMS) for colour/extension services** · SMS confirmations. |
+| Smart behaviours | Knows service menu + price list · knows which stylist does what · **takes deposit at booking via Stripe SMS for colour/extension services (where your booking system supports it)** · SMS confirmations. |
 | Testimonial slot | Salon owner · business name · "Zero missed bookings since [month]" |
 | Integrations | **UK/EU:** Phorest · Timely · Treatwell · Fresha · Booksy · **US:** Square Appointments · Vagaro · Google Calendar |
 | Compliance line | UK GDPR & DPA 2018-compliant client data handling |
@@ -196,8 +208,8 @@ All four tiles share the same shape — collapsed card → expanded reveal. Same
 | Card hook | "Reservations don't have to ring out." |
 | Headline ROI | "Avg 4-cover gastro table £140–£220 · busiest service = most missed calls *[source: TBD]*." |
 | Pain framing | 7pm Saturday. Phone rings. Floor is in the weeds. ANNA takes the booking, checks the floor plan, confirms allergens, asks about high chairs. |
-| Audio sample (30s) | Caller: "Table for 6 Friday, 7:30?" → ANNA: checks availability + offers 7pm or 8pm + asks dietary requirements + collects deposit for groups of 6+ + SMS confirmation. |
-| Smart behaviours | Reservations · private hire enquiries · allergen questions (14-allergen FSA flow) · deposit collection for large groups · routes media/press calls to landlord. |
+| Audio sample (30s) | Caller: "Table for 6 Friday, 7:30?" → ANNA: checks availability + offers 7pm or 8pm + flags dietary requirements for the kitchen + SMS confirmation. (For 8+ covers or private hire she adds: "We take a small deposit via SMS to hold the booking — alright?") |
+| Smart behaviours | Reservations · private hire enquiries · **flags dietary requirements (FSA 14-allergen) at booking; confirmed at service** · **deposit via Stripe SMS for private hire / 8+ covers** · routes media/press calls to landlord. |
 | Testimonial slot | Pub landlord · business name · "Weekend covers up X%" |
 | Integrations | OpenTable · ResDiary · SevenRooms · Toast · Square for Restaurants · Tock |
 | Compliance line | PCI-compliant deposit handling via Stripe |
@@ -261,8 +273,8 @@ Friction: ~3 min. For comparison shoppers, late-night researchers. The leak numb
 ### Path C — Make a test call (zero-friction)
 
 ```
-Header/Hero/Final banner "+44 XXX XXX XXXX"
-  → Mobile: click-to-call. Desktop: click-to-copy.
+Header phone chip / §05 audio-demo module / §15 final banner / footer "+44 XXX XXX XXXX"
+  → All platforms: `tel:` link (click-to-copy fallback on legacy desktop browsers).
   → Calls a live demo agent ("ANNA Reception" generic persona)
   → SMS follow-up: "Thanks for trying ANNA. Book a demo to set up yours →"
 ```
@@ -272,7 +284,7 @@ Friction: 30s. For sceptics ("does it really sound human?"). Hearing the AI pers
 
 - **Primary "Book a demo":** sticky header (engages at hero scroll-past), hero (solid green), after §06 ROI calc, after §08 verticals, §15 final banner.
 - **Secondary "Free audit":** hero (**ghost button** at same height as primary — promoted from text link per UX review), inline §06 CTA. *Not* repeated in the final banner.
-- **Tertiary "Test call":** header right-side phone chip, hero subline, §05 audio-demo module, footer.
+- **Tertiary "Test call":** header right-side phone chip, §05 audio-demo module, footer. **Not in the hero** — zone discipline.
 
 One primary CTA per viewport. Final banner shows only **demo + test-call** (audit lives inside the PDF, not in the closing banner — keeps the closer focused).
 
@@ -290,7 +302,7 @@ Each zone has one primary, no triple-stacked CTAs anywhere.
 
 ### Tracking events
 
-- `hero_cta_demo_clicked` · `hero_cta_audit_clicked` · `hero_cta_call_clicked`
+- `hero_cta_demo_clicked` · `hero_cta_audit_clicked` · `header_cta_call_clicked` (phone chip, not hero)
 - `audio_demo_played` · `audio_demo_completed_30s`
 - `roi_calculator_started` · `roi_calculator_completed` · `roi_calculator_leak_value`
 - `vertical_tile_expanded` (with vertical name)
@@ -366,6 +378,7 @@ Each of these is a launch blocker per PM review. Resolve before public soft-laun
 | G5 | Who owns the demo phone number? ANNA-provisioned via Twilio/newo, or a shared newo pool number? | Affects portability and SLA. |
 | G6 | Incident escalation — when the AI fails on a call, who gets paged: ANNA support, newo support, or the customer's nominated number? | Customer-facing failure ownership. |
 | G7 | Data processor terms — is ANNA the controller and newo the processor (likely), and is the DPA signed? | UK GDPR Article 28 compliance. |
+| G8 | **Build-time guard for `[source: TBD]` tokens.** CI must fail any deploy where the literal string `[source: TBD]` appears in compiled page output. | Without this, unresolved ROI citations ship as visible page text — credibility collapse. Enforced by deploy pipeline, not by review. |
 
 ### Human-in-the-loop fail-safe (front-foot the #1 buyer objection)
 
@@ -399,7 +412,7 @@ This flow must be surfaced on the landing page (§10 feature strip "Smart human 
 | 3D feature icons | ANNA design | Reuse existing ANNA icon family |
 | Hero device mockup | ANNA design | Phone showing live call answered + transcript |
 | Integration logos × ~20 | Newo (existing assets) | SVG sprite |
-| FAQ copy (~8 Qs) | ANNA copywriting | Two tabs: About / Setup & billing |
+| FAQ copy (6–8 Qs) | ANNA copywriting | Single flat accordion; must include one question on human-transfer fail-safe |
 | Demo phone number | ANNA telephony | Provisioned via newo, displayed in header + footer |
 | Audit-PDF template | ANNA design | 1-pager, vertical-aware, leak + recovery £ + demo CTA |
 
