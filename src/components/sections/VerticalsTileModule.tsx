@@ -1,3 +1,4 @@
+"use client";
 import { VERTICALS } from "@/content/verticals";
 import { VERTICAL_KEYS } from "@/lib/verticals";
 import { VerticalTile } from "@/components/verticals/VerticalTile";
