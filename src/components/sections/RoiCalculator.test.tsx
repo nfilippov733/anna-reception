@@ -24,4 +24,10 @@ describe("RoiCalculator", () => {
     // Leak block updates - we don't assert exact pence here, just that the £ figure is present.
     expect(screen.getAllByText(/£/).length).toBeGreaterThan(0);
   });
+
+  it("renders SVG vertical marks in the picker (no initial vertical)", () => {
+    const { container } = render(<RoiCalculator initialVertical={null} />);
+    const svgs = container.querySelectorAll("svg");
+    expect(svgs.length).toBeGreaterThanOrEqual(4);
+  });
 });

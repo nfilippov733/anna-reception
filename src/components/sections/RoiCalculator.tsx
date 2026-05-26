@@ -4,7 +4,9 @@ import { VERTICALS } from "@/content/verticals";
 import { VERTICAL_KEYS, type VerticalKey } from "@/lib/verticals";
 import { computeRecovery } from "@/lib/roi";
 import { AnimatedNumber } from "@/components/primitives/AnimatedNumber";
-import { Button } from "@/components/primitives/Button";
+import { Kicker } from "@/components/primitives/Kicker";
+import { LinkArrow } from "@/components/primitives/LinkArrow";
+import { VerticalMark } from "@/components/primitives/VerticalMark";
 import { track } from "@/lib/analytics";
 
 type Props = {
@@ -29,22 +31,28 @@ export function RoiCalculator({ initialVertical = null }: Props) {
   const recovery = useMemo(() => computeRecovery(leak), [leak]);
 
   return (
-    <section id="roi" className="mx-auto max-w-page px-4 py-16" aria-labelledby="roi-heading">
-      <h2 id="roi-heading" className="font-display text-3xl md:text-5xl">See your leak in 30 seconds.</h2>
+    <section id="roi" className="mx-auto max-w-page px-4 py-24 md:py-32" aria-labelledby="roi-heading">
+      <Kicker number="04" label="See your leak in 30 seconds" />
+      <h2 id="roi-heading" className="mt-6 font-display text-display-lg text-ink text-balance">
+        See your leak in 30 seconds.
+      </h2>
 
       {!vertical && (
-        <div className="mt-8">
-          <h3 className="text-lg font-medium">Pick your business.</h3>
-          <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-12">
+          <h3 className="font-medium text-lg">Pick your business.</h3>
+          <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {VERTICAL_KEYS.map((k) => (
               <button
                 key={k}
                 type="button"
                 onClick={() => selectVertical(k)}
-                className="rounded-2xl border border-border bg-bg-alt p-4 text-left hover:border-fg/40 min-h-[88px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                className="group flex flex-col items-start gap-4 rounded-2xl border border-sage-mute p-6 text-left min-h-[120px] transition-colors duration-150 hover:border-sage focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
               >
-                <div className="font-medium">{VERTICALS[k].label}</div>
-                <div className="mt-1 text-sm text-fg-muted">{VERTICALS[k].cardHook}</div>
+                <VerticalMark vertical={k} className="h-10 w-10 text-primary group-hover:scale-105 transition-transform duration-150 motion-reduce:transition-none" />
+                <div>
+                  <div className="font-medium text-ink">{VERTICALS[k].label}</div>
+                  <div className="mt-1 text-sm text-fg-muted">{VERTICALS[k].cardHook}</div>
+                </div>
               </button>
             ))}
           </div>
@@ -52,13 +60,16 @@ export function RoiCalculator({ initialVertical = null }: Props) {
       )}
 
       {vertical && config && (
-        <div className="mt-8 grid gap-8 md:grid-cols-[1.2fr_1fr]">
+        <div className="mt-12 grid gap-12 md:grid-cols-[1.2fr_1fr]">
           <div>
-            <h3 className="text-2xl font-medium">{config.label}</h3>
-            <div className="mt-6 space-y-5">
+            <div className="flex items-center gap-4">
+              <VerticalMark vertical={vertical} className="h-10 w-10 text-primary" />
+              <h3 className="font-display text-display-md text-ink">{config.label}</h3>
+            </div>
+            <div className="mt-8 space-y-6">
               {config.roi.inputs.map((input) => (
                 <label key={input.id} className="block">
-                  <span className="text-sm text-fg-muted">{input.label}</span>
+                  <span className="font-mono text-xs uppercase tracking-wider text-mono-label">{input.label}</span>
                   <input
                     type="number"
                     role="spinbutton"
@@ -71,35 +82,37 @@ export function RoiCalculator({ initialVertical = null }: Props) {
                     onChange={(e) =>
                       setValues((v) => ({ ...v, [input.id]: Number(e.target.value) || 0 }))
                     }
-                    className="mt-1 w-full rounded-lg border border-border bg-bg px-3 py-2 text-lg tabular-nums focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                    className="mt-1 w-full border-0 border-b-2 border-sage/30 bg-transparent px-0 py-3 font-display text-3xl text-ink tabular-nums focus:border-primary focus:outline-none transition-colors"
                   />
                 </label>
               ))}
             </div>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Button variant="ghost" href="/audit" data-event="hero_cta_audit_clicked"
-                onClick={() => track("roi_calculator_completed", { vertical, leakValue: leak })}>
+            <div className="mt-8 flex flex-wrap gap-6 items-center">
+              <LinkArrow
+                href="/audit"
+                data-event="hero_cta_audit_clicked"
+              >
                 Get my full audit
-              </Button>
+              </LinkArrow>
               <button
                 type="button"
                 onClick={() => setVertical(null)}
-                className="text-sm text-fg-muted underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+                className="font-mono text-xs uppercase tracking-wider text-mono-label hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm"
               >
                 Change business type
               </button>
             </div>
           </div>
-          <div className="rounded-2xl bg-bg-alt border border-border p-6">
-            <div className="text-sm text-fg-muted">£/month bleeding</div>
-            <div className="mt-1 font-display text-5xl text-leak">
+          <aside className="rounded-2xl border border-sage-mute p-8">
+            <p className="font-mono text-xs uppercase tracking-wider text-mono-label">£/month bleeding</p>
+            <p className="mt-2 font-display text-display-xl text-leak leading-none tabular-nums">
               <AnimatedNumber value={leak} format="gbp" />
-            </div>
-            <div className="mt-6 text-sm text-fg-muted">ANNA recovers (est. 80%)</div>
-            <div className="mt-1 font-display text-3xl text-gain">
+            </p>
+            <p className="mt-8 font-mono text-xs uppercase tracking-wider text-mono-label">ANNA recovers (est. 80%)</p>
+            <p className="mt-2 font-display text-display-md text-primary leading-none tabular-nums">
               <AnimatedNumber value={recovery} format="gbp" />
-            </div>
-          </div>
+            </p>
+          </aside>
         </div>
       )}
     </section>
