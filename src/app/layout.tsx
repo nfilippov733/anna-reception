@@ -2,6 +2,8 @@ import "./globals.css";
 import { Inter, Calistoga } from "next/font/google";
 import type { Metadata } from "next";
 import { Header } from "@/components/layout/Header";
+import { Footer } from "@/components/layout/Footer";
+import { StickyDemoCTA } from "@/components/layout/StickyDemoCTA";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const display = Calistoga({ subsets: ["latin"], weight: "400", variable: "--font-display", display: "swap" });
@@ -17,6 +19,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className="min-h-screen flex flex-col">
         <Header />
         <main className="flex-1">{children}</main>
+        <Footer />
+        <StickyDemoCTA />
       </body>
     </html>
   );
