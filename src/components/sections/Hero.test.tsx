@@ -20,4 +20,19 @@ describe("Hero", () => {
     render(<Hero />);
     expect(screen.queryByRole("link", { name: /test call/i })).not.toBeInTheDocument();
   });
+  it("renders an editorial kicker label", () => {
+    render(<Hero />);
+    expect(screen.getByText(/01 — AI RECEPTIONIST/i)).toBeInTheDocument();
+  });
+
+  it("renders the hero illustration (not a placeholder rectangle)", () => {
+    const { container } = render(<Hero />);
+    expect(container.querySelector("img")).toBeInTheDocument();
+  });
+
+  it("emphasises one word in italic display style", () => {
+    const { container } = render(<Hero />);
+    const italic = container.querySelector("em, i, .italic");
+    expect(italic).toBeInTheDocument();
+  });
 });
