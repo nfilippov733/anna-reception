@@ -30,6 +30,12 @@ export function VerticalTile({ content }: Props) {
         type="button"
         aria-expanded={open}
         onClick={handleToggle}
+        onKeyDown={(e) => {
+          if (e.key === "Escape" && open) {
+            e.preventDefault();
+            setOpen(false);
+          }
+        }}
         className="flex w-full items-center gap-6 py-8 text-left min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
       >
         <VerticalMark vertical={content.key} className="h-10 w-10 text-primary flex-shrink-0" />
