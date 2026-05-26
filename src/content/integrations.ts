@@ -1,0 +1,23 @@
+// Logos provided as SVG sprite by newo white-label asset bundle (spec §7).
+export const INTEGRATION_LOGOS: Array<{ name: string; src: string | null }> = [
+  { name: "Google Calendar", src: null },
+  { name: "Stripe", src: null },
+  { name: "Square", src: null },
+  { name: "Calendly", src: null },
+  { name: "WhatsApp", src: null },
+  { name: "OpenTable", src: null },
+  { name: "ResDiary", src: null },
+  { name: "Dentally", src: null },
+  { name: "Phorest", src: null },
+  { name: "simPRO", src: null },
+  { name: "Commusoft", src: null },
+  { name: "Xero", src: null },
+  { name: "QuickBooks", src: null },
+  { name: "Jobber", src: null },
+  { name: "ServiceM8", src: null },
+  { name: "Joblogic", src: null },
+  { name: "Fergus", src: null },
+  { name: "Carestream R4", src: null },
+  { name: "NexHealth", src: null },
+  { name: "Treatwell", src: null },
+];
