@@ -1,3 +1,4 @@
+import { Phone } from "lucide-react";
 import { cn } from "@/lib/cn";
 
 type Props = {
@@ -13,12 +14,12 @@ export function PhoneChip({ number, className }: Props) {
       aria-label={`Test call ANNA Reception on ${number}`}
       data-event="header_cta_call_clicked"
       className={cn(
-        "inline-flex items-center gap-2 min-h-[44px] px-4 rounded-full bg-bg-alt text-fg border border-border hover:border-fg/40 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
+        "inline-flex items-center gap-2 min-h-[44px] px-4 rounded-full bg-bg text-ink border border-sage/40 hover:border-sage transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary",
         className
       )}
     >
-      <span aria-hidden="true">📞</span>
-      <span className="tabular-nums">{number}</span>
+      <Phone aria-hidden="true" className="h-4 w-4 text-primary" />
+      <span className="tabular-nums font-mono text-sm">{number}</span>
     </a>
   );
 }
