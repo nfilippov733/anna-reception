@@ -10,7 +10,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
-    "check:placeholders": "node scripts/check-source-placeholders.mjs"
+    "check:placeholders": "node scripts/check-source-placeholders.mjs",
+    "perf:lighthouse": "npx --yes lighthouse http://localhost:3000 --only-categories=performance,accessibility,best-practices,seo --output=html --output-path=./lighthouse-report.html --quiet --chrome-flags=\"--headless\""
   },
   "dependencies": {
     "next": "14.2.15",
