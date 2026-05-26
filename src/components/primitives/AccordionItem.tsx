@@ -1,5 +1,5 @@
 "use client";
-import { useId, useState, useRef, useEffect } from "react";
+import { useId, useState, useRef } from "react";
 import { cn } from "@/lib/cn";
 
 type Props = {
@@ -15,12 +15,17 @@ export function AccordionItem({ title, children, defaultOpen = false, onToggle, 
   const id = useId();
   const headerRef = useRef<HTMLButtonElement>(null);
 
-  useEffect(() => onToggle?.(open), [open, onToggle]);
+  function handleClick() {
+    const next = !open;
+    setOpen(next);
+    onToggle?.(next);
+  }
 
   function handleKey(e: React.KeyboardEvent) {
     if (e.key === "Escape" && open) {
       e.preventDefault();
       setOpen(false);
+      onToggle?.(false);
       headerRef.current?.focus();
     }
   }
@@ -29,10 +34,11 @@ export function AccordionItem({ title, children, defaultOpen = false, onToggle, 
     <div className={cn("border-b border-border", className)} onKeyDown={handleKey}>
       <button
         ref={headerRef}
+        id={`${id}-header`}
         type="button"
         aria-expanded={open}
         aria-controls={`${id}-panel`}
-        onClick={() => setOpen((o) => !o)}
+        onClick={handleClick}
         className="flex w-full items-center justify-between py-4 text-left min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
       >
         <span className="font-medium">{title}</span>
@@ -43,6 +49,7 @@ export function AccordionItem({ title, children, defaultOpen = false, onToggle, 
       <div
         id={`${id}-panel`}
         role="region"
+        aria-labelledby={`${id}-header`}
         hidden={!open}
         className="pb-4 text-fg-muted"
       >
