@@ -17,7 +17,7 @@
     /* Editorial ANNA Warm tokens (v1 redesign) */
     --ink: 155 25% 6%;               /* near-black, slightly green-tinted */
     --cream-deep: 100 25% 95%;       /* banded sections, marquee bg */
-    --sage: 142 18% 55%;             /* hairlines, muted brand accents */
+    --sage: 142 22% 38%;             /* hairlines, muted brand accents; AA on white/cream-deep */
     --sage-mute: 142 12% 75%;        /* card borders */
     --mono-label: 155 15% 35%;       /* mono kicker labels, tech chips */
   }
