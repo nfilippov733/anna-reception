@@ -7,7 +7,6 @@
     /* Light theme tokens — values approximate ANNA.money's brand */
     --anna-green: 142 71% 26%;       /* hsl; darkened for WCAG AA text on white (>=4.5:1) */
     --on-primary: 0 0% 100%;         /* white text on primary green (>=4.5:1 contrast) */
-    --accent-electric: 217 91% 60%;
     --bg: 0 0% 100%;
     --bg-alt: 100 33% 98%;
     --fg: 222 47% 11%;
@@ -15,6 +14,12 @@
     --border: 220 13% 91%;
     --leak: 16 90% 40%;              /* deep coral; WCAG AA contrast (>=4.5:1) on white/bg-alt */
     --gain: 142 71% 26%;             /* matches anna-green */
+    /* Editorial ANNA Warm tokens (v1 redesign) */
+    --ink: 155 25% 6%;               /* near-black, slightly green-tinted */
+    --cream-deep: 100 25% 95%;       /* banded sections, marquee bg */
+    --sage: 142 18% 55%;             /* hairlines, muted brand accents */
+    --sage-mute: 142 12% 75%;        /* card borders */
+    --mono-label: 155 15% 35%;       /* mono kicker labels, tech chips */
   }
   .dark {
     --bg: 222 47% 6%;
