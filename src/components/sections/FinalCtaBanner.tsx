@@ -1,18 +1,35 @@
 import { Button } from "@/components/primitives/Button";
 import { PhoneChip } from "@/components/primitives/PhoneChip";
+import { Kicker } from "@/components/primitives/Kicker";
 
 const DEMO_PHONE = process.env.NEXT_PUBLIC_DEMO_PHONE ?? "+44 20 7946 0000";
 
 export function FinalCtaBanner() {
   return (
-    <section className="mx-auto max-w-page px-4 py-20" aria-label="Final call to action">
-      <div className="rounded-3xl bg-primary text-on-primary p-10 text-center">
-        <h2 className="font-display text-3xl md:text-5xl">Time to stop missing calls.</h2>
-        <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-          <Button href="/demo" data-event="hero_cta_demo_clicked" className="bg-on-primary text-primary border border-on-primary hover:brightness-95">
-            Book a demo
-          </Button>
-          <PhoneChip number={DEMO_PHONE} className="bg-on-primary/10 border-on-primary/30 text-on-primary" />
+    <section className="mx-auto max-w-page px-4 py-24 md:py-32" aria-label="Final call to action">
+      <div className="relative rounded-3xl bg-cream-deep p-12 md:p-20 text-center overflow-hidden">
+        <span aria-hidden="true" className="absolute -bottom-4 -right-4 w-48 text-primary opacity-30">
+          <svg viewBox="0 0 120 24" fill="none" className="w-full h-auto">
+            <path
+              d="M2 12 C 12 2, 22 22, 32 12 S 52 2, 62 12 S 82 22, 92 12 S 112 2, 118 12"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              fill="none"
+            />
+          </svg>
+        </span>
+        <div className="relative">
+          <Kicker number="10" label="Time to stop missing calls" className="!text-mono-label text-center" />
+          <h2 className="mt-6 font-display text-display-xl text-ink text-balance">
+            Time to stop missing calls.
+          </h2>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <Button href="/demo" data-event="hero_cta_demo_clicked">
+              Book a demo
+            </Button>
+            <PhoneChip number={DEMO_PHONE} />
+          </div>
         </div>
       </div>
     </section>
