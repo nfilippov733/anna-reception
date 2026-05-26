@@ -20,7 +20,7 @@ function formatValue(v: number, format: "gbp" | "int"): string {
   return new Intl.NumberFormat("en-GB").format(Math.round(v));
 }
 
-export function AnimatedNumber({ value, format, className, durationMs = 400 }: Props) {
+export function AnimatedNumber({ value, format, className, durationMs = 360 }: Props) {
   const [display, setDisplay] = useState(value);
   const from = useRef(value);
 
