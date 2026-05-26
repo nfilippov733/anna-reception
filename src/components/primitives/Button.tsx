@@ -17,8 +17,8 @@ const base =
   "inline-flex items-center justify-center min-h-[44px] px-5 rounded-full text-base font-medium transition-all duration-200 ease-out active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 motion-reduce:transition-none motion-reduce:active:scale-100";
 
 const variants: Record<Variant, string> = {
-  primary: "bg-primary text-on-primary hover:brightness-95",
-  ghost: "bg-transparent text-fg border border-fg/20 hover:border-fg/40",
+  primary: "bg-primary text-on-primary hover:bg-primary/90",
+  ghost: "bg-transparent text-ink border border-ink/20 hover:border-ink/50",
 };
 
 export function Button({ children, variant = "primary", href, onClick, type = "button", className, ...rest }: ButtonProps) {

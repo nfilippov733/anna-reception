@@ -33,4 +33,16 @@ describe("Button", () => {
     render(<Button>Tap</Button>);
     expect(screen.getByRole("button").className).toMatch(/min-h-\[44px\]/);
   });
+  it("primary button uses primary token (not brightness filter)", () => {
+    render(<Button>Click</Button>);
+    const el = screen.getByRole("button");
+    expect(el.className).toMatch(/bg-primary/);
+    expect(el.className).not.toMatch(/brightness-/);
+  });
+
+  it("ghost button uses dark ink border", () => {
+    render(<Button variant="ghost">Click</Button>);
+    const el = screen.getByRole("button");
+    expect(el.className).toMatch(/border-ink/);
+  });
 });
