@@ -1,8 +1,20 @@
 import { TESTIMONIALS } from "@/content/testimonials";
 import { Kicker } from "@/components/primitives/Kicker";
 import { PullQuote } from "@/components/primitives/PullQuote";
-import { MissingAsset } from "@/components/primitives/MissingAsset";
 import Image from "next/image";
+
+function AvatarPlaceholder({ name, size = 40 }: { name: string; size?: number }) {
+  const initials = name.split(" ").map((n) => n[0]).slice(0, 2).join("").toUpperCase();
+  return (
+    <span
+      aria-hidden="true"
+      style={{ width: size, height: size }}
+      className="inline-flex items-center justify-center rounded-full bg-cream-deep text-sage font-mono text-xs ring-2 ring-sage/40"
+    >
+      {initials}
+    </span>
+  );
+}
 
 export function TestimonialWall() {
   const [hero, ...rest] = TESTIMONIALS;
@@ -32,7 +44,7 @@ export function TestimonialWall() {
                 {t.avatarSrc ? (
                   <Image src={t.avatarSrc} alt={t.name} width={40} height={40} className="rounded-full ring-2 ring-sage/40" />
                 ) : (
-                  <MissingAsset label={`avatar: ${t.name}`} width={40} height={40} />
+                  <AvatarPlaceholder name={t.name} size={40} />
                 )}
                 <div>
                   <div className="text-sm font-medium text-ink">{t.name}</div>
@@ -53,7 +65,7 @@ export function TestimonialWall() {
                 {t.avatarSrc ? (
                   <Image src={t.avatarSrc} alt={t.name} width={40} height={40} className="rounded-full ring-2 ring-sage/40" />
                 ) : (
-                  <MissingAsset label={`avatar: ${t.name}`} width={40} height={40} />
+                  <AvatarPlaceholder name={t.name} size={40} />
                 )}
                 <div>
                   <div className="text-sm font-medium text-ink">{t.name}</div>

@@ -1,3 +1,10 @@
+/**
+ * Dev/test affordance. Surfaces missing assets visibly during development.
+ * Do not use in new code; replace with real assets or semantic placeholders.
+ * Currently used in: SocialProofLogos (customer logos), IntegrationsMarquee
+ * (integration logos), AudioDemo (audio sample), TestimonialWall (avatars).
+ * Replace each as ANNA marketing ships real assets.
+ */
 type Props = {
   label: string;
   width?: number;
