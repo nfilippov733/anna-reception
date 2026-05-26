@@ -13,4 +13,9 @@ describe("AudioDemo", () => {
     await userEvent.click(screen.getByRole("button", { name: /read transcript/i }));
     expect(screen.getByRole("region", { name: /transcript/i })).toBeVisible();
   });
+  it("does not render the ▶/⏸ unicode glyphs anywhere", () => {
+    const { container } = render(<AudioDemo />);
+    expect(container.textContent).not.toContain("▶");
+    expect(container.textContent).not.toContain("⏸");
+  });
 });

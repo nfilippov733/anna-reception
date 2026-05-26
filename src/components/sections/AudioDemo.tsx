@@ -3,6 +3,8 @@ import { useRef, useState } from "react";
 import { Waveform } from "@/components/primitives/Waveform";
 import { PhoneChip } from "@/components/primitives/PhoneChip";
 import { MissingAsset } from "@/components/primitives/MissingAsset";
+import { PlayButton } from "@/components/primitives/PlayButton";
+import { Kicker } from "@/components/primitives/Kicker";
 import { track } from "@/lib/analytics";
 
 const DEMO_PHONE = process.env.NEXT_PUBLIC_DEMO_PHONE ?? "+44 20 7946 0000";
@@ -29,21 +31,17 @@ export function AudioDemo() {
   }
 
   return (
-    <section className="mx-auto max-w-page px-4 py-16" aria-labelledby="audio-heading">
-      <h2 id="audio-heading" className="font-display text-3xl md:text-4xl">Hear ANNA take a real call.</h2>
-      <p className="mt-3 text-fg-muted max-w-prose">
+    <section className="mx-auto max-w-page px-4 py-16 md:py-20" aria-labelledby="audio-heading">
+      <Kicker number="03" label="Hear ANNA take a real call" />
+      <h2 id="audio-heading" className="mt-6 font-display text-display-lg text-ink text-balance">
+        Hear ANNA take a real call.
+      </h2>
+      <p className="mt-4 text-lg text-fg-muted max-w-prose leading-[1.55]">
         30 seconds of an actual call answered, triaged, and booked. Most callers don&apos;t realise it&apos;s AI.
       </p>
-      <div className="mt-8 rounded-2xl border border-border bg-bg-alt p-6">
+      <div className="mt-10 rounded-2xl border border-sage/40 p-6 md:p-8">
         <div className="flex items-center gap-4">
-          <button
-            type="button"
-            onClick={togglePlay}
-            aria-label={playing ? "Pause sample call" : "Play sample call"}
-            className="h-14 w-14 rounded-full bg-primary text-on-primary flex items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-          >
-            {playing ? "⏸" : "▶"}
-          </button>
+          <PlayButton playing={playing} onToggle={togglePlay} />
           <Waveform playing={playing} />
         </div>
         {GENERIC_AUDIO_SRC ? (
@@ -51,25 +49,30 @@ export function AudioDemo() {
             ref={ref}
             src={GENERIC_AUDIO_SRC}
             preload="metadata"
-            onEnded={() => { setPlaying(false); track("audio_demo_completed_30s"); }}
+            onEnded={() => {
+              setPlaying(false);
+              track("audio_demo_completed_30s");
+            }}
           />
         ) : (
-          <div className="mt-4"><MissingAsset label="audio: generic 30s call sample" /></div>
+          <div className="mt-4">
+            <MissingAsset label="audio: generic 30s call sample" />
+          </div>
         )}
         <button
           type="button"
           aria-expanded={showTranscript}
           onClick={() => setShowTranscript((v) => !v)}
-          className="mt-4 text-sm underline text-fg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+          className="mt-4 font-mono text-xs uppercase tracking-wider text-mono-label hover:text-primary transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-sm"
         >
-          {showTranscript ? "Hide transcript" : "Read transcript"}
+          {showTranscript ? "Hide transcript ↑" : "Read transcript ↓"}
         </button>
-        <div role="region" aria-label="Transcript" hidden={!showTranscript} className="mt-3 text-sm text-fg-muted">
+        <div role="region" aria-label="Transcript" hidden={!showTranscript} className="mt-3 text-sm text-fg-muted max-w-prose">
           {TRANSCRIPT}
         </div>
       </div>
-      <div className="mt-6 flex flex-wrap items-center gap-3">
-        <span className="text-sm text-fg-muted">Or talk to her yourself:</span>
+      <div className="mt-8 flex flex-wrap items-center gap-3 text-sm text-fg-muted">
+        <span>Or hear her live yourself:</span>
         <PhoneChip number={DEMO_PHONE} />
       </div>
     </section>
