@@ -15,4 +15,8 @@ describe("Header", () => {
     render(<Header />);
     expect(screen.getByRole("link", { name: /test call anna reception/i })).toBeInTheDocument();
   });
+  it("renders the Logo SVG mark (not just a text wordmark)", () => {
+    const { container } = render(<Header />);
+    expect(container.querySelector("svg")).toBeInTheDocument();
+  });
 });
