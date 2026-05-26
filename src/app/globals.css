@@ -1,3 +1,41 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light theme tokens — values approximate ANNA.money's brand */
+    --anna-green: 142 71% 38%;       /* hsl */
+    --on-primary: 222 47% 11%;
+    --accent-electric: 217 91% 60%;
+    --bg: 0 0% 100%;
+    --bg-alt: 100 33% 98%;
+    --fg: 222 47% 11%;
+    --fg-muted: 215 16% 47%;
+    --border: 220 13% 91%;
+    --leak: 16 95% 60%;              /* warm coral, softer than red */
+    --gain: 142 71% 38%;             /* matches anna-green */
+  }
+  .dark {
+    --bg: 222 47% 6%;
+    --bg-alt: 222 47% 10%;
+    --fg: 0 0% 98%;
+    --fg-muted: 215 16% 65%;
+    --border: 217 19% 27%;
+    --leak: 16 90% 65%;
+  }
+  html {
+    color-scheme: light dark;
+  }
+  body {
+    background-color: hsl(var(--bg));
+    color: hsl(var(--fg));
+    font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  }
+}
+
+@layer utilities {
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
