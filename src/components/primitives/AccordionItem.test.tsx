@@ -29,4 +29,15 @@ describe("AccordionItem", () => {
     await userEvent.click(screen.getByRole("button"));
     expect(onToggle).toHaveBeenLastCalledWith(false);
   });
+  it("renders an SVG chevron, not a unicode glyph", () => {
+    const { container } = render(<AccordionItem title="Q">A</AccordionItem>);
+    expect(container.querySelector("svg")).toBeInTheDocument();
+    expect(container.textContent).not.toContain("▾");
+  });
+
+  it("uses sage-tinted bottom border", () => {
+    const { container } = render(<AccordionItem title="Q">A</AccordionItem>);
+    const wrapper = container.firstElementChild as HTMLElement;
+    expect(wrapper.className).toMatch(/border-sage/);
+  });
 });

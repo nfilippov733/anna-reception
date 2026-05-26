@@ -1,5 +1,6 @@
 "use client";
 import { useId, useState, useRef } from "react";
+import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/cn";
 
 type Props = {
@@ -31,7 +32,7 @@ export function AccordionItem({ title, children, defaultOpen = false, onToggle, 
   }
 
   return (
-    <div className={cn("border-b border-border", className)} onKeyDown={handleKey}>
+    <div className={cn("border-b border-sage/30", className)} onKeyDown={handleKey}>
       <button
         ref={headerRef}
         id={`${id}-header`}
@@ -41,10 +42,11 @@ export function AccordionItem({ title, children, defaultOpen = false, onToggle, 
         onClick={handleClick}
         className="flex w-full items-center justify-between py-4 text-left min-h-[44px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
       >
-        <span className="font-medium">{title}</span>
-        <span aria-hidden className="transition-transform duration-200" style={{ transform: open ? "rotate(180deg)" : undefined }}>
-          ▾
-        </span>
+        <span className="font-medium text-ink">{title}</span>
+        <ChevronDown
+          aria-hidden="true"
+          className={cn("h-5 w-5 text-mono-label transition-transform duration-200 motion-reduce:transition-none", open && "rotate-180")}
+        />
       </button>
       <div
         id={`${id}-panel`}
