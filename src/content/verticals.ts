@@ -22,7 +22,8 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
     testimonialSlot: "Practice principal · business name · 'X new patients captured in month 1'",
     integrationsUk: ["Dentally", "SOE/EXACT", "Carestream R4", "Systems for Dentists", "Cliniko"],
     integrationsUsIntl: ["Dentrix", "Open Dental", "NexHealth", "Curve", "Practice-Web", "Google Calendar"],
-    complianceLine: "UK GDPR & DPA 2018 · ISO 27001-aligned (re-add HIPAA when US launches in phase 2)",
+    // Note: re-add HIPAA mention when US launches in phase 2 (see spec v3 §3.1, T1a).
+    complianceLine: "UK GDPR & DPA 2018 · ISO 27001-aligned",
     roi: {
       inputs: [
         { id: "avgValue", label: "Avg new-patient lifetime value (£)", default: 2400, min: 500, max: 10000, step: 100, unit: "gbp" },
