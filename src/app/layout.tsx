@@ -1,6 +1,7 @@
 import "./globals.css";
 import { Inter, Calistoga } from "next/font/google";
 import type { Metadata } from "next";
+import { Header } from "@/components/layout/Header";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" });
 const display = Calistoga({ subsets: ["latin"], weight: "400", variable: "--font-display", display: "swap" });
@@ -13,7 +14,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en-GB" className={`${inter.variable} ${display.variable}`}>
-      <body>{children}</body>
+      <body className="min-h-screen flex flex-col">
+        <Header />
+        <main className="flex-1">{children}</main>
+      </body>
     </html>
   );
 }
