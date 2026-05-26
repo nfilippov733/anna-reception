@@ -1,8 +1,8 @@
-import { Hammer, Scissors, Stethoscope, Utensils } from "lucide-react";
+import { Hammer, Scissors, Stethoscope, Utensils, type LucideIcon } from "lucide-react";
 import type { VerticalKey } from "@/lib/verticals";
 import { cn } from "@/lib/cn";
 
-const ICONS: Record<VerticalKey, React.ComponentType<{ className?: string; "aria-hidden"?: boolean; strokeWidth?: number }>> = {
+const ICONS: Record<VerticalKey, LucideIcon> = {
   dental: Stethoscope,
   beauty: Scissors,
   pubs: Utensils,
