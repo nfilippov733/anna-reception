@@ -43,7 +43,7 @@ describe("useScrollReveal", () => {
 
     act(() => {
       observerCallback!(
-        [{ isIntersecting: true, target: el } as IntersectionObserverEntry],
+        [{ isIntersecting: true, target: el } as unknown as IntersectionObserverEntry],
         {} as IntersectionObserver
       );
     });
