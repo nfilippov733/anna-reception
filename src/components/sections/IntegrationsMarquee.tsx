@@ -5,9 +5,11 @@ import Image from "next/image";
 export function IntegrationsMarquee() {
   const doubled = [...INTEGRATION_LOGOS, ...INTEGRATION_LOGOS];
   return (
-    <section className="py-12 border-y border-border bg-bg-alt overflow-hidden" aria-label="Integrations">
-      <p className="text-center text-sm text-fg-muted mb-6">Works with the tools you already use</p>
-      <div className="flex gap-12 animate-marquee motion-reduce:animate-none whitespace-nowrap">
+    <section className="py-16 border-y border-sage/30 bg-cream-deep overflow-hidden" aria-label="Integrations">
+      <p className="text-center font-mono text-xs uppercase tracking-[0.18em] text-mono-label mb-8">
+        200+ Integrations · Always Growing
+      </p>
+      <div className="flex gap-16 animate-marquee motion-reduce:animate-none whitespace-nowrap">
         {doubled.map((logo, i) => (
           <div key={i} className="flex items-center justify-center min-w-[140px] h-10 opacity-70">
             {logo.src ? (
