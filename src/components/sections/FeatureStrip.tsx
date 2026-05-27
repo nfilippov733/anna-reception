@@ -1,4 +1,5 @@
 import { FeatureIcon, type FeatureIconName } from "@/components/primitives/FeatureIcon";
+import { Reveal } from "@/components/primitives/Reveal";
 
 type Feature = {
   icon: FeatureIconName;
@@ -20,18 +21,19 @@ export function FeatureStrip() {
     <section className="mx-auto max-w-page px-4 py-24 md:py-32" aria-label="Core features">
       <ul className="grid sm:grid-cols-2 lg:grid-cols-3 border-t border-sage/30">
         {FEATURES.map((f, i) => (
-          <li
-            key={f.title}
-            className={[
-              "p-8 border-b border-sage/30",
-              i % 3 !== 0 ? "lg:border-l lg:border-sage/30" : "",
-              i % 2 !== 0 ? "sm:border-l sm:border-sage/30 lg:border-l" : "",
-            ].join(" ")}
-          >
-            <FeatureIcon name={f.icon} />
-            <p className="mt-4 text-lg font-medium text-ink">{f.title}</p>
-            <p className="mt-2 text-sm text-fg-muted">{f.body}</p>
-          </li>
+          <Reveal key={f.title} delayMs={i * 40}>
+            <li
+              className={[
+                "p-8 border-b border-sage/30",
+                i % 3 !== 0 ? "lg:border-l lg:border-sage/30" : "",
+                i % 2 !== 0 ? "sm:border-l sm:border-sage/30 lg:border-l" : "",
+              ].join(" ")}
+            >
+              <FeatureIcon name={f.icon} />
+              <p className="mt-4 text-lg font-medium text-ink">{f.title}</p>
+              <p className="mt-2 text-sm text-fg-muted">{f.body}</p>
+            </li>
+          </Reveal>
         ))}
       </ul>
     </section>
