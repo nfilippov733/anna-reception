@@ -1,4 +1,5 @@
 import { Hero } from "@/components/sections/Hero";
+import { ChannelsRibbon } from "@/components/sections/ChannelsRibbon";
 import { SocialProofLogos } from "@/components/sections/SocialProofLogos";
 import { RevenueLeak } from "@/components/sections/RevenueLeak";
 import { AudioDemo } from "@/components/sections/AudioDemo";
@@ -26,7 +27,7 @@ export default async function HomePage({ searchParams }: Props) {
   return (
     <>
       <Hero />
-      <SquiggleDivider />
+      <ChannelsRibbon />
       <SocialProofLogos />
       <RevenueLeak />
       <SquiggleDivider />
