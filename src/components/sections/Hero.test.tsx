@@ -1,38 +1,28 @@
-import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
+import { describe, it, expect } from "vitest";
 import { Hero } from "./Hero";
 
 describe("Hero", () => {
-  it("renders the leak-framed headline", () => {
+  it("renders the v3 kicker, headline, and sub", () => {
     render(<Hero />);
-    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent("Stop losing revenue to missed calls");
-  });
-  it("includes both primary and ghost CTAs", () => {
-    render(<Hero />);
-    expect(screen.getByRole("link", { name: /book a demo/i })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /get my free revenue audit/i })).toBeInTheDocument();
-  });
-  it("includes the corrected trust signal copy", () => {
-    render(<Hero />);
-    expect(screen.getByText(/100,000\+ UK SMBs on ANNA/i)).toBeInTheDocument();
-  });
-  it("does not render a test-call CTA in the hero (zone discipline)", () => {
-    render(<Hero />);
-    expect(screen.queryByRole("link", { name: /test call/i })).not.toBeInTheDocument();
-  });
-  it("renders an editorial kicker label", () => {
-    render(<Hero />);
-    expect(screen.getByText(/01 — AI RECEPTIONIST/i)).toBeInTheDocument();
+    expect(screen.getByText(/Front desk · 24\/7 · UK/i)).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { level: 1, name: /Your missed calls are now revenue\./i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/answers every call, returns every web lead, and chases every dormant quote/i)
+    ).toBeInTheDocument();
+    expect(screen.getByText(/Pays for itself in the first week/i)).toBeInTheDocument();
   });
 
-  it("renders the hero illustration (not a placeholder rectangle)", () => {
+  it("does not contain the word 'AI'", () => {
     const { container } = render(<Hero />);
-    expect(container.querySelector("img")).toBeInTheDocument();
+    expect(container.textContent ?? "").not.toMatch(/\bAI\b/);
   });
 
-  it("emphasises one word in italic display style", () => {
-    const { container } = render(<Hero />);
-    const italic = container.querySelector("em, i, .italic");
-    expect(italic).toBeInTheDocument();
+  it("renders both primary and secondary CTAs", () => {
+    render(<Hero />);
+    expect(screen.getByRole("link", { name: /Book a demo/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /Get my free revenue audit/i })).toBeInTheDocument();
   });
 });

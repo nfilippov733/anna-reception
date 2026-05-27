@@ -7,15 +7,15 @@ export function Hero() {
     <section className="mx-auto max-w-page px-4 pt-12 pb-16 md:pt-20 md:pb-24" aria-labelledby="hero-headline">
       <div className="grid gap-12 md:grid-cols-[1.2fr_1fr] items-center">
         <div>
-          <Kicker number="01" label="AI Receptionist · UK" />
+          <Kicker number="01" label="Front desk · 24/7 · UK" />
           <h1
             id="hero-headline"
             className="mt-6 font-display text-display-xl text-ink leading-[1.05] tracking-tight text-balance"
           >
-            Stop <em className="not-italic md:italic text-primary">losing</em> revenue to missed calls.
+            Your missed calls are now revenue.
           </h1>
           <p className="mt-6 text-lg md:text-xl text-fg-muted max-w-prose leading-[1.55]">
-            ANNA Reception answers, books, and follows up 24/7 — for dental clinics, salons, gastropubs, and trades.
+            ANNA Reception answers every call, returns every web lead, and chases every dormant quote — across phone, WhatsApp, and DMs. Pays for itself in the first week.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button href="/demo" data-event="hero_cta_demo_clicked">Book a demo</Button>
