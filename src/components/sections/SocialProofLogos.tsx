@@ -2,10 +2,10 @@ import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { Reveal } from "@/components/primitives/Reveal";
 
 const SIGNALS = [
-  { stat: "100,000+", label: "UK businesses on ANNA" },
+  { stat: "100,000+", label: "100,000+ UK SMBs on ANNA" },
   { stat: "★★★★★", label: "Trustpilot · Excellent" },
-  { stat: "24/7", label: "Never a missed call" },
-  { stat: "3 min", label: "Setup to first answered call" },
+  { stat: "24/7", label: "24/7 reception" },
+  { stat: "200+", label: "200+ tools integrated" },
 ];
 
 export function SocialProofLogos() {
