@@ -25,9 +25,9 @@ describe("RoiCalculator", () => {
     expect(screen.getAllByText(/£/).length).toBeGreaterThan(0);
   });
 
-  it("renders SVG vertical marks in the picker (no initial vertical)", () => {
+  it("renders 4 illustration marks in the picker (no initial vertical)", () => {
     const { container } = render(<RoiCalculator initialVertical={null} />);
-    const svgs = container.querySelectorAll("svg");
-    expect(svgs.length).toBeGreaterThanOrEqual(4);
+    const imgs = container.querySelectorAll("img");
+    expect(imgs.length).toBeGreaterThanOrEqual(4);
   });
 });

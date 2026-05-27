@@ -6,6 +6,7 @@ import { computeRecovery } from "@/lib/roi";
 import { AnimatedNumber } from "@/components/primitives/AnimatedNumber";
 import { Kicker } from "@/components/primitives/Kicker";
 import { LinkArrow } from "@/components/primitives/LinkArrow";
+import { Reveal } from "@/components/primitives/Reveal";
 import { VerticalMark } from "@/components/primitives/VerticalMark";
 import { track } from "@/lib/analytics";
 
@@ -41,19 +42,20 @@ export function RoiCalculator({ initialVertical = null }: Props) {
         <div className="mt-12">
           <h3 className="font-medium text-lg">Pick your business.</h3>
           <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {VERTICAL_KEYS.map((k) => (
-              <button
-                key={k}
-                type="button"
-                onClick={() => selectVertical(k)}
-                className="group flex flex-col items-start gap-4 rounded-2xl border border-sage-mute p-6 text-left min-h-[120px] transition-colors duration-150 hover:border-sage focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-              >
-                <VerticalMark vertical={k} className="h-10 w-10 text-primary group-hover:scale-105 transition-transform duration-150 motion-reduce:transition-none" />
-                <div>
-                  <div className="font-medium text-ink">{VERTICALS[k].label}</div>
-                  <div className="mt-1 text-sm text-fg-muted">{VERTICALS[k].cardHook}</div>
-                </div>
-              </button>
+            {VERTICAL_KEYS.map((k, i) => (
+              <Reveal key={k} delayMs={i * 60}>
+                <button
+                  type="button"
+                  onClick={() => selectVertical(k)}
+                  className="group flex flex-col items-start gap-4 rounded-2xl border border-sage-mute p-6 text-left min-h-[120px] transition-colors duration-150 hover:border-sage focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary w-full"
+                >
+                  <VerticalMark vertical={k} variant="illustration" className="h-14 w-14 text-primary group-hover:scale-105 transition-transform duration-150 motion-reduce:transition-none" />
+                  <div>
+                    <div className="font-medium text-ink">{VERTICALS[k].label}</div>
+                    <div className="mt-1 text-sm text-fg-muted">{VERTICALS[k].cardHook}</div>
+                  </div>
+                </button>
+              </Reveal>
             ))}
           </div>
         </div>
@@ -63,7 +65,7 @@ export function RoiCalculator({ initialVertical = null }: Props) {
         <div className="mt-12 grid gap-12 md:grid-cols-[1.2fr_1fr]">
           <div>
             <div className="flex items-center gap-4">
-              <VerticalMark vertical={vertical} className="h-10 w-10 text-primary" />
+              <VerticalMark vertical={vertical} variant="illustration" className="h-14 w-14 text-primary" />
               <h3 className="font-display text-display-md text-ink">{config.label}</h3>
             </div>
             <div className="mt-8 space-y-6">
