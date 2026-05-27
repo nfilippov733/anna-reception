@@ -77,6 +77,9 @@ export function TestimonialWall() {
           ))}
         </div>
       )}
+      <p className="mt-12 font-mono text-xs uppercase tracking-[0.16em] text-mono-label text-center">
+        Illustrative scenarios. Real customer testimonials replace these at launch.
+      </p>
     </section>
   );
 }
