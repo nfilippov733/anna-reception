@@ -36,7 +36,7 @@ export function Footer() {
             <li><a href="/privacy" className="hover:text-primary transition-colors">Privacy</a></li>
             <li><a href="/terms" className="hover:text-primary transition-colors">Terms</a></li>
           </ul>
-          <p className="mt-6 text-xs text-fg-muted">Absolute Financial Services Ltd. ANNA is a trading name. FCA reference TBD.</p>
+          <p className="mt-6 text-xs text-fg-muted">Absolute Financial Services Ltd. ANNA is a trading name. See anna.money for regulatory information.</p>
         </div>
       </div>
     </footer>
