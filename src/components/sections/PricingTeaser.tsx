@@ -17,6 +17,9 @@ export function PricingTeaser() {
         <p className="mt-4 font-mono text-xs uppercase tracking-[0.18em] text-mono-label">
           Depending on call volume · No long contracts · Setup in 3 minutes
         </p>
+        <p className="mt-2 font-mono text-xs uppercase tracking-[0.18em] text-mono-label">
+          Pays for itself in the first week · Cancel anytime
+        </p>
         <Button
           href="/demo"
           className="mt-8"
