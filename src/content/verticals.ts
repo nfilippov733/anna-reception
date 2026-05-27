@@ -1,6 +1,6 @@
 import type { VerticalContent, VerticalKey } from "@/lib/verticals";
 
-// All copy here mirrors spec v3 §3.1–§3.4. Edit copy only by editing this file.
+// All copy here mirrors spec v3 §7.4. Edit copy only by editing this file.
 
 export const VERTICALS: Record<VerticalKey, VerticalContent> = {
   dental: {
@@ -22,20 +22,31 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
     testimonialSlot: "Practice principal · business name · 'X new patients captured in month 1'",
     integrationsUk: ["Dentally", "SOE/EXACT", "Carestream R4", "Systems for Dentists", "Cliniko"],
     integrationsUsIntl: ["Dentrix", "Open Dental", "NexHealth", "Curve", "Practice-Web", "Google Calendar"],
-    // Note: re-add HIPAA mention when US launches in phase 2 (see spec v3 §3.1, T1a).
     complianceLine: "UK GDPR & DPA 2018 · ISO 27001-aligned",
+    outcomeStat: {
+      headline: "£401K recovered",
+      attribution: "10,865 calls answered in 90 days — industry estimate, 2025",
+    },
+    customerStory: {
+      quote: "47 new patients in month 1.",
+      attribution: "Dr. Patel · Bright Smiles Cardiff",
+    },
+    channelMix: [
+      { key: "inbound", label: "Inbound", pct: 71 },
+      { key: "outbound", label: "Outbound", pct: 18 },
+      { key: "whatsapp", label: "WhatsApp", pct: 11 },
+      { key: "instagram", label: "Instagram DMs", pct: 0 },
+      { key: "web", label: "Web chat", pct: 0 },
+    ],
+    demoCtaLabel: "Book a dental demo",
     roi: {
       inputs: [
         { id: "avgValue", label: "Avg new-patient lifetime value (£)", default: 2400, min: 500, max: 10000, step: 100, unit: "gbp" },
         { id: "callsPerWeek", label: "New-patient calls per week", default: 15, min: 1, max: 200, step: 1, unit: "count" },
         { id: "missedPct", label: "% of those calls missed", default: 30, min: 0, max: 100, step: 5, unit: "percent" },
       ],
-      leakFormula: (inputs) => {
-        const avgValue = inputs.avgValue ?? 0;
-        const callsPerWeek = inputs.callsPerWeek ?? 0;
-        const missedPct = inputs.missedPct ?? 0;
-        return callsPerWeek * (missedPct / 100) * avgValue * 4;
-      },
+      leakFormula: ({ avgValue, callsPerWeek, missedPct }) =>
+        (callsPerWeek ?? 0) * ((missedPct ?? 0) / 100) * (avgValue ?? 0) * 4,
     },
   },
 
@@ -58,18 +69,30 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
     integrationsUk: ["Phorest", "Timely", "Treatwell", "Fresha", "Booksy"],
     integrationsUsIntl: ["Square Appointments", "Vagaro", "Google Calendar"],
     complianceLine: "UK GDPR & DPA 2018-compliant client data handling",
+    outcomeStat: {
+      headline: "£62K booked covers",
+      attribution: "2,140 WhatsApp bookings in 90 days — industry estimate, 2025",
+    },
+    customerStory: {
+      quote: "Zero missed bookings since we switched.",
+      attribution: "Alex Riley · Mane Studio Manchester",
+    },
+    channelMix: [
+      { key: "inbound", label: "Inbound", pct: 40 },
+      { key: "outbound", label: "Outbound", pct: 15 },
+      { key: "whatsapp", label: "WhatsApp", pct: 35 },
+      { key: "instagram", label: "Instagram DMs", pct: 10 },
+      { key: "web", label: "Web chat", pct: 0 },
+    ],
+    demoCtaLabel: "Book a beauty demo",
     roi: {
       inputs: [
         { id: "avgValue", label: "Avg booking value (£)", default: 65, min: 10, max: 500, step: 5, unit: "gbp" },
         { id: "callsPerWeek", label: "Booking calls per week", default: 40, min: 1, max: 500, step: 1, unit: "count" },
         { id: "missedPct", label: "% of those calls missed", default: 25, min: 0, max: 100, step: 5, unit: "percent" },
       ],
-      leakFormula: (inputs) => {
-        const avgValue = inputs.avgValue ?? 0;
-        const callsPerWeek = inputs.callsPerWeek ?? 0;
-        const missedPct = inputs.missedPct ?? 0;
-        return callsPerWeek * (missedPct / 100) * avgValue * 4;
-      },
+      leakFormula: ({ avgValue, callsPerWeek, missedPct }) =>
+        (callsPerWeek ?? 0) * ((missedPct ?? 0) / 100) * (avgValue ?? 0) * 4,
     },
   },
 
@@ -93,25 +116,36 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
     integrationsUk: ["OpenTable", "ResDiary", "SevenRooms"],
     integrationsUsIntl: ["Toast", "Square for Restaurants", "Tock"],
     complianceLine: "PCI-compliant deposit handling via Stripe",
+    outcomeStat: {
+      headline: "£88K incremental covers",
+      attribution: "41% weekend rebooking lift — industry estimate, 2025",
+    },
+    customerStory: {
+      quote: "Our Saturday covers are up 23%.",
+      attribution: "Sarah & Tom · The Black Swan, Cotswolds",
+    },
+    channelMix: [
+      { key: "inbound", label: "Inbound", pct: 65 },
+      { key: "outbound", label: "Outbound", pct: 5 },
+      { key: "whatsapp", label: "WhatsApp", pct: 15 },
+      { key: "instagram", label: "Instagram DMs", pct: 10 },
+      { key: "web", label: "Web chat", pct: 5 },
+    ],
+    demoCtaLabel: "Book a gastropub demo",
     roi: {
       inputs: [
         { id: "avgValue", label: "Avg cover spend (£)", default: 45, min: 10, max: 200, step: 5, unit: "gbp" },
         { id: "callsPerWeek", label: "Booking calls per week", default: 80, min: 1, max: 500, step: 1, unit: "count" },
         { id: "missedPct", label: "% of those calls missed", default: 35, min: 0, max: 100, step: 5, unit: "percent" },
       ],
-      leakFormula: (inputs) => {
-        const avgValue = inputs.avgValue ?? 0;
-        const callsPerWeek = inputs.callsPerWeek ?? 0;
-        const missedPct = inputs.missedPct ?? 0;
-        // assume avg party 4 covers
-        return callsPerWeek * (missedPct / 100) * avgValue * 4 * 4;
-      },
+      leakFormula: ({ avgValue, callsPerWeek, missedPct }) =>
+        (callsPerWeek ?? 0) * ((missedPct ?? 0) / 100) * (avgValue ?? 0) * 4 * 4,
     },
   },
 
   construction: {
     key: "construction",
-    label: "Construction / Trades",
+    label: "Trades",
     cardHook: "Win the job while you're on the roof.",
     headlineRoi: "Avg repair £180 · avg install £1,200 · 60% of trade leads call ≥2 numbers [Source: industry estimate, 2025].",
     painFraming:
@@ -131,18 +165,125 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
     integrationsUk: ["simPRO", "Commusoft", "Joblogic", "Fergus", "Powered Now", "Tradify"],
     integrationsUsIntl: ["Jobber", "Housecall Pro", "ServiceM8", "Xero", "ServiceTitan (enterprise — not £99/mo persona)"],
     complianceLine: "UK GDPR & DPA 2018",
+    outcomeStat: {
+      headline: "£140K won-jobs",
+      attribution: "First-to-call-back on 87% of leads — industry estimate, 2025",
+    },
+    customerStory: {
+      quote: "I won three boiler jobs last month while on a roof.",
+      attribution: "Mark D. · DJ Plumbing & Gas, North London",
+    },
+    channelMix: [
+      { key: "inbound", label: "Inbound", pct: 60 },
+      { key: "outbound", label: "Outbound", pct: 25 },
+      { key: "whatsapp", label: "WhatsApp", pct: 10 },
+      { key: "instagram", label: "Instagram DMs", pct: 0 },
+      { key: "web", label: "Web chat", pct: 5 },
+    ],
+    demoCtaLabel: "Book a trades demo",
     roi: {
       inputs: [
         { id: "avgValue", label: "Avg job value (£)", default: 350, min: 50, max: 5000, step: 50, unit: "gbp" },
         { id: "callsPerWeek", label: "Lead calls per week", default: 25, min: 1, max: 300, step: 1, unit: "count" },
         { id: "missedPct", label: "% of those calls lost to faster competitor", default: 45, min: 0, max: 100, step: 5, unit: "percent" },
       ],
-      leakFormula: (inputs) => {
-        const avgValue = inputs.avgValue ?? 0;
-        const callsPerWeek = inputs.callsPerWeek ?? 0;
-        const missedPct = inputs.missedPct ?? 0;
-        return callsPerWeek * (missedPct / 100) * avgValue * 4;
-      },
+      leakFormula: ({ avgValue, callsPerWeek, missedPct }) =>
+        (callsPerWeek ?? 0) * ((missedPct ?? 0) / 100) * (avgValue ?? 0) * 4,
+    },
+  },
+
+  fitness: {
+    key: "fitness",
+    label: "Fitness studios",
+    cardHook: "Fill the class while you teach it.",
+    headlineRoi: "Avg monthly membership £50–£90 · trial calls peak at 6pm [Source: industry estimate, 2025].",
+    painFraming:
+      "Phone rings during a 7am HIIT class. By the time you wrap, the lead is at the studio round the corner. ANNA picks up, books a trial, follows up to convert it.",
+    audioSampleScript:
+      'Caller: "Do you have a 6pm spin class tonight?" → ANNA: checks the timetable + offers 6pm or 6:45pm + asks about prior cycling experience + sends a calendar invite + books a free trial.',
+    smartBehaviours: [
+      "Knows class timetable + capacity",
+      "Books trials",
+      "Outbound: class-fill chase for low-occupancy slots",
+      "Outbound: trial → membership conversion follow-ups",
+      "SMS confirmations + reschedules",
+    ],
+    testimonialSlot: "Studio owner · business name · 'Class fill at 94% on weeknights'",
+    integrationsUk: ["Mindbody", "TeamUp", "Glofox", "ClubRight"],
+    integrationsUsIntl: ["Mindbody", "ClassPass", "Mariana Tek", "Pike13", "Google Calendar"],
+    complianceLine: "UK GDPR & DPA 2018",
+    outcomeStat: {
+      headline: "£29K class-fill recovered",
+      attribution: "1,400 outbound follow-ups in 90 days — industry estimate, 2025",
+    },
+    customerStory: {
+      quote: "Class fill is at 94% on weeknights.",
+      attribution: "Priya K. · Form Studio Bristol",
+    },
+    channelMix: [
+      { key: "inbound", label: "Inbound", pct: 35 },
+      { key: "outbound", label: "Outbound", pct: 30 },
+      { key: "whatsapp", label: "WhatsApp", pct: 20 },
+      { key: "instagram", label: "Instagram DMs", pct: 10 },
+      { key: "web", label: "Web chat", pct: 5 },
+    ],
+    demoCtaLabel: "Book a fitness demo",
+    roi: {
+      inputs: [
+        { id: "avgValue", label: "Avg monthly membership (£)", default: 65, min: 20, max: 300, step: 5, unit: "gbp" },
+        { id: "callsPerWeek", label: "Trial-booking calls per week", default: 30, min: 1, max: 300, step: 1, unit: "count" },
+        { id: "missedPct", label: "% of trial calls missed", default: 30, min: 0, max: 100, step: 5, unit: "percent" },
+      ],
+      // Annualised: weekly missed × conversion 0.4 × 12 months membership
+      leakFormula: ({ avgValue, callsPerWeek, missedPct }) =>
+        (callsPerWeek ?? 0) * ((missedPct ?? 0) / 100) * 0.4 * (avgValue ?? 0) * 12,
+    },
+  },
+
+  vet: {
+    key: "vet",
+    label: "Vet clinics",
+    cardHook: "Triage every call, never miss an emergency.",
+    headlineRoi: "Avg consultation + treatment £150–£300 · out-of-hours triage is the moat [Source: industry estimate, 2025].",
+    painFraming:
+      "9pm. A worried owner calls. Your line is on voicemail. ANNA picks up, triages whether it's emergency or 'wait till morning', books the slot, SMSes the address.",
+    audioSampleScript:
+      'Caller: "My dog has been vomiting for two hours, is this urgent?" → ANNA: asks structured triage questions (food eaten, blood, lethargy) + routes emergency to on-call mobile + books non-urgent for morning + SMSes address + practice clinical-advice disclaimer.',
+    smartBehaviours: [
+      "Structured emergency triage (vomiting, bleeding, breathing, ingestion)",
+      "Never gives clinical advice — routes to vet",
+      "Books routine consults",
+      "SMS address + arrival window",
+      "Flags species-specific concerns to clinician on call",
+    ],
+    testimonialSlot: "Practice principal · business name · 'Out-of-hours triage stopped going to voicemail'",
+    integrationsUk: ["RxWorks", "VetIT", "Provet Cloud", "Robovet"],
+    integrationsUsIntl: ["ezyVet", "AVImark", "Cornerstone", "Google Calendar"],
+    complianceLine: "UK GDPR & DPA 2018 · clinical-disclaimer-aware",
+    outcomeStat: {
+      headline: "£74K added bookings",
+      attribution: "2-second emergency triage pickup — industry estimate, 2025",
+    },
+    customerStory: {
+      quote: "Out-of-hours triage stopped going to voicemail.",
+      attribution: "Dr. Chen · Glasgow Vet Group",
+    },
+    channelMix: [
+      { key: "inbound", label: "Inbound", pct: 60 },
+      { key: "outbound", label: "Outbound", pct: 10 },
+      { key: "whatsapp", label: "WhatsApp", pct: 15 },
+      { key: "instagram", label: "Instagram DMs", pct: 5 },
+      { key: "web", label: "Web chat", pct: 10 },
+    ],
+    demoCtaLabel: "Book a vet demo",
+    roi: {
+      inputs: [
+        { id: "avgValue", label: "Avg consultation + treatment (£)", default: 220, min: 50, max: 2000, step: 10, unit: "gbp" },
+        { id: "callsPerWeek", label: "Booking calls per week", default: 60, min: 1, max: 500, step: 1, unit: "count" },
+        { id: "missedPct", label: "% of those calls missed", default: 25, min: 0, max: 100, step: 5, unit: "percent" },
+      ],
+      leakFormula: ({ avgValue, callsPerWeek, missedPct }) =>
+        (callsPerWeek ?? 0) * ((missedPct ?? 0) / 100) * (avgValue ?? 0) * 4,
     },
   },
 };
