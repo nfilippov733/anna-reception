@@ -1,6 +1,7 @@
 import { TESTIMONIALS } from "@/content/testimonials";
 import { Kicker } from "@/components/primitives/Kicker";
 import { PullQuote } from "@/components/primitives/PullQuote";
+import { Reveal } from "@/components/primitives/Reveal";
 import Image from "next/image";
 
 function AvatarPlaceholder({ name, size = 40 }: { name: string; size?: number }) {
@@ -26,7 +27,7 @@ export function TestimonialWall() {
       </h2>
       <div className="mt-16 grid gap-12 md:grid-cols-3">
         {hero && (
-          <div className="md:col-span-2">
+          <Reveal className="md:col-span-2">
             <PullQuote
               quote={hero.quote}
               attribution={hero.name}
@@ -34,48 +35,52 @@ export function TestimonialWall() {
               business=""
               metric={hero.metric}
             />
-          </div>
+          </Reveal>
         )}
-        <div className="grid gap-8">
-          {rest.slice(0, 2).map((t, i) => (
-            <figure key={i}>
-              <blockquote className="text-ink">&ldquo;{t.quote}&rdquo;</blockquote>
-              <figcaption className="mt-4 flex items-center gap-3">
-                {t.avatarSrc ? (
-                  <Image src={t.avatarSrc} alt={t.name} width={40} height={40} className="rounded-full ring-2 ring-sage/40" />
-                ) : (
-                  <AvatarPlaceholder name={t.name} size={40} />
-                )}
-                <div>
-                  <div className="text-sm font-medium text-ink">{t.name}</div>
-                  <div className="text-xs text-fg-muted">{t.role}</div>
-                </div>
-              </figcaption>
-              <p className="mt-3 font-mono text-xs tabular-nums text-primary">{t.metric}</p>
-            </figure>
-          ))}
-        </div>
+        <Reveal delayMs={120}>
+          <div className="grid gap-8">
+            {rest.slice(0, 2).map((t, i) => (
+              <figure key={i}>
+                <blockquote className="text-ink">&ldquo;{t.quote}&rdquo;</blockquote>
+                <figcaption className="mt-4 flex items-center gap-3">
+                  {t.avatarSrc ? (
+                    <Image src={t.avatarSrc} alt={t.name} width={40} height={40} className="rounded-full ring-2 ring-sage/40" />
+                  ) : (
+                    <AvatarPlaceholder name={t.name} size={40} />
+                  )}
+                  <div>
+                    <div className="text-sm font-medium text-ink">{t.name}</div>
+                    <div className="text-xs text-fg-muted">{t.role}</div>
+                  </div>
+                </figcaption>
+                <p className="mt-3 font-mono text-xs tabular-nums text-primary">{t.metric}</p>
+              </figure>
+            ))}
+          </div>
+        </Reveal>
       </div>
       {rest.length > 2 && (
-        <div className="mt-12 grid gap-8 md:grid-cols-3">
-          {rest.slice(2).map((t, i) => (
-            <figure key={i}>
-              <blockquote className="text-ink">&ldquo;{t.quote}&rdquo;</blockquote>
-              <figcaption className="mt-4 flex items-center gap-3">
-                {t.avatarSrc ? (
-                  <Image src={t.avatarSrc} alt={t.name} width={40} height={40} className="rounded-full ring-2 ring-sage/40" />
-                ) : (
-                  <AvatarPlaceholder name={t.name} size={40} />
-                )}
-                <div>
-                  <div className="text-sm font-medium text-ink">{t.name}</div>
-                  <div className="text-xs text-fg-muted">{t.role}</div>
-                </div>
-              </figcaption>
-              <p className="mt-3 font-mono text-xs tabular-nums text-primary">{t.metric}</p>
-            </figure>
-          ))}
-        </div>
+        <Reveal delayMs={120}>
+          <div className="mt-12 grid gap-8 md:grid-cols-3">
+            {rest.slice(2).map((t, i) => (
+              <figure key={i}>
+                <blockquote className="text-ink">&ldquo;{t.quote}&rdquo;</blockquote>
+                <figcaption className="mt-4 flex items-center gap-3">
+                  {t.avatarSrc ? (
+                    <Image src={t.avatarSrc} alt={t.name} width={40} height={40} className="rounded-full ring-2 ring-sage/40" />
+                  ) : (
+                    <AvatarPlaceholder name={t.name} size={40} />
+                  )}
+                  <div>
+                    <div className="text-sm font-medium text-ink">{t.name}</div>
+                    <div className="text-xs text-fg-muted">{t.role}</div>
+                  </div>
+                </figcaption>
+                <p className="mt-3 font-mono text-xs tabular-nums text-primary">{t.metric}</p>
+              </figure>
+            ))}
+          </div>
+        </Reveal>
       )}
       <p className="mt-12 font-mono text-xs uppercase tracking-[0.16em] text-mono-label text-center">
         Illustrative scenarios. Real customer testimonials replace these at launch.
