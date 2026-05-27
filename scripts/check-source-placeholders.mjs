@@ -2,7 +2,15 @@
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 
+// Static string tokens that must NEVER appear in compiled marketing output.
 const FORBIDDEN = ["[source: TBD]", "[MISSING ASSET]"];
+
+// Regex patterns (whole-word match) flagged as marketing-vocab violations per v3 spec §3.
+const FORBIDDEN_PATTERNS = [
+  { name: "AI Receptionist", re: /AI\s+Receptionist/gi },
+  { name: "standalone AI mention", re: /\bAI\b/g },
+  { name: "artificial intelligence", re: /\bartificial\s+intelligence\b/gi },
+];
 const SCAN_ROOTS = [".next/server", ".next/static"];
 
 function walk(dir, files = []) {
@@ -23,6 +31,12 @@ for (const root of SCAN_ROOTS) {
       for (const token of FORBIDDEN) {
         if (content.includes(token)) hits.push(`${file} contains "${token}"`);
       }
+      for (const { name, re } of FORBIDDEN_PATTERNS) {
+        const matches = content.match(re);
+        if (matches && matches.length > 0) {
+          hits.push(`${file} contains "${name}" (${matches.length}×)`);
+        }
+      }
     }
   } catch {
     /* directory may not exist yet — ignore */
@@ -32,7 +46,7 @@ for (const root of SCAN_ROOTS) {
 if (hits.length > 0) {
   console.error("\n❌ Placeholder guard failed:\n");
   for (const h of hits) console.error("  " + h);
-  console.error("\nResolve placeholder tokens before deploying.\n");
+  console.error('\nResolve placeholder/vocab violations before deploying.\nv3 spec §3 bans "AI" wording in marketing copy.\n');
   process.exit(1);
 }
 console.log("✓ Placeholder guard passed");
