@@ -3,6 +3,7 @@ import { VERTICALS } from "@/content/verticals";
 import { VERTICAL_KEYS } from "@/lib/verticals";
 import { VerticalTile } from "@/components/verticals/VerticalTile";
 import { Kicker } from "@/components/primitives/Kicker";
+import { Reveal } from "@/components/primitives/Reveal";
 
 export function VerticalsTileModule() {
   return (
@@ -15,8 +16,10 @@ export function VerticalsTileModule() {
         Tap a tile to hear a real call, see the integrations, and read the operator&apos;s story.
       </p>
       <div className="mt-12 border-t border-sage/30">
-        {VERTICAL_KEYS.map((k) => (
-          <VerticalTile key={k} content={VERTICALS[k]} />
+        {VERTICAL_KEYS.map((k, i) => (
+          <Reveal key={k} delayMs={i * 60}>
+            <VerticalTile content={VERTICALS[k]} />
+          </Reveal>
         ))}
       </div>
     </section>
