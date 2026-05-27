@@ -1,44 +1,41 @@
 export type Testimonial = {
+  vertical: "dental" | "beauty" | "pubs" | "construction" | "fitness" | "vet";
   quote: string;
-  name: string;
-  role: string;
-  metric: string;
-  avatarSrc: string | null;
-  /** Marketing replaces these with real customer testimonials before launch. */
-  illustrative?: boolean;
+  attribution: string;     // "Name · Business, City"
+  hero?: boolean;          // set true for the one visually-dominant quote
 };
 
+// v3 §7.4 + §9.5: hero quote is a Trades operator.
 export const TESTIMONIALS: Testimonial[] = [
   {
-    quote: "She picked up at 11pm on a bank holiday. Booked an emergency exam for the next morning. The patient still talks about it.",
-    name: "Practice principal",
-    role: "Dental clinic, Manchester",
-    metric: "First-call booking, 11pm Sunday",
-    avatarSrc: null,
-    illustrative: true,
+    vertical: "construction",
+    quote: "I won three boiler jobs last month while on a roof.",
+    attribution: "Mark D. · DJ Plumbing & Gas, North London",
+    hero: true,
   },
   {
-    quote: "Hands in someone's hair on a Saturday afternoon and the phone goes. I used to lose those calls. Now she takes the booking and texts me when I'm done.",
-    name: "Salon owner",
-    role: "Beauty salon, Brighton",
-    metric: "Zero missed bookings since launch",
-    avatarSrc: null,
-    illustrative: true,
+    vertical: "dental",
+    quote: "47 new patients in month 1.",
+    attribution: "Dr. Patel · Bright Smiles Cardiff",
   },
   {
-    quote: "7pm Friday is the busiest service we run. ANNA takes the bookings, checks the floor plan, asks about allergens. We finally stopped letting the phone ring out.",
-    name: "Landlord",
-    role: "Gastropub, Cotswolds",
-    metric: "Weekend covers up across the board",
-    avatarSrc: null,
-    illustrative: true,
+    vertical: "beauty",
+    quote: "Zero missed bookings since we switched.",
+    attribution: "Alex Riley · Mane Studio Manchester",
   },
   {
-    quote: "First to call back wins the job in this trade. I'm on a roof; she's the receptionist. Quoted three boilers last week from up there.",
-    name: "Trade owner",
-    role: "Plumbing & heating, Leeds",
-    metric: "Captured 3 new install jobs from-the-roof in week 1",
-    avatarSrc: null,
-    illustrative: true,
+    vertical: "pubs",
+    quote: "Our Saturday covers are up 23%.",
+    attribution: "Sarah & Tom · The Black Swan, Cotswolds",
+  },
+  {
+    vertical: "fitness",
+    quote: "Class fill is at 94% on weeknights.",
+    attribution: "Priya K. · Form Studio Bristol",
+  },
+  {
+    vertical: "vet",
+    quote: "Out-of-hours triage stopped going to voicemail.",
+    attribution: "Dr. Chen · Glasgow Vet Group",
   },
 ];
