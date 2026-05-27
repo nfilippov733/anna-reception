@@ -12,6 +12,7 @@ import { PricingTeaser } from "@/components/sections/PricingTeaser";
 import { AuditReEntryBanner } from "@/components/sections/AuditReEntryBanner";
 import { FaqAccordion } from "@/components/sections/FaqAccordion";
 import { FinalCtaBanner } from "@/components/sections/FinalCtaBanner";
+import { SquiggleDivider } from "@/components/primitives/SquiggleDivider";
 import { readVerticalFromUrl } from "@/lib/urlParams";
 import type { VerticalKey } from "@/lib/verticals";
 
@@ -25,8 +26,10 @@ export default async function HomePage({ searchParams }: Props) {
   return (
     <>
       <Hero />
+      <SquiggleDivider />
       <SocialProofLogos />
       <RevenueLeak />
+      <SquiggleDivider />
       <AudioDemo />
       <RoiCalculator initialVertical={initialVertical} />
       <HowItWorks />
