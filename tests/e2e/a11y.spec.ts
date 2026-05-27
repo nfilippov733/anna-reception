@@ -23,13 +23,15 @@ test("home page is operable with keyboard only", async ({ page }) => {
   expect(["a", "button", "input"]).toContain(focused);
 });
 
-test("respects prefers-reduced-motion (no marquee animation class active)", async ({ browser }) => {
-  const ctx = await browser.newContext({ reducedMotion: "reduce" });
+test("respects prefers-reduced-motion (hero bob animation neutralized)", async ({ browser }) => {
+  const ctx = await browser.newContext({ reducedMotion: "reduce", viewport: { width: 1440, height: 900 } });
   const reducedPage = await ctx.newPage();
   await reducedPage.goto("/");
-  const marquee = reducedPage.locator(".animate-marquee").first();
-  await marquee.scrollIntoViewIfNeeded();
-  const animName = await marquee.evaluate((el) => getComputedStyle(el).animationName);
+  // The hero illustration carries motion-safe:animate-bob, so under reduced-motion
+  // the variant should not apply and the computed animation-name should be 'none'.
+  const heroImg = reducedPage.locator('img[src*="hero-illustration"]').first();
+  await heroImg.waitFor({ state: "attached" });
+  const animName = await heroImg.evaluate((el) => getComputedStyle(el).animationName);
   expect(animName).toBe("none");
   await ctx.close();
 });
