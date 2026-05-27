@@ -29,4 +29,31 @@
 - A11y, BP, SEO: must not regress below baseline
 
 ## v3 results
-(Filled in by Phase 8.)
+
+**Captured:** 2026-05-27 post-implementation
+**Commit:** `f99fa3dd763042f5571539c11b86931c974cb47e`
+
+### Desktop v3
+- Performance: **100** (Δ = 0 vs baseline 100)
+- Accessibility: **100** (= 100)
+- Best-Practices: **96** (= 96)
+- SEO: **100** (= 100)
+- LCP: **580 ms** (Δ +11 ms vs baseline 569 ms — noise-level)
+- CLS: **0.012** (= 0.012)
+- TBT: **0 ms** (= 0)
+
+### Mobile v3
+- Performance: **95** (Δ -1 vs baseline 96 — within ±5 gate)
+- Accessibility: **100** (= 100)
+- Best-Practices: **93** (= 93)
+- SEO: **100** (= 100)
+- LCP: **2990 ms** (Δ +233 ms vs baseline 2757 ms — noise-level, within gate)
+- CLS: **0.000** (= 0.000)
+- TBT: **1 ms** (Δ +1 ms vs baseline 0 ms — noise-level)
+
+### Gate verdict
+- ✅ Desktop Performance: 100 ≥ 95 (baseline 100 − 5)
+- ✅ Mobile Performance: 95 ≥ 91 (baseline 96 − 5)
+- ✅ CLS: 0.012 / 0.000 both < 0.1
+- ✅ TBT: 0 ms / 1 ms both ≤ baseline + 50 ms (≤ 50 ms)
+- ✅ A11y, BP, SEO: no regression vs baseline
