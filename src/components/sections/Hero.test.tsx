@@ -14,7 +14,7 @@ describe("Hero", () => {
   });
   it("includes the corrected trust signal copy", () => {
     render(<Hero />);
-    expect(screen.getByText(/team behind 100,000\+ business accounts/i)).toBeInTheDocument();
+    expect(screen.getByText(/100,000\+ UK SMBs on ANNA/i)).toBeInTheDocument();
   });
   it("does not render a test-call CTA in the hero (zone discipline)", () => {
     render(<Hero />);

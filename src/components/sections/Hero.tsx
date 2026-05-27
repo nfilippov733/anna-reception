@@ -21,11 +21,11 @@ export function Hero() {
             <Button href="/demo" data-event="hero_cta_demo_clicked">Book a demo</Button>
             <Button variant="ghost" href="/audit" data-event="hero_cta_audit_clicked">Get my free revenue audit</Button>
           </div>
-          <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-fg-muted">
-            <span aria-label="Trustpilot rating: five stars" className="text-primary font-medium">★★★★★</span>
-            <span>Trustpilot</span>
-            <span aria-hidden="true">·</span>
-            <span>From the team behind 100,000+ business accounts</span>
+          <div className="mt-10 inline-flex flex-wrap items-center gap-3 rounded-full border border-sage/40 bg-cream-deep/50 px-4 py-2.5">
+            <span aria-label="Trustpilot rating: five stars" className="text-primary font-medium tracking-wider">★★★★★</span>
+            <span className="font-mono text-xs uppercase tracking-wider text-mono-label">Trustpilot · Excellent</span>
+            <span aria-hidden="true" className="text-sage">·</span>
+            <span className="font-mono text-xs uppercase tracking-wider text-mono-label">100,000+ UK SMBs on ANNA</span>
           </div>
         </div>
         <div aria-hidden="true" className="hidden md:block relative">
