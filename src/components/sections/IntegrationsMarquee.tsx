@@ -1,24 +1,24 @@
 import { INTEGRATION_LOGOS } from "@/content/integrations";
-import { MissingAsset } from "@/components/primitives/MissingAsset";
-import Image from "next/image";
 
 export function IntegrationsMarquee() {
-  const doubled = [...INTEGRATION_LOGOS, ...INTEGRATION_LOGOS];
+  // Render integration names as text chips for now; SVG logo sprite to come from marketing.
+  const names = INTEGRATION_LOGOS.map((l) => l.name);
   return (
-    <section className="py-16 border-y border-sage/30 bg-cream-deep overflow-hidden" aria-label="Integrations">
-      <p className="text-center font-mono text-xs uppercase tracking-[0.18em] text-mono-label mb-8">
-        200+ Integrations · Always Growing
-      </p>
-      <div className="flex gap-16 animate-marquee motion-reduce:animate-none whitespace-nowrap">
-        {doubled.map((logo, i) => (
-          <div key={i} className="flex items-center justify-center min-w-[140px] h-10 opacity-70">
-            {logo.src ? (
-              <Image src={logo.src} alt={logo.name} width={140} height={32} />
-            ) : (
-              <MissingAsset label={`logo: ${logo.name}`} width={140} height={32} />
-            )}
-          </div>
-        ))}
+    <section className="border-y border-sage/30 bg-cream-deep" aria-label="Integrations">
+      <div className="mx-auto max-w-page px-4 py-12 md:py-16">
+        <p className="text-center font-mono text-xs uppercase tracking-[0.18em] text-mono-label">
+          Works with the tools you already use · 200+ integrations
+        </p>
+        <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-4 gap-y-3 max-w-4xl mx-auto">
+          {names.map((name) => (
+            <li
+              key={name}
+              className="inline-flex items-center h-8 px-3 rounded-full border border-sage/40 font-mono text-xs tracking-wide text-ink"
+            >
+              {name}
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );
