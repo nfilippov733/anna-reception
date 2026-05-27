@@ -35,7 +35,7 @@ export function Hero() {
             width={800}
             height={1000}
             priority
-            className="w-full h-auto"
+            className="w-full h-auto motion-safe:animate-bob"
           />
         </div>
       </div>
