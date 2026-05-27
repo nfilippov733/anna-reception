@@ -28,7 +28,7 @@ export function AudioDemo() {
 
   return (
     <section className="mx-auto max-w-page px-4 py-16 md:py-20" aria-labelledby="audio-heading">
-      <Kicker number="03" label="Hear ANNA take a real call" />
+      <Kicker number="03" label="Hear a real call" />
       <h2 id="audio-heading" className="mt-6 font-display text-display-lg text-ink text-balance">
         Hear ANNA take a real call.
       </h2>
@@ -83,6 +83,9 @@ export function AudioDemo() {
           </div>
         )}
       </div>
+      <p className="mt-4 text-fg-muted text-sm leading-[1.55]">
+        Same flow on WhatsApp and DMs — try them on the demo call.
+      </p>
       <div className="mt-8 flex flex-wrap items-center gap-3 text-sm text-fg-muted">
         <span>Or hear her live yourself:</span>
         <PhoneChip number={DEMO_PHONE} />
