@@ -11,7 +11,7 @@ const STEPS = [
   {
     num: "02",
     title: "ANNA learns it",
-    body: "She gets familiar with your booking flow, your prices, and your common objections.",
+    body: "ANNA learns your menu, your booking flow, and your channels — phone, WhatsApp, Instagram, web.",
   },
   {
     num: "03",
