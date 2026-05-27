@@ -1,5 +1,6 @@
 import { Kicker } from "@/components/primitives/Kicker";
 import { NumberMarker } from "@/components/primitives/NumberMarker";
+import { Reveal } from "@/components/primitives/Reveal";
 
 type LeakStat = {
   num: string;
@@ -40,17 +41,19 @@ export function RevenueLeak() {
         Where your revenue is leaking.
       </h2>
       <ol className="mt-16 grid gap-12 md:grid-cols-3">
-        {STATS.map((s) => (
-          <li key={s.num}>
-            <NumberMarker tone={s.tone}>{s.num}</NumberMarker>
-            <p className="mt-6 text-2xl font-medium text-ink leading-tight">{s.headline}</p>
-            <p className="mt-3 text-fg-muted max-w-prose">{s.subline}</p>
-            {s.source && (
-              <p className="mt-3 font-mono text-xs uppercase tracking-wider text-mono-label">
-                {s.source}
-              </p>
-            )}
-          </li>
+        {STATS.map((s, i) => (
+          <Reveal key={s.num} delayMs={i * 60}>
+            <li>
+              <NumberMarker tone={s.tone}>{s.num}</NumberMarker>
+              <p className="mt-6 text-2xl font-medium text-ink leading-tight">{s.headline}</p>
+              <p className="mt-3 text-fg-muted max-w-prose">{s.subline}</p>
+              {s.source && (
+                <p className="mt-3 font-mono text-xs uppercase tracking-wider text-mono-label">
+                  {s.source}
+                </p>
+              )}
+            </li>
+          </Reveal>
         ))}
       </ol>
     </section>
