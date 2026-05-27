@@ -6,8 +6,9 @@ const BREAKPOINTS = [375, 768, 1024, 1440, 1920];
 // the snapshot set deterministic across CI runners. The mobile project
 // would otherwise generate a duplicate set keyed by device.
 test.describe("Landing page visual regression", () => {
-  test.beforeEach(({}, testInfo) => {
+  test.beforeEach(async ({ page }, testInfo) => {
     test.skip(testInfo.project.name !== "chromium-desktop", "desktop-only snapshots");
+    await page.emulateMedia({ reducedMotion: "reduce" });
   });
 
   for (const width of BREAKPOINTS) {
