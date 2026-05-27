@@ -1,6 +1,5 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { AudioDemo } from "./AudioDemo";
 
 describe("AudioDemo", () => {
@@ -8,10 +7,10 @@ describe("AudioDemo", () => {
     render(<AudioDemo />);
     expect(screen.getByRole("button", { name: /play sample call/i })).toBeInTheDocument();
   });
-  it("exposes a transcript via disclosure", async () => {
+  it("shows the sample transcript by default when no audio source is configured", () => {
     render(<AudioDemo />);
-    await userEvent.click(screen.getByRole("button", { name: /read transcript/i }));
-    expect(screen.getByRole("region", { name: /transcript/i })).toBeVisible();
+    expect(screen.getByText(/sample transcript/i)).toBeInTheDocument();
+    expect(screen.getByText(/do you have any availability tomorrow/i)).toBeInTheDocument();
   });
   it("does not render the ▶/⏸ unicode glyphs anywhere", () => {
     const { container } = render(<AudioDemo />);
