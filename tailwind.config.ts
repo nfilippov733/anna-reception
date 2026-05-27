@@ -40,6 +40,7 @@ const config: Config = {
       animation: {
         marquee: "marquee 30s linear infinite",
         reveal: "reveal 480ms ease-out both",
+        bob: "bob 7s ease-in-out infinite",
       },
       keyframes: {
         marquee: {
@@ -49,6 +50,10 @@ const config: Config = {
         reveal: {
           "0%": { opacity: "0", transform: "translateY(12px)" },
           "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        bob: {
+          "0%, 100%": { transform: "translateY(0)" },
+          "50%":      { transform: "translateY(-4px)" },
         },
       },
     },
