@@ -4,7 +4,7 @@ import { SocialProofLogos } from "@/components/sections/SocialProofLogos";
 import { AudioDemo } from "@/components/sections/AudioDemo";
 import { RoiCalculator } from "@/components/sections/RoiCalculator";
 import { HowItWorks } from "@/components/sections/HowItWorks";
-import { VerticalsTileModule } from "@/components/sections/VerticalsTileModule";
+import { SegmentsShowcase } from "@/components/sections/SegmentsShowcase";
 import { TestimonialWall } from "@/components/sections/TestimonialWall";
 import { OutcomeStrip } from "@/components/sections/OutcomeStrip";
 import { IntegrationsMarquee } from "@/components/sections/IntegrationsMarquee";
@@ -20,14 +20,14 @@ type Props = { searchParams: Promise<{ v?: string }> };
 export default async function HomePage({ searchParams }: Props) {
   const params = await searchParams;
   const fakeUrl = new URL(`http://x/?v=${params.v ?? ""}`);
-  const initialVertical: VerticalKey | null = readVerticalFromUrl(fakeUrl);
+  const initialVertical: VerticalKey = readVerticalFromUrl(fakeUrl) ?? "dental";
 
   return (
     <>
       <Hero />
       <ChannelsRibbon />
       <SocialProofLogos />
-      <VerticalsTileModule />
+      <SegmentsShowcase initialSegment={initialVertical} />
       <OutcomeStrip />
       <SquiggleDivider />
       <AudioDemo />

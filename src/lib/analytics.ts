@@ -10,6 +10,7 @@ export type AnalyticsEvent =
   | { event: "roi_calculator_started"; vertical: VerticalKey }
   | { event: "roi_calculator_completed"; vertical: VerticalKey; leakValue: number }
   | { event: "vertical_tile_expanded"; vertical: VerticalKey }
+  | { event: "segment_tab_changed"; segment: VerticalKey }
   | { event: "pricing_teaser_clicked" }
   | { event: "demo_submitted"; vertical: VerticalKey; source: "A" | "B" };
 

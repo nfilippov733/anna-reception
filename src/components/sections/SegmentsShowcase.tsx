@@ -24,7 +24,7 @@ export function SegmentsShowcase({ initialSegment }: Props) {
   };
 
   const moveTo = (idx: number) => {
-    const k = VERTICAL_KEYS[(idx + VERTICAL_KEYS.length) % VERTICAL_KEYS.length];
+    const k = VERTICAL_KEYS[(idx + VERTICAL_KEYS.length) % VERTICAL_KEYS.length] as VerticalKey;
     handleSelect(k);
     tabRefs.current[k]?.focus();
   };
@@ -113,7 +113,7 @@ export function SegmentsShowcase({ initialSegment }: Props) {
           content={VERTICALS[active]}
           panelId={`segment-panel-${active}`}
           labelledBy={`segment-tab-${active}`}
-          kickerLetter={KICKER_LETTERS[activeIndex]}
+          kickerLetter={KICKER_LETTERS[activeIndex] ?? "a"}
         />
       </div>
     </section>
