@@ -1,5 +1,5 @@
 // Logos provided as SVG sprite by newo white-label asset bundle (spec §7).
-export const INTEGRATION_LOGOS: Array<{ name: string; src: string | null }> = [
+export const INTEGRATION_LOGOS: Array<{ name: string; src: string | null; category?: "messaging" | "web-chat" }> = [
   { name: "Google Calendar", src: null },
   { name: "Stripe", src: null },
   { name: "Square", src: null },
@@ -20,4 +20,7 @@ export const INTEGRATION_LOGOS: Array<{ name: string; src: string | null }> = [
   { name: "Carestream R4", src: null },
   { name: "NexHealth", src: null },
   { name: "Treatwell", src: null },
+  { name: "WhatsApp Business", src: null, category: "messaging" },
+  { name: "Instagram", src: null, category: "messaging" },
+  { name: "Intercom", src: null, category: "web-chat" },
 ];
