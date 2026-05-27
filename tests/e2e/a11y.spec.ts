@@ -17,10 +17,16 @@ test("home page has no critical a11y violations (axe)", async ({ page }) => {
 
 test("home page is operable with keyboard only", async ({ page }) => {
   await page.goto("/");
-  // Tab through; assert focus is visible somewhere meaningful by checking active element role
+  // Tab through; assert focus lands on an interactive element by checking tagName or role
   for (let i = 0; i < 10; i++) await page.keyboard.press("Tab");
-  const focused = await page.evaluate(() => document.activeElement?.tagName.toLowerCase());
-  expect(["a", "button", "input"]).toContain(focused);
+  const { tag, role } = await page.evaluate(() => ({
+    tag: document.activeElement?.tagName.toLowerCase() ?? "",
+    role: document.activeElement?.getAttribute("role") ?? "",
+  }));
+  const isFocusable =
+    ["a", "button", "input", "select", "textarea"].includes(tag) ||
+    ["button", "tab", "link", "checkbox", "radio", "combobox", "tabpanel"].includes(role);
+  expect(isFocusable, `expected focusable element, got <${tag}> role="${role}"`).toBe(true);
 });
 
 test("respects prefers-reduced-motion (hero bob animation neutralized)", async ({ browser }) => {

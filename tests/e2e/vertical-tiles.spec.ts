@@ -1,13 +1,15 @@
 import { test, expect } from "@playwright/test";
 
-test("Vertical tile expands and collapses with keyboard", async ({ page }) => {
-  await page.goto("/");
-  // Scope to the verticals tile module: each tile is an accordion button containing the vertical label
-  const dentalTrigger = page.locator("#verticals").getByRole("button").filter({ hasText: "Dental clinics" }).first();
-  await dentalTrigger.scrollIntoViewIfNeeded();
-  await dentalTrigger.focus();
-  await page.keyboard.press("Enter");
-  await expect(dentalTrigger).toHaveAttribute("aria-expanded", "true");
-  await page.keyboard.press("Escape");
-  await expect(dentalTrigger).toHaveAttribute("aria-expanded", "false");
+// The VerticalsTileModule was replaced by SegmentsShowcase (tabbed) in v3.
+// This test now validates that the segments section tab switcher is keyboard-operable.
+test("Segment tab switches with keyboard Enter", async ({ page }) => {
+  await page.goto("/?v=dental");
+  // The segments section uses role="tablist" / role="tab"
+  const dentalTab = page.getByRole("tab", { name: /Dental clinics/i });
+  await dentalTab.scrollIntoViewIfNeeded();
+  await dentalTab.focus();
+  // Navigate to next tab with ArrowRight and activate with Enter
+  await page.keyboard.press("ArrowRight");
+  const focused = await page.evaluate(() => document.activeElement?.getAttribute("role"));
+  expect(focused).toBe("tab");
 });

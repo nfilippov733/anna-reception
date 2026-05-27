@@ -5,7 +5,9 @@ test("reduced motion: all reveal items are visible on initial load", async ({ pa
   await page.goto("/");
   await page.waitForLoadState("networkidle");
 
-  const section = page.locator("section").filter({ hasText: "Where your revenue is leaking" });
+  // HowItWorks (#how-it-works) has 3 Reveal-wrapped <li> items
+  const section = page.locator("#how-it-works");
+  await section.scrollIntoViewIfNeeded();
   const stanzas = section.locator("li");
   const count = await stanzas.count();
   expect(count).toBe(3);
