@@ -1,6 +1,6 @@
 export type FaqEntry = { q: string; a: string };
 
-// Spec §14: must include one question on the human-transfer fail-safe.
+// Spec v3 §9.8: 8 entries; new questions on WhatsApp/DMs and outbound.
 export const FAQ: FaqEntry[] = [
   {
     q: "What happens if ANNA can't answer a caller's question?",
@@ -11,8 +11,16 @@ export const FAQ: FaqEntry[] = [
     a: "Paste your website on the demo call; ANNA learns your menu, hours, and tone in about three minutes. We'll have her live on a test number within the same call.",
   },
   {
-    q: "Will my callers know it's AI?",
-    a: "Most don't realise — listen to the sample above. We're upfront when asked directly, and you can configure her opening line however you'd like.",
+    q: "Do callers know it's ANNA?",
+    a: "Most don't ask. ANNA introduces herself by your business name, books the appointment, and SMSes a confirmation. If a caller asks directly, she's straightforward about being your automated reception.",
+  },
+  {
+    q: "What about WhatsApp and Instagram DMs?",
+    a: "ANNA handles WhatsApp Business threads and Instagram DMs the same way she handles calls — answers, books, follows up. WhatsApp Business needs a verified business number; we walk you through it on the demo call.",
+  },
+  {
+    q: "Does ANNA do outbound calls?",
+    a: "Yes. No-show recovery, dormant quote chase, appointment confirmations — opt-in per campaign. You stay in control of who she calls and when.",
   },
   {
     q: "Does ANNA write to my calendar / PMS / CRM?",
