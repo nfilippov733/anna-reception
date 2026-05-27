@@ -193,7 +193,7 @@ A horizontal sage-tinted squiggle ~16px tall, low-amplitude. Used sparingly betw
 <div role="separator" aria-hidden="true" className="my-0 flex justify-center">
   <svg viewBox="0 0 240 16" className="w-48 text-sage/40" fill="none" aria-hidden="true">
     <path d="M0 8 C 20 0, 40 16, 60 8 S 100 0, 120 8 S 160 16, 180 8 S 220 0, 240 8"
-          stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none" />
+          stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none" />
   </svg>
 </div>
 ```
