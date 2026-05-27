@@ -44,3 +44,7 @@ next-env.d.ts
 # playwright
 playwright-report/
 test-results/
+
+# Lighthouse reports (large; data committed to docs/superpowers/lighthouse-*.md)
+lighthouse-baseline-*.report.*
+lighthouse-v2-*.report.*
