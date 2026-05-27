@@ -1,5 +1,6 @@
 import { Kicker } from "@/components/primitives/Kicker";
 import { NumberMarker } from "@/components/primitives/NumberMarker";
+import { Reveal } from "@/components/primitives/Reveal";
 
 const STEPS = [
   {
@@ -31,12 +32,14 @@ export function HowItWorks() {
           aria-hidden="true"
           className="hidden md:block absolute top-6 left-[16.67%] right-[16.67%] h-px bg-sage/40"
         />
-        {STEPS.map((s) => (
-          <li key={s.num} className="relative">
-            <NumberMarker>{s.num}</NumberMarker>
-            <p className="mt-6 text-xl font-medium text-ink leading-tight">{s.title}</p>
-            <p className="mt-3 text-fg-muted max-w-prose">{s.body}</p>
-          </li>
+        {STEPS.map((s, i) => (
+          <Reveal key={s.num} delayMs={i * 60}>
+            <li className="relative">
+              <NumberMarker>{s.num}</NumberMarker>
+              <p className="mt-6 text-xl font-medium text-ink leading-tight">{s.title}</p>
+              <p className="mt-3 text-fg-muted max-w-prose">{s.body}</p>
+            </li>
+          </Reveal>
         ))}
       </ol>
     </section>
