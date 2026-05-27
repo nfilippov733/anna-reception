@@ -22,7 +22,7 @@ export function FinalCtaBanner() {
         <div className="relative">
           <Kicker number="10" label="Time to stop missing calls" className="!text-mono-label text-center" />
           <h2 className="mt-6 font-display text-display-xl text-ink text-balance">
-            Time to stop missing calls.
+            Stop letting the phone steal your day. Set up in three minutes, paid back in the first week.
           </h2>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Button href="/demo" data-event="hero_cta_demo_clicked">
