@@ -1,5 +1,13 @@
 import Image from "next/image";
-import { Hammer, Scissors, Stethoscope, Utensils, type LucideIcon } from "lucide-react";
+import {
+  Hammer,
+  Scissors,
+  Stethoscope,
+  Utensils,
+  Dumbbell,
+  PawPrint,
+  type LucideIcon,
+} from "lucide-react";
 import type { VerticalKey } from "@/lib/verticals";
 import { cn } from "@/lib/cn";
 
@@ -8,6 +16,8 @@ const ICONS: Record<VerticalKey, LucideIcon> = {
   beauty: Scissors,
   pubs: Utensils,
   construction: Hammer,
+  fitness: Dumbbell,
+  vet: PawPrint,
 };
 
 const ILLUSTRATION_BASENAMES: Record<VerticalKey, string> = {
@@ -15,6 +25,8 @@ const ILLUSTRATION_BASENAMES: Record<VerticalKey, string> = {
   beauty: "beauty",
   pubs: "gastro",
   construction: "trades",
+  fitness: "fitness",
+  vet: "vet",
 };
 
 type Props = {
