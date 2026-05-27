@@ -1,16 +1,14 @@
 import { Hero } from "@/components/sections/Hero";
 import { ChannelsRibbon } from "@/components/sections/ChannelsRibbon";
 import { SocialProofLogos } from "@/components/sections/SocialProofLogos";
-import { RevenueLeak } from "@/components/sections/RevenueLeak";
 import { AudioDemo } from "@/components/sections/AudioDemo";
 import { RoiCalculator } from "@/components/sections/RoiCalculator";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { VerticalsTileModule } from "@/components/sections/VerticalsTileModule";
 import { TestimonialWall } from "@/components/sections/TestimonialWall";
-import { FeatureStrip } from "@/components/sections/FeatureStrip";
+import { OutcomeStrip } from "@/components/sections/OutcomeStrip";
 import { IntegrationsMarquee } from "@/components/sections/IntegrationsMarquee";
 import { PricingTeaser } from "@/components/sections/PricingTeaser";
-import { AuditReEntryBanner } from "@/components/sections/AuditReEntryBanner";
 import { FaqAccordion } from "@/components/sections/FaqAccordion";
 import { FinalCtaBanner } from "@/components/sections/FinalCtaBanner";
 import { SquiggleDivider } from "@/components/primitives/SquiggleDivider";
@@ -29,17 +27,15 @@ export default async function HomePage({ searchParams }: Props) {
       <Hero />
       <ChannelsRibbon />
       <SocialProofLogos />
-      <RevenueLeak />
+      <VerticalsTileModule />
+      <OutcomeStrip />
       <SquiggleDivider />
       <AudioDemo />
       <RoiCalculator initialVertical={initialVertical} />
       <HowItWorks />
-      <VerticalsTileModule />
       <TestimonialWall />
-      <FeatureStrip />
       <IntegrationsMarquee />
       <PricingTeaser />
-      <AuditReEntryBanner />
       <FaqAccordion />
       <FinalCtaBanner />
     </>
