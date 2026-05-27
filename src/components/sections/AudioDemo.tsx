@@ -33,7 +33,7 @@ export function AudioDemo() {
         Hear ANNA take a real call.
       </h2>
       <p className="mt-4 text-lg text-fg-muted max-w-prose leading-[1.55]">
-        30 seconds of an actual call answered, triaged, and booked. Most callers don&apos;t realise it&apos;s AI.
+        30 seconds of an actual call answered, triaged, and booked. Most callers don&apos;t realise it&apos;s ANNA.
       </p>
       <div className="mt-10 rounded-2xl border border-sage/40 p-6 md:p-8">
         <div className="flex items-center gap-4">
