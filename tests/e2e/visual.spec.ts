@@ -15,7 +15,7 @@ test.describe("Landing page visual regression", () => {
     test(`landing page renders at ${width}px`, async ({ page }) => {
       await page.setViewportSize({ width, height: 900 });
       await page.goto("/");
-      await page.waitForLoadState("networkidle");
+      await page.waitForLoadState("load");
       await expect(page).toHaveScreenshot(`landing-${width}.png`, {
         fullPage: true,
         maxDiffPixelRatio: 0.02,

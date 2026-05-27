@@ -10,7 +10,7 @@ test("hero bob keyframes — 0%, 50%, 100%", async ({ page }, testInfo) => {
 
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto("/");
-  await page.waitForLoadState("networkidle");
+  await page.waitForLoadState("load");
 
   const hero = page.locator(BOB_SELECTOR).first();
   await hero.waitFor({ state: "visible" });

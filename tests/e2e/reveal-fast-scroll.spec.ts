@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test("fast scroll past multiple sections: all items end at final visibility", async ({ page }) => {
   await page.goto("/");
-  await page.waitForLoadState("networkidle");
+  await page.waitForLoadState("load");
 
   await page.evaluate(() => window.scrollTo({ top: 5000, behavior: "auto" }));
   await page.waitForTimeout(800);

@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test("Tab navigation: focused element inside a Reveal is fully visible", async ({ page }) => {
   await page.goto("/");
-  await page.waitForLoadState("networkidle");
+  await page.waitForLoadState("load");
 
   for (let i = 0; i < 12; i++) {
     await page.keyboard.press("Tab");
