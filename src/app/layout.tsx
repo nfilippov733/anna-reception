@@ -15,8 +15,8 @@ const mono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ANNA Reception — AI receptionist for dental, beauty, gastropubs & trades",
-  description: "Stop losing revenue to missed calls. ANNA Reception answers, books, and follows up 24/7.",
+  title: "ANNA Reception — reception that never misses. UK SMBs.",
+  description: "Inbound calls, outbound follow-ups, WhatsApp, and DMs — answered, booked, and chased. From £99/mo.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
