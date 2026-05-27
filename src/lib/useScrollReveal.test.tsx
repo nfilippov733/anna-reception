@@ -30,8 +30,15 @@ describe("useScrollReveal", () => {
   });
 
   function TestHost() {
-    const [ref, revealed] = useScrollReveal<HTMLDivElement>();
-    return <div ref={ref} data-testid="target" data-revealed={revealed ? "true" : "false"} />;
+    const [ref, state] = useScrollReveal<HTMLDivElement>();
+    return (
+      <div
+        ref={ref}
+        data-testid="target"
+        data-revealed={state.revealed ? "true" : "false"}
+        data-instant={state.instant ? "true" : "false"}
+      />
+    );
   }
 
   it("returns a ref + boolean; flips to true on intersection (one-shot)", () => {
@@ -43,7 +50,7 @@ describe("useScrollReveal", () => {
 
     act(() => {
       observerCallback!(
-        [{ isIntersecting: true, target: el } as unknown as IntersectionObserverEntry],
+        [{ isIntersecting: true, intersectionRatio: 0.2, target: el } as unknown as IntersectionObserverEntry],
         {} as IntersectionObserver
       );
     });
@@ -62,5 +69,39 @@ describe("useScrollReveal", () => {
     const el = getByTestId("target");
 
     expect(el.getAttribute("data-revealed")).toBe("true");
+    expect(el.getAttribute("data-instant")).toBe("true");
+  });
+
+  it("returns instant=true when element enters viewport at >=0.6 intersection ratio", () => {
+    const { getByTestId } = render(<TestHost />);
+    const el = getByTestId("target");
+
+    expect(el.getAttribute("data-instant")).toBe("false");
+    expect(observerCallback).not.toBeNull();
+
+    act(() => {
+      observerCallback!(
+        [{ isIntersecting: true, intersectionRatio: 0.85, target: el } as unknown as IntersectionObserverEntry],
+        {} as IntersectionObserver
+      );
+    });
+
+    expect(el.getAttribute("data-revealed")).toBe("true");
+    expect(el.getAttribute("data-instant")).toBe("true");
+  });
+
+  it("returns instant=false on a normal slow reveal (ratio between 0.15 and 0.6)", () => {
+    const { getByTestId } = render(<TestHost />);
+    const el = getByTestId("target");
+
+    act(() => {
+      observerCallback!(
+        [{ isIntersecting: true, intersectionRatio: 0.25, target: el } as unknown as IntersectionObserverEntry],
+        {} as IntersectionObserver
+      );
+    });
+
+    expect(el.getAttribute("data-revealed")).toBe("true");
+    expect(el.getAttribute("data-instant")).toBe("false");
   });
 });

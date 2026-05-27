@@ -1,14 +1,16 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 
-export function useScrollReveal<T extends Element>(): [React.RefObject<T>, boolean] {
+type State = { revealed: boolean; instant: boolean };
+
+export function useScrollReveal<T extends Element>(): [React.RefObject<T>, State] {
   const ref = useRef<T>(null);
-  const [revealed, setRevealed] = useState(false);
+  const [state, setState] = useState<State>({ revealed: false, instant: false });
 
   useEffect(() => {
     const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
     if (mql.matches) {
-      setRevealed(true);
+      setState({ revealed: true, instant: true });
       return;
     }
     const node = ref.current;
@@ -17,17 +19,18 @@ export function useScrollReveal<T extends Element>(): [React.RefObject<T>, boole
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            setRevealed(true);
+            const instant = entry.intersectionRatio >= 0.6;
+            setState({ revealed: true, instant });
             io.disconnect();
             return;
           }
         }
       },
-      { threshold: 0.15, rootMargin: "0px 0px -10% 0px" }
+      { threshold: [0.15, 0.6], rootMargin: "0px 0px -10% 0px" }
     );
     io.observe(node);
     return () => io.disconnect();
   }, []);
 
-  return [ref, revealed];
+  return [ref, state];
 }
