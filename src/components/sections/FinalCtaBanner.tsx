@@ -1,8 +1,5 @@
 import { Button } from "@/components/primitives/Button";
-import { PhoneChip } from "@/components/primitives/PhoneChip";
 import { Kicker } from "@/components/primitives/Kicker";
-
-const DEMO_PHONE = process.env.NEXT_PUBLIC_DEMO_PHONE ?? "+44 20 7946 0000";
 
 export function FinalCtaBanner() {
   return (
@@ -25,10 +22,12 @@ export function FinalCtaBanner() {
             Stop letting the phone steal your day. Set up in three minutes, paid back in the first week.
           </h2>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Button href="/demo" data-event="hero_cta_demo_clicked">
+            <Button href="/demo" data-event="final_cta_demo_clicked">
               Book a demo
             </Button>
-            <PhoneChip number={DEMO_PHONE} />
+            <Button variant="ghost" href="/audit" data-event="final_cta_audit_clicked">
+              Get my free revenue audit
+            </Button>
           </div>
         </div>
       </div>

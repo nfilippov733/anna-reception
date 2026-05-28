@@ -12,7 +12,13 @@ export type AnalyticsEvent =
   | { event: "vertical_tile_expanded"; vertical: VerticalKey }
   | { event: "segment_tab_changed"; segment: VerticalKey }
   | { event: "pricing_teaser_clicked" }
-  | { event: "demo_submitted"; vertical: VerticalKey; source: "A" | "B" };
+  | { event: "demo_submitted"; vertical: VerticalKey; source: "A" | "B" }
+  | { event: "final_cta_demo_clicked" }
+  | { event: "final_cta_audit_clicked" }
+  | { event: "demo_form_submitted"; segment: string }
+  | { event: "demo_form_submit_click" }
+  | { event: "audit_form_submitted"; segment: string }
+  | { event: "audit_form_submit_click" };
 
 export function track(event: AnalyticsEvent["event"], properties?: Record<string, unknown>): void {
   if (typeof window === "undefined") return;
