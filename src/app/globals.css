@@ -20,6 +20,10 @@
     --sage: 142 22% 38%;             /* hairlines, muted brand accents; AA on white/cream-deep */
     --sage-mute: 142 12% 75%;        /* card borders */
     --mono-label: 155 15% 35%;       /* mono kicker labels, tech chips */
+    --terracotta: 17 55% 52%;          /* warm clay accent — Instagram tint */
+    --terracotta-soft: 17 55% 92%;     /* light wash for incoming Instagram bubbles */
+    --sage-soft: 142 22% 92%;          /* light wash for incoming WhatsApp bubbles */
+    --ink-soft: 155 25% 92%;           /* light wash for incoming Web chat bubbles */
   }
   .dark {
     --bg: 222 47% 6%;
