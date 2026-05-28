@@ -2,7 +2,7 @@ import {
   PhoneIncoming,
   PhoneOutgoing,
   MessageCircle,
-  Camera,
+  Instagram,
   MessagesSquare,
   type LucideIcon,
 } from "lucide-react";
@@ -15,7 +15,7 @@ const CHANNELS: Channel[] = [
   { icon: PhoneIncoming, label: "Inbound calls", sub: "Answered 24/7" },
   { icon: PhoneOutgoing, label: "Outbound calls", sub: "No-show recovery, dormant lead chase" },
   { icon: MessageCircle, label: "WhatsApp", sub: "WhatsApp Business booking threads" },
-  { icon: Camera, label: "Instagram DMs", sub: "Salon & aesthetics booking" },
+  { icon: Instagram, label: "Instagram DMs", sub: "Salon & aesthetics booking" },
   { icon: MessagesSquare, label: "Web chat", sub: "Embeddable widget" },
 ];
 

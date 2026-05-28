@@ -3,7 +3,7 @@ import {
   PhoneIncoming,
   PhoneOutgoing,
   MessageCircle,
-  Camera,
+  Instagram,
   MessagesSquare,
   type LucideIcon,
 } from "lucide-react";
@@ -16,7 +16,7 @@ const CHANNEL_ICONS: Record<ChannelKey, LucideIcon> = {
   inbound: PhoneIncoming,
   outbound: PhoneOutgoing,
   whatsapp: MessageCircle,
-  instagram: Camera,
+  instagram: Instagram,
   web: MessagesSquare,
 };
 
