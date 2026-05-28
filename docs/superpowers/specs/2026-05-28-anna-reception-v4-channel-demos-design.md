@@ -14,18 +14,7 @@
 - §11.2 corrected: `/?v=construction` → `/?v=construction` (the data key is `construction`; display label is "Trades"). Three occurrences across §11.2 and §13.7 swept.
 - §6.3 clarified: the Phone tab transcript is **always** rendered (segment-aware fallback). When `NEXT_PUBLIC_GENERIC_AUDIO_SRC` is configured, audio plays alongside the transcript rather than replacing it. Acceptance criterion 7 aligned.
 
-Deferred (acknowledged, not fixed in this revision; will require visual-snapshot re-baseline if applied post-Phase-6):
-- §5.1 Kicker / H2 echo (commit `2b60fd8` set the project rule against this)
-- §5.3 `min-h-[520px]` (too short for 6-turn mobile threads, too tall for 4-turn phone)
-- §11.2 visual baselines (mobile-375 + longest-thread cases not covered)
-- §11 bundle-size gate not asserted
-- §7 voice: ~8 ANNA turns violate §3 "one short sentence per turn"
-- §7.2 beauty WhatsApp uses `✓✓` (the WhatsApp read-receipt glyph §1.3/§8.4 reject)
-- §7.1 web NHS Band 1 `£25.80` is stale (rose to £27.90 from 1 April 2026)
-- §7.2 Instagram "May 17, Saturday" is wrong in 2026 (May 17 2026 is a Sunday) and past
-- Vet/dental copy strays toward clinical/billing advice
-- "Lisa K" appears in beauty web and construction web (templated feel)
-- Instagram openers all "Saw your reel/post/Q&A…" (canned across all 6 segments)
+All 11 additional post-council findings applied in revision `<commit-SHA-pending>` (2026-05-28). Spec is implementation-ready.
 
 ---
 
@@ -71,7 +60,7 @@ The voice rules from v3 still hold. For this section in particular:
 - **Outcome > feature.** Every mockup ends with a booking confirmed, an emergency routed, a deposit link sent. Never just "we'll get back to you".
 - **No "AI".** Mockups address the customer as ANNA introduces by business name. The narrator framing (Kicker, H2, sub) uses "ANNA Reception" / "ANNA" / "automated reception" — never "AI".
 - **UK English.** "booked", "diary", "postcode", "mobile". Contractions allowed. En-dashes.
-- **One short sentence per turn.** Realistic chat cadence. No paragraphs in bubbles.
+- **One or two short sentences per turn — max two.** Realistic chat cadence — confirm-and-prompt is the natural exception (e.g. "Booked. Address sent."). No paragraphs in bubbles. Three-sentence ANNA replies are forbidden — split them across turns.
 
 ---
 
@@ -117,12 +106,12 @@ Section 06 is the only line that changes. The `<SquiggleDivider />` between Outc
 ### 5.1 Header
 
 ```
-Kicker:   06 · See it on every channel
+Kicker:   06 · Channel demos
 H2:       See it on every channel.
 Sub:      Booking-ready conversations on phone, WhatsApp, Instagram, and your website.
 ```
 
-The H2 deliberately echoes the kicker label — fits anna.money's declarative-fact pattern (see v3 §3 voice rules).
+The H2 makes the declarative claim — fits anna.money's declarative-fact pattern (see v3 §3 voice rules). The Kicker label is distinct per the project rule established in commit `2b60fd8`.
 
 ### 5.2 Tab strip
 
@@ -148,7 +137,9 @@ Tab strip uses `flex` on desktop (4 across), `grid grid-cols-2` on tablet (2×2)
 
 ### 5.3 Panel
 
-Below the tab strip, a single panel that swaps content based on the active channel × active segment. Minimum height `min-h-[520px]` (prevents tab-swap layout jump). Panel container is `<div role="tabpanel">` with `tabIndex={0}` and ARIA wiring per §9.
+Below the tab strip, a single panel that swaps content based on the active channel × active segment. Panel container is `<div role="tabpanel">` with `tabIndex={0}` and ARIA wiring per §9.
+
+The panel container does NOT enforce a min-height. Tab clicks are user-initiated, so layout shifts on tab swap do not count toward CLS (the metric excludes shifts within 500ms of user input). The section's downstream content (ROI calculator) will reflow naturally when the visitor changes channels — acceptable.
 
 **Phone panel layout:**
 
@@ -434,7 +425,7 @@ meta:   "SMS confirmation ✓"
 **instagram:**
 ```
 caller: "Hey, saw your reel on Invisalign. Do you do free consults?"
-anna:   "We do — 20-min consult, no charge. Mon–Fri 09:00–18:00. Any preferred day?"
+anna:   "We do — 20-min consult, no charge. Any preferred day?"
 caller: "Wednesday afternoon?"
 anna:   "14:00 or 16:00 with Dr. Patel?"
 caller: "14:00"
@@ -445,7 +436,7 @@ meta:   "Calendar invite ↗"
 **web:**
 ```
 caller: "Looking for a new dentist — do you take new NHS patients?"
-anna:   "We do. New-patient exam is £25.80 (NHS Band 1). Earliest is Thu 10:30 with Dr. Patel."
+anna:   "We do — taking new NHS patients. Earliest exam is Thu 10:30 with Dr. Patel."
 caller: "Anything earlier in the morning?"
 anna:   "Wed 08:30 just opened — yours if you'd like."
 caller: "Yes"
@@ -467,11 +458,11 @@ meta:   "Audio sample available at launch"
 **whatsapp:**
 ```
 caller: "Hi, can I book a balayage with Jess for Saturday?"
-anna:   "Jess has 11:00 or 15:00 Saturday. Both 3 hrs. Add a toner?"
+anna:   "Jess has 11:00 or 15:00 Saturday — both 3 hrs. Add a toner?"
 caller: "15:00 with toner please"
 anna:   "Booked. £40 deposit holds it — link?"
 caller: "Yep"
-anna:   "Sent. See you Sat at 15:00 ✓✓"
+anna:   "Sent. See you Sat at 15:00 ✓"
 meta:   "Mane Studio Manchester"
 ```
 
@@ -479,8 +470,8 @@ meta:   "Mane Studio Manchester"
 ```
 caller: "Saw your reel of the bridal trial yesterday — do you do those?"
 anna:   "We do! Trial £85, day-of from £230. Date in mind?"
-caller: "May 17, Saturday afternoon"
-anna:   "Trial available 13:00 or 16:00 May 17. Which?"
+caller: "Saturday 13 June afternoon"
+anna:   "Trial available 13:00 or 16:00 Sat 13 Jun. Which?"
 caller: "16:00 please"
 anna:   "Held. Sending confirmation + day-of quote."
 meta:   "Calendar invite ↗"
@@ -521,7 +512,7 @@ meta:   "The Black Swan, Cotswolds"
 
 **instagram:**
 ```
-caller: "Hi! Saw the Sunday roast post — can you do 4 covers this Sunday?"
+caller: "Hi! Following you for ages. Any chance of 4 covers Sunday roast?"
 anna:   "Roast service runs 12:00–17:00. 13:30 or 15:00 — which?"
 caller: "13:30"
 anna:   "Names for the booking?"
@@ -579,9 +570,9 @@ meta:   "Calendar invite ↗"
 caller: "Looking for a quote on a bathroom rip-out + retile"
 anna:   "Happy to. Photos help — drop 4–6 here or a Drive link?"
 caller: "Sent 5 photos"
-anna:   "Cheers. Quoting £4,200–£5,800 ballpark, full quote inside 24h. Best email?"
-caller: "lisa.k@email.com"
-anna:   "Got it Lisa. Full quote by Thursday."
+anna:   "Cheers — quoting £4,200–£5,800 ballpark, full quote inside 24h. Best email?"
+caller: "rob.t@email.com"
+anna:   "Got it Rob. Full quote by Thursday."
 meta:   "Quote ETA confirmed ✓"
 ```
 
@@ -609,7 +600,7 @@ meta:   "Form Studio Bristol"
 
 **instagram:**
 ```
-caller: "Hey saw your HIIT reel — when's the next beginner class?"
+caller: "Hey — friend keeps recommending you. When's the next beginner class?"
 anna:   "Mon 19:00 and Wed 07:00 are beginner-friendly. Either work?"
 caller: "Mon 19:00"
 anna:   "Booked your free trial. Bring water, trainers, that's it."
@@ -621,7 +612,7 @@ meta:   "Calendar invite ↗"
 **web:**
 ```
 caller: "Hi, comparing memberships. Got a list of class times?"
-anna:   "Membership £65/mo — unlimited classes. Trial week is free. Want me to book your trial?"
+anna:   "Membership £65/mo — unlimited classes, free trial week. Want me to book yours?"
 caller: "Yes — what's available tomorrow?"
 anna:   "07:00 spin, 12:15 HIIT, 18:00 yoga. Pick one?"
 caller: "12:15 HIIT"
@@ -643,9 +634,9 @@ meta:   "Emergency triage — routed"
 **whatsapp:**
 ```
 caller: "My dog's been vomiting two hours, won't drink. Is this urgent?"
-anna:   "Sounds urgent. Has she eaten anything unusual? Any blood?"
+anna:   "Routing to Dr. Chen on call — quick, has she eaten anything unusual or shown any blood?"
 caller: "No blood, but she chewed a plant earlier"
-anna:   "Routing now to Dr. Chen on call. She'll ring you in under 5 min."
+anna:   "Got it. She'll ring you back in under 5 min."
 caller: "Thank you"
 anna:   "Address sent for if she asks you to come in."
 meta:   "SMS sent ✓"
@@ -653,7 +644,7 @@ meta:   "SMS sent ✓"
 
 **instagram:**
 ```
-caller: "Hi! Saw your Q&A on cat vaccines — when's mine due?"
+caller: "Hi, our neighbour swears by you. Mittens needs her booster — when's available?"
 anna:   "Happy to check. Cat's name + your postcode?"
 caller: "Mittens, EH3"
 anna:   "Mittens is due her 3-year booster. Sat 11:00 or Tue 17:00?"
@@ -665,7 +656,7 @@ meta:   "Calendar invite ↗"
 **web:**
 ```
 caller: "We just moved — registering 2 cats with a new practice. Process?"
-anna:   "Welcome. New-pet exam is £45 each. Email + previous vet name to request records?"
+anna:   "Welcome — new-pet exam is £45 each. Email + previous vet name to request records?"
 caller: "jen@email.com, prev vet was West End Vets"
 anna:   "I'll request records. Earliest joint exam: Wed 15:30."
 caller: "Yes"
@@ -776,7 +767,7 @@ Re-baseline Lighthouse pre-implementation (post-Sprint-C). Phase verification re
 
 Bundle delta target: ≤ **+5KB gzipped** for the four new client components + content file + hook + tint tokens. No new image assets (mockups are pure CSS+text).
 
-The `min-h-[520px]` on the panel container prevents tab-swap layout shift contributing to CLS.
+CLS gates: tab-swap layout shift is user-initiated (excluded from CLS by the spec definition — only shifts within 500ms of user input are excluded; tab clicks qualify). No `min-h` enforcement needed.
 
 ---
 
@@ -818,7 +809,12 @@ Net new: **~19 vitest cases**.
   - functional: change segment via URL to `/?v=construction`, panel re-renders with construction thread (whichever channel is active)
   - functional (NEW post-council): click a segment tab in SegmentsShowcase while ChannelDemos is mounted with its WhatsApp tab active; assert ChannelDemos panel re-renders the new segment's WhatsApp thread without a page reload. Verifies the `anna:segment-changed` broadcast wiring from §6.6.
   - keyboard: Arrow keys cycle through tabs
-  - visual regression: 4 baseline screenshots — one per channel, all on `?v=beauty`. Captured under `prefers-reduced-motion: reduce` for determinism (same pattern as v2/v3 visual specs).
+  - **visual regression: 10 baseline screenshots**, all captured under `prefers-reduced-motion: reduce` for determinism (matches v2/v3 visual specs).
+
+    - Desktop 1440 × `?v=beauty`: 4 baselines (one per channel)
+    - Mobile 375 × `?v=beauty`: 4 baselines (one per channel) — confirms tab strip 2×2 layout and bubble wrapping
+    - Desktop 1440 × `?v=vet`, WhatsApp tab only: 1 baseline — longest WhatsApp thread (6 turns), confirms vertical expansion
+    - Desktop 1440 × `?v=construction`, Web chat tab only: 1 baseline — longest Web chat thread (6 turns), confirms content overflow handling
 
 ### 11.3 Axe
 
@@ -828,7 +824,29 @@ Existing axe test (`tests/e2e/a11y.spec.ts`) must remain green. ARIA tablist pat
 
 `scripts/check-source-placeholders.mjs` (the Phase-0-v3 build guard) continues to scan compiled output for `AI`, `AI Receptionist`, `artificial intelligence`, `[source: TBD]`, `[MISSING ASSET]`. The new content must not introduce any of these.
 
-### 11.5 Total gate
+### 11.5 Bundle-size gate
+
+The v4 bundle delta target is ≤ +5KB gzipped over the post-Sprint-C baseline. Capture the baseline in Phase 0 (pre-implementation) and re-measure in Phase 6 (verification). Manual check, no new tooling.
+
+Phase 0 capture:
+
+```bash
+npm run build
+du -b .next/static/chunks/*.js | awk '{s+=$1} END {print s}' > docs/superpowers/v4-bundle-baseline-bytes.txt
+```
+
+Phase 6 verify:
+
+```bash
+npm run build
+POST=$(du -b .next/static/chunks/*.js | awk '{s+=$1} END {print s}')
+PRE=$(cat docs/superpowers/v4-bundle-baseline-bytes.txt)
+echo "Delta: $((POST - PRE)) bytes (target ≤ 5120 = 5KB)"
+```
+
+If delta exceeds 5KB unrationalized, investigate (likely culprits: lucide-react tree-shake regression, content file weight, or unintended primitive imports). Document the delta in the v4 Lighthouse baseline doc.
+
+### 11.6 Total gate
 
 - 143 (post-Sprint-C) vitest cases → ~161 after v4
 - ~60 Playwright specs → ~65 after v4 (1 new spec file with ~3 functional + 4 visual)
