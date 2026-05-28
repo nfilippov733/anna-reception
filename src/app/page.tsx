@@ -1,7 +1,7 @@
 import { Hero } from "@/components/sections/Hero";
 import { ChannelsRibbon } from "@/components/sections/ChannelsRibbon";
 import { SocialProofLogos } from "@/components/sections/SocialProofLogos";
-import { AudioDemo } from "@/components/sections/AudioDemo";
+import { ChannelDemos } from "@/components/sections/ChannelDemos";
 import { RoiCalculator } from "@/components/sections/RoiCalculator";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { SegmentsShowcase } from "@/components/sections/SegmentsShowcase";
@@ -30,7 +30,7 @@ export default async function HomePage({ searchParams }: Props) {
       <SegmentsShowcase initialSegment={initialVertical} />
       <OutcomeStrip />
       <SquiggleDivider />
-      <AudioDemo />
+      <ChannelDemos initialSegment={initialVertical} />
       <RoiCalculator initialVertical={initialVertical} />
       <HowItWorks />
       <TestimonialWall />

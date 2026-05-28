@@ -48,3 +48,4 @@ test-results/
 # Lighthouse reports (large; data committed to docs/superpowers/lighthouse-*.md)
 lighthouse-baseline-*.report.*
 lighthouse-v2-*.report.*
+tmp/
