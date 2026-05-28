@@ -92,7 +92,7 @@ export function RoiCalculator({ initialVertical = null }: Props) {
             <div className="mt-8 flex flex-wrap gap-6 items-center">
               <LinkArrow
                 href="/audit"
-                data-event="hero_cta_audit_clicked"
+                data-event="roi_cta_audit_clicked"
               >
                 Get my full audit
               </LinkArrow>

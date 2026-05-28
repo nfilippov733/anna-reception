@@ -24,7 +24,10 @@ export type AnalyticsEvent =
   | { event: "contact_cta_demo_clicked" }
   | { event: "contact_cta_audit_clicked" }
   | { event: "not_found_home_clicked" }
-  | { event: "not_found_demo_clicked" };
+  | { event: "not_found_demo_clicked" }
+  | { event: "header_cta_demo_clicked" }
+  | { event: "sticky_cta_demo_clicked" }
+  | { event: "roi_cta_audit_clicked" };
 
 export function track(event: AnalyticsEvent["event"], properties?: Record<string, unknown>): void {
   if (typeof window === "undefined") return;

@@ -37,7 +37,7 @@ export function Header() {
         </nav>
         <div className="flex items-center gap-3">
           <PhoneChip number={DEMO_PHONE} className="hidden sm:inline-flex" />
-          <Button href="/demo" data-event="hero_cta_demo_clicked">
+          <Button href="/demo" data-event="header_cta_demo_clicked">
             Book a demo
           </Button>
         </div>

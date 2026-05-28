@@ -34,7 +34,7 @@ export function StickyDemoCTA({ active: forcedActive }: Props = {}) {
         active ? "translate-y-0" : "translate-y-[200%]"
       )}
     >
-      <Button href="/demo" className="shadow-lg" data-event="hero_cta_demo_clicked">
+      <Button href="/demo" className="shadow-lg" data-event="sticky_cta_demo_clicked">
         Book a demo
       </Button>
     </div>
