@@ -27,7 +27,10 @@ export type AnalyticsEvent =
   | { event: "not_found_demo_clicked" }
   | { event: "header_cta_demo_clicked" }
   | { event: "sticky_cta_demo_clicked" }
-  | { event: "roi_cta_audit_clicked" };
+  | { event: "roi_cta_audit_clicked" }
+  | { event: "channel_tab_changed"; segment: VerticalKey; channel: "phone" | "whatsapp" | "instagram" | "web" }
+  | { event: "channel_demos_demo_clicked"; segment: VerticalKey; channel: "phone" | "whatsapp" | "instagram" | "web" }
+  | { event: "channel_demos_audit_clicked"; segment: VerticalKey; channel: "phone" | "whatsapp" | "instagram" | "web" };
 
 export function track(event: AnalyticsEvent["event"], properties?: Record<string, unknown>): void {
   if (typeof window === "undefined") return;
