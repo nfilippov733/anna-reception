@@ -18,7 +18,11 @@ export type AnalyticsEvent =
   | { event: "demo_form_submitted"; segment: string }
   | { event: "demo_form_submit_click" }
   | { event: "audit_form_submitted"; segment: string }
-  | { event: "audit_form_submit_click" };
+  | { event: "audit_form_submit_click" }
+  | { event: "about_cta_demo_clicked" }
+  | { event: "about_cta_audit_clicked" }
+  | { event: "contact_cta_demo_clicked" }
+  | { event: "contact_cta_audit_clicked" };
 
 export function track(event: AnalyticsEvent["event"], properties?: Record<string, unknown>): void {
   if (typeof window === "undefined") return;

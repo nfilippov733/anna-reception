@@ -34,7 +34,6 @@ export function Header() {
         <nav aria-label="Primary" className="hidden md:flex items-center gap-6 text-sm">
           <a href="#how-it-works" className="text-ink hover:text-primary transition-colors">How it works</a>
           <a href="#pricing" className="text-ink hover:text-primary transition-colors">Pricing</a>
-          <a href="/sign-in" className="text-ink hover:text-primary transition-colors">Sign in</a>
         </nav>
         <div className="flex items-center gap-3">
           <PhoneChip number={DEMO_PHONE} className="hidden sm:inline-flex" />
