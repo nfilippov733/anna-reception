@@ -11,7 +11,7 @@
 
 **2026-05-28 post-council revision:** applied 3 critical fixes flagged by the agent-tower council (UX Designer + Frontend Engineer personas, 82% consensus). Specifically:
 - §6.6 added: `useSegmentParam` upgraded to broadcast/listen via a window CustomEvent so sibling sections (SegmentsShowcase, RoiCalculator, ChannelDemos) stay in sync after a client-side segment change. Closes a latent v3 bug that would otherwise ship through v4.
-- §11.2 corrected: `/?v=construction` → `/?v=construction` (the data key is `construction`; display label is "Trades"). Three occurrences across §11.2 and §13.7 swept.
+- §11.2 corrected: `/?v=trades` → `/?v=construction` (the data key is `construction`; display label is "Trades"). Three occurrences across §11.2 and §13.7 swept.
 - §6.3 clarified: the Phone tab transcript is **always** rendered (segment-aware fallback). When `NEXT_PUBLIC_GENERIC_AUDIO_SRC` is configured, audio plays alongside the transcript rather than replacing it. Acceptance criterion 7 aligned.
 
 All 11 additional post-council findings applied in revision `4dabfc1` (2026-05-28). Spec is implementation-ready.
