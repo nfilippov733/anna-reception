@@ -68,3 +68,62 @@ test.describe("Channel demos — functional", () => {
     await expect(page.getByRole("tab", { name: /Phone/i })).toHaveAttribute("aria-selected", "true");
   });
 });
+
+const DESKTOP = { width: 1440, height: 900 };
+const MOBILE = { width: 375, height: 800 };
+
+const CHANNEL_TABS = [
+  { key: "phone", label: /Phone/i },
+  { key: "whatsapp", label: /WhatsApp/i },
+  { key: "instagram", label: /Instagram/i },
+  { key: "web", label: /Web chat/i },
+] as const;
+
+async function snapPanel(page: import("@playwright/test").Page, name: string) {
+  const section = page.locator('section[aria-labelledby="channel-demos-heading"]');
+  await section.scrollIntoViewIfNeeded();
+  await page.waitForTimeout(300);
+  await expect(section).toHaveScreenshot(`${name}.png`, { maxDiffPixelRatio: 0.02 });
+}
+
+test.describe("Channel demos — visual baselines", () => {
+  for (const tab of CHANNEL_TABS) {
+    test(`desktop 1440 · ?v=beauty · ${tab.key}`, async ({ browser }) => {
+      const ctx = await browser.newContext({ reducedMotion: "reduce", viewport: DESKTOP });
+      const page = await ctx.newPage();
+      await page.goto("/?v=beauty");
+      await page.locator('section[aria-labelledby="channel-demos-heading"]').getByRole("tab", { name: tab.label }).click();
+      await snapPanel(page, `channel-demos-desktop-beauty-${tab.key}`);
+      await ctx.close();
+    });
+  }
+
+  for (const tab of CHANNEL_TABS) {
+    test(`mobile 375 · ?v=beauty · ${tab.key}`, async ({ browser }) => {
+      const ctx = await browser.newContext({ reducedMotion: "reduce", viewport: MOBILE });
+      const page = await ctx.newPage();
+      await page.goto("/?v=beauty");
+      await page.locator('section[aria-labelledby="channel-demos-heading"]').getByRole("tab", { name: tab.label }).click();
+      await snapPanel(page, `channel-demos-mobile-beauty-${tab.key}`);
+      await ctx.close();
+    });
+  }
+
+  test("desktop 1440 · ?v=vet · whatsapp (longest WA thread)", async ({ browser }) => {
+    const ctx = await browser.newContext({ reducedMotion: "reduce", viewport: DESKTOP });
+    const page = await ctx.newPage();
+    await page.goto("/?v=vet");
+    await page.locator('section[aria-labelledby="channel-demos-heading"]').getByRole("tab", { name: /WhatsApp/i }).click();
+    await snapPanel(page, "channel-demos-desktop-vet-whatsapp");
+    await ctx.close();
+  });
+
+  test("desktop 1440 · ?v=construction · web (longest Web thread)", async ({ browser }) => {
+    const ctx = await browser.newContext({ reducedMotion: "reduce", viewport: DESKTOP });
+    const page = await ctx.newPage();
+    await page.goto("/?v=construction");
+    await page.locator('section[aria-labelledby="channel-demos-heading"]').getByRole("tab", { name: /Web chat/i }).click();
+    await snapPanel(page, "channel-demos-desktop-construction-web");
+    await ctx.close();
+  });
+});
