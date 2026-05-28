@@ -38,11 +38,11 @@ describe("MessagingThread", () => {
   });
 
   it("renders meta line when present, omits when absent", () => {
-    render(<MessagingThread thread={SAMPLE} channel="whatsapp" />);
-    expect(screen.getByText(/SMS sent/i)).toBeInTheDocument();
+    const { container: withMeta } = render(<MessagingThread thread={SAMPLE} channel="whatsapp" />);
+    expect(within(withMeta).getByText(/SMS sent/i)).toBeInTheDocument();
     const without: Thread = [{ from: "caller", text: "Hi" }];
-    const { queryByText } = render(<MessagingThread thread={without} channel="whatsapp" />);
-    expect(queryByText(/SMS sent/i)).not.toBeInTheDocument();
+    const { container: withoutMeta } = render(<MessagingThread thread={without} channel="whatsapp" />);
+    expect(within(withoutMeta).queryByText(/SMS sent/i)).not.toBeInTheDocument();
   });
 
   it("aligns caller bubbles left (mr-auto) and ANNA bubbles right (ml-auto)", () => {
