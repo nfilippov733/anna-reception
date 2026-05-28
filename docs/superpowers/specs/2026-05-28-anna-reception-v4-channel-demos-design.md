@@ -7,6 +7,28 @@
 
 ---
 
+## 0. Revisions
+
+**2026-05-28 post-council revision:** applied 3 critical fixes flagged by the agent-tower council (UX Designer + Frontend Engineer personas, 82% consensus). Specifically:
+- §6.6 added: `useSegmentParam` upgraded to broadcast/listen via a window CustomEvent so sibling sections (SegmentsShowcase, RoiCalculator, ChannelDemos) stay in sync after a client-side segment change. Closes a latent v3 bug that would otherwise ship through v4.
+- §11.2 corrected: `/?v=construction` → `/?v=construction` (the data key is `construction`; display label is "Trades"). Three occurrences across §11.2 and §13.7 swept.
+- §6.3 clarified: the Phone tab transcript is **always** rendered (segment-aware fallback). When `NEXT_PUBLIC_GENERIC_AUDIO_SRC` is configured, audio plays alongside the transcript rather than replacing it. Acceptance criterion 7 aligned.
+
+Deferred (acknowledged, not fixed in this revision; will require visual-snapshot re-baseline if applied post-Phase-6):
+- §5.1 Kicker / H2 echo (commit `2b60fd8` set the project rule against this)
+- §5.3 `min-h-[520px]` (too short for 6-turn mobile threads, too tall for 4-turn phone)
+- §11.2 visual baselines (mobile-375 + longest-thread cases not covered)
+- §11 bundle-size gate not asserted
+- §7 voice: ~8 ANNA turns violate §3 "one short sentence per turn"
+- §7.2 beauty WhatsApp uses `✓✓` (the WhatsApp read-receipt glyph §1.3/§8.4 reject)
+- §7.1 web NHS Band 1 `£25.80` is stale (rose to £27.90 from 1 April 2026)
+- §7.2 Instagram "May 17, Saturday" is wrong in 2026 (May 17 2026 is a Sunday) and past
+- Vet/dental copy strays toward clinical/billing advice
+- "Lisa K" appears in beauty web and construction web (templated feel)
+- Instagram openers all "Saw your reel/post/Q&A…" (canned across all 6 segments)
+
+---
+
 ## 1. Goals
 
 The v3 landing **claims** omnichannel — five channels in `ChannelsRibbon`, channel-mix percentages in each `SegmentPanel`, a FAQ entry on WhatsApp/DMs — but **proves only phone** (`AudioDemo` shows a single phone-call transcript). The marketing claim and the demonstrated capability are out of sync. This spec closes that gap with one new section.
@@ -243,11 +265,12 @@ Tab-change side effects:
 type Props = { segment: VerticalKey };
 ```
 
-Wraps the existing AudioDemo body (PlayButton + Waveform + transcript + PhoneChip). Transcript is now segment-aware — pulled from `CHANNEL_DEMOS[segment].phone` (see §7).
+Wraps PlayButton + Waveform + transcript + PhoneChip. Transcript is segment-aware — pulled from `CHANNEL_DEMOS[segment].phone` (see §7).
 
-Behaviour identical to v3 AudioDemo:
-- Reads `process.env.NEXT_PUBLIC_GENERIC_AUDIO_SRC`. If empty: render transcript fallback + "Audio sample available at launch" line.
-- If present: render `<audio>` + transcript hidden, PlayButton toggles play/pause.
+**Revised contract (post-council):** the segment-aware transcript is **always rendered**, regardless of whether real audio is wired. Audio is an optional add-on that augments the visible transcript — it does not replace it. This keeps the Phone tab segment-aware in production once `NEXT_PUBLIC_GENERIC_AUDIO_SRC` lands.
+
+- If `NEXT_PUBLIC_GENERIC_AUDIO_SRC` is empty: PlayButton is rendered but disabled (`aria-disabled="true"`, no click handler), Waveform shows static idle bars, transcript visible, meta line shows the segment-specific fallback from `CHANNEL_DEMOS[segment].phone.at(-1).meta` (e.g. *"Audio sample available at launch"*).
+- If `NEXT_PUBLIC_GENERIC_AUDIO_SRC` is present: PlayButton is interactive, Waveform animates while playing, transcript stays visible the entire time.
 - Fires `audio_demo_played` and `audio_demo_completed_30s` analytics events (already in the union).
 
 The component does NOT render its own Kicker/H2 — those live on the parent `ChannelDemos`.
@@ -274,6 +297,78 @@ const incomingBg = {
   instagram: "bg-terracotta-soft",
   web: "bg-ink-soft",
 }[channel];
+```
+
+### 6.6 `useSegmentParam` upgrade (cross-section sync)
+
+The current `src/lib/useSegmentParam.ts` reads `?v=` only on mount and writes via `history.replaceState` without firing any event. Sibling sections that subscribe to the hook (SegmentsShowcase, RoiCalculator, and the new ChannelDemos) hold independent state — when one calls `select()`, the others never learn. v3 didn't surface this because initial SSR synced everyone through `searchParams`; v4's cross-section promise (segment-change rolls through to ChannelDemos) requires real client-side sync.
+
+Modify `src/lib/useSegmentParam.ts`:
+
+```ts
+"use client";
+import { useEffect, useState } from "react";
+import { VERTICAL_KEYS, isVerticalKey, type VerticalKey } from "@/lib/verticals";
+
+const SEGMENT_CHANGED = "anna:segment-changed";
+
+type SegmentChangedDetail = { segment: VerticalKey };
+
+export function useSegmentParam(
+  initial: VerticalKey
+): [VerticalKey, (k: VerticalKey) => void] {
+  const [active, setActive] = useState<VerticalKey>(initial);
+
+  // On mount, read ?v= from URL. If it's a valid key and differs from `initial`,
+  // adopt it so client-side hydration honours deep links.
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    const v = params.get("v");
+    if (v && isVerticalKey(v) && v !== active) {
+      setActive(v);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Listen for sibling-driven segment changes (NEW).
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const handler = (e: Event) => {
+      const detail = (e as CustomEvent<SegmentChangedDetail>).detail;
+      if (detail && isVerticalKey(detail.segment) && detail.segment !== active) {
+        setActive(detail.segment);
+      }
+    };
+    window.addEventListener(SEGMENT_CHANGED, handler);
+    return () => window.removeEventListener(SEGMENT_CHANGED, handler);
+  }, [active]);
+
+  const select = (k: VerticalKey) => {
+    if (!VERTICAL_KEYS.includes(k)) return;
+    setActive(k);
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      params.set("v", k);
+      window.history.replaceState({}, "", `${window.location.pathname}?${params.toString()}`);
+      // Broadcast (NEW). Self-listen is harmless: handler short-circuits on `=== active`.
+      window.dispatchEvent(new CustomEvent<SegmentChangedDetail>(SEGMENT_CHANGED, { detail: { segment: k } }));
+    }
+  };
+
+  return [active, select];
+}
+```
+
+Event name is namespaced (`anna:`) to avoid collision with anything else on `window`. No external dependency, no context provider — minimal change, full sync.
+
+New test in `src/lib/useSegmentParam.test.tsx` (+1 case):
+
+```ts
+it("syncs across instances via the anna:segment-changed event", () => {
+  // Mount two probes. select() on one updates the other's state.
+  // (Verify by re-rendering and checking the second probe sees the new value.)
+});
 ```
 
 ### 6.5 `useChannelTab` hook
@@ -720,7 +815,8 @@ Net new: **~19 vitest cases**.
 - `tests/e2e/channel-demos.spec.ts`:
   - functional: visit `/?v=beauty`, Phone tab is selected, panel shows beauty phone transcript
   - functional: click WhatsApp tab, URL `?v=` unchanged (still `beauty`), panel swaps to beauty WhatsApp thread
-  - functional: change segment via URL to `/?v=trades`, panel re-renders with trades thread (whichever channel is active)
+  - functional: change segment via URL to `/?v=construction`, panel re-renders with construction thread (whichever channel is active)
+  - functional (NEW post-council): click a segment tab in SegmentsShowcase while ChannelDemos is mounted with its WhatsApp tab active; assert ChannelDemos panel re-renders the new segment's WhatsApp thread without a page reload. Verifies the `anna:segment-changed` broadcast wiring from §6.6.
   - keyboard: Arrow keys cycle through tabs
   - visual regression: 4 baseline screenshots — one per channel, all on `?v=beauty`. Captured under `prefers-reduced-motion: reduce` for determinism (same pattern as v2/v3 visual specs).
 
