@@ -17,6 +17,28 @@ const mono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "ANNA Reception — reception that never misses. UK SMBs.",
   description: "Inbound calls, outbound follow-ups, WhatsApp, and DMs — answered, booked, and chased. From £99/mo.",
+  metadataBase: new URL("https://anna-reception.vercel.app"),
+  openGraph: {
+    type: "website",
+    locale: "en_GB",
+    title: "ANNA Reception — reception that never misses. UK SMBs.",
+    description: "Inbound calls, outbound follow-ups, WhatsApp, and DMs — answered, booked, and chased. From £99/mo.",
+    siteName: "ANNA Reception",
+    images: [
+      {
+        url: "/assets/redesign/hero-illustration.png",
+        width: 800,
+        height: 1000,
+        alt: "ANNA Reception — front desk illustration",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ANNA Reception — reception that never misses. UK SMBs.",
+    description: "Inbound calls, outbound follow-ups, WhatsApp, and DMs — answered, booked, and chased. From £99/mo.",
+    images: ["/assets/redesign/hero-illustration.png"],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
