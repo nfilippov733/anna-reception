@@ -62,4 +62,33 @@ describe("useSegmentParam", () => {
     expect(lastActive).toBe("fitness");
     expect(window.location.search).toBe("?v=fitness");
   });
+
+  it("syncs across instances via the anna:segment-changed event", () => {
+    // Two probes mounted side-by-side. select() on one updates the other.
+    let probeAActive: VerticalKey | undefined;
+    let probeBActive: VerticalKey | undefined;
+    let probeASelect: ((k: VerticalKey) => void) | undefined;
+    render(
+      <>
+        <Probe
+          initial="dental"
+          onState={(a, s) => {
+            probeAActive = a;
+            probeASelect = s;
+          }}
+        />
+        <Probe
+          initial="dental"
+          onState={(a) => {
+            probeBActive = a;
+          }}
+        />
+      </>
+    );
+    expect(probeAActive).toBe("dental");
+    expect(probeBActive).toBe("dental");
+    act(() => probeASelect!("fitness"));
+    expect(probeAActive).toBe("fitness");
+    expect(probeBActive).toBe("fitness");
+  });
 });
