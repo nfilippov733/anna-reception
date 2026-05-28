@@ -23,7 +23,7 @@ const STEPS = [
 export function HowItWorks() {
   return (
     <section id="how-it-works" className="mx-auto max-w-page px-4 py-24 md:py-32" aria-labelledby="how-heading">
-      <Kicker number="05" label="Set up in three minutes" />
+      <Kicker number="08" label="Set up in three minutes" />
       <h2 id="how-heading" className="mt-6 font-display text-display-lg text-ink text-balance">
         Set up in three minutes.
       </h2>

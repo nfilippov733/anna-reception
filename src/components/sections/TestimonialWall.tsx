@@ -8,7 +8,7 @@ export function TestimonialWall() {
   const rest = TESTIMONIALS.filter((t) => t !== hero);
   return (
     <section className="mx-auto max-w-page px-4 py-24 md:py-32" aria-labelledby="testimonials-heading">
-      <Kicker number="07" label="What operators tell us" />
+      <Kicker number="09" label="What operators tell us" />
       <h2 id="testimonials-heading" className="mt-6 font-display text-display-lg text-ink text-balance">
         What operators tell us.
       </h2>

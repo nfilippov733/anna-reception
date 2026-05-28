@@ -6,7 +6,7 @@ import { track } from "@/lib/analytics";
 export function PricingTeaser() {
   return (
     <section id="pricing" className="mx-auto max-w-page px-4 py-24 md:py-32" aria-labelledby="pricing-heading">
-      <Kicker number="08" label="Honest pricing" />
+      <Kicker number="11" label="Honest pricing" />
       <h2 id="pricing-heading" className="mt-6 font-display text-display-lg text-ink text-balance">
         Honest pricing.
       </h2>

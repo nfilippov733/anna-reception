@@ -33,7 +33,7 @@ export function RoiCalculator({ initialVertical = null }: Props) {
 
   return (
     <section id="roi" className="mx-auto max-w-page px-4 py-24 md:py-32" aria-labelledby="roi-heading">
-      <Kicker number="04" label="See your leak in 30 seconds" />
+      <Kicker number="07" label="See your leak in 30 seconds" />
       <h2 id="roi-heading" className="mt-6 font-display text-display-lg text-ink text-balance">
         See your leak in 30 seconds.
       </h2>

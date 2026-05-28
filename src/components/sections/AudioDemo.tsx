@@ -28,7 +28,7 @@ export function AudioDemo() {
 
   return (
     <section className="mx-auto max-w-page px-4 py-16 md:py-20" aria-labelledby="audio-heading">
-      <Kicker number="03" label="Hear a real call" />
+      <Kicker number="06" label="Hear a real call" />
       <h2 id="audio-heading" className="mt-6 font-display text-display-lg text-ink text-balance">
         Hear ANNA take a real call.
       </h2>

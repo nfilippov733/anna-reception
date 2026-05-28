@@ -5,7 +5,7 @@ import { Kicker } from "@/components/primitives/Kicker";
 export function FaqAccordion() {
   return (
     <section className="mx-auto max-w-page px-4 py-24 md:py-32" aria-labelledby="faq-heading">
-      <Kicker number="09" label="Questions, then?" />
+      <Kicker number="12" label="Questions, then?" />
       <h2 id="faq-heading" className="mt-6 font-display text-display-lg text-ink text-balance">
         Questions, then?
       </h2>
