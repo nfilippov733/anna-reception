@@ -22,6 +22,10 @@ const config: Config = {
         sage: "hsl(var(--sage) / <alpha-value>)",
         "sage-mute": "hsl(var(--sage-mute) / <alpha-value>)",
         "mono-label": "hsl(var(--mono-label) / <alpha-value>)",
+        terracotta: "hsl(var(--terracotta) / <alpha-value>)",
+        "terracotta-soft": "hsl(var(--terracotta-soft) / <alpha-value>)",
+        "sage-soft": "hsl(var(--sage-soft) / <alpha-value>)",
+        "ink-soft": "hsl(var(--ink-soft) / <alpha-value>)",
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
