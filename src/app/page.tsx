@@ -20,11 +20,12 @@ type Props = { searchParams: Promise<{ v?: string }> };
 export default async function HomePage({ searchParams }: Props) {
   const params = await searchParams;
   const fakeUrl = new URL(`http://x/?v=${params.v ?? ""}`);
-  const initialVertical: VerticalKey = readVerticalFromUrl(fakeUrl) ?? "dental";
+  const initialVerticalFromUrl: VerticalKey | null = readVerticalFromUrl(fakeUrl);
+  const initialVertical: VerticalKey = initialVerticalFromUrl ?? "dental";
 
   return (
     <>
-      <Hero />
+      <Hero initialSegment={initialVerticalFromUrl ?? undefined} />
       <ChannelsRibbon />
       <SocialProofLogos />
       <SegmentsShowcase initialSegment={initialVertical} />
