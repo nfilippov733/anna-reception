@@ -7,12 +7,12 @@ export function Logo({ variant = "full", className }: Props) {
   return (
     <span
       role="img"
-      aria-label="ANNA Reception, by ANNA"
+      aria-label="Reception, by ANNA"
       className={cn("inline-flex items-center gap-2", className)}
     >
       {variant === "full" ? (
         <span className="inline-flex flex-col leading-tight">
-          <span className="text-base font-semibold tracking-tight text-ink">ANNA Reception</span>
+          <span className="text-base font-semibold tracking-tight text-ink">Reception</span>
           <span className="inline-flex items-center gap-1 text-xs text-fg-muted">
             by
             <Image

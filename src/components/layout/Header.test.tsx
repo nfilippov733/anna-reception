@@ -3,9 +3,9 @@ import { render, screen } from "@testing-library/react";
 import { Header } from "./Header";
 
 describe("Header", () => {
-  it("renders the ANNA Reception brand mark", () => {
+  it("renders the Reception brand mark", () => {
     render(<Header />);
-    expect(screen.getByText(/ANNA Reception/i)).toBeInTheDocument();
+    expect(screen.getByRole("img", { name: /reception, by anna/i })).toBeInTheDocument();
   });
   it("includes a primary Book a demo CTA", () => {
     render(<Header />);
@@ -15,8 +15,8 @@ describe("Header", () => {
     render(<Header />);
     expect(screen.getByRole("link", { name: /try a sample call to anna/i })).toBeInTheDocument();
   });
-  it("renders the Logo SVG mark (not just a text wordmark)", () => {
-    const { container } = render(<Header />);
-    expect(container.querySelector("svg")).toBeInTheDocument();
+  it("renders the ANNA wordmark image in the Logo", () => {
+    render(<Header />);
+    expect(screen.getByAltText("ANNA")).toBeInTheDocument();
   });
 });
