@@ -7,65 +7,61 @@ test.describe("Channel demos — functional", () => {
     await expect(phoneTab).toHaveAttribute("aria-selected", "true");
   });
 
-  test("visiting /?v=beauty shows beauty phone transcript", async ({ page }) => {
+  test("Phone tab shows the voice call card", async ({ page }) => {
     await page.goto("/?v=beauty");
-    // Scope to the ChannelDemos tabpanel (id starts with "channel-panel-") to avoid
-    // strict-mode collision with SegmentsShowcase's "Sample call" paragraph.
     const channelPanel = page.locator("[id^='channel-panel-']");
-    await expect(channelPanel.getByText(/balayage Saturday/i)).toBeVisible();
+    await expect(channelPanel.getByText(/Live sample call/i)).toBeVisible();
   });
 
-  test("clicking WhatsApp tab swaps panel; URL ?v= unchanged", async ({ page }) => {
+  test("clicking Chat shows the WhatsApp conversation; URL ?v= unchanged", async ({ page }) => {
     await page.goto("/?v=beauty");
-    await page.getByRole("tablist", { name: /Channel selector/i }).getByRole("tab", { name: /WhatsApp/i }).click();
+    await page.getByRole("tablist", { name: /Channel selector/i }).getByRole("tab", { name: /Chat/i }).click();
     await expect(page).toHaveURL(/[?&]v=beauty\b/);
-    // Beauty WhatsApp turn 1
     const channelPanel = page.locator("[id^='channel-panel-']");
+    // Beauty WhatsApp turn 1
     await expect(channelPanel.getByText(/can I push it/i)).toBeVisible();
   });
 
-  test("change segment via URL re-renders panel for current channel", async ({ page }) => {
+  test("change segment via URL re-renders the chat for the new segment", async ({ page }) => {
     await page.goto("/?v=beauty");
-    await page.getByRole("tablist", { name: /Channel selector/i }).getByRole("tab", { name: /WhatsApp/i }).click();
+    await page.getByRole("tablist", { name: /Channel selector/i }).getByRole("tab", { name: /Chat/i }).click();
     const channelPanel = page.locator("[id^='channel-panel-']");
     await expect(channelPanel.getByText(/can I push it/i)).toBeVisible();
     await page.goto("/?v=construction");
-    await page.getByRole("tablist", { name: /Channel selector/i }).getByRole("tab", { name: /WhatsApp/i }).click();
+    await page.getByRole("tablist", { name: /Channel selector/i }).getByRole("tab", { name: /Chat/i }).click();
     // Construction WhatsApp turn 1
     await expect(channelPanel.getByText(/do you cover Camden/i)).toBeVisible();
   });
 
-  test("clicking a segment tab in SegmentsShowcase updates ChannelDemos panel without reload", async ({ page }) => {
+  test("clicking a segment tab in SegmentsShowcase updates ChannelDemos chat without reload", async ({ page }) => {
     await page.goto("/?v=dental");
-    await page.getByRole("tablist", { name: /Channel selector/i }).getByRole("tab", { name: /WhatsApp/i }).click();
-    // Dental WhatsApp turn 1
+    await page.getByRole("tablist", { name: /Channel selector/i }).getByRole("tab", { name: /Chat/i }).click();
     const channelPanel = page.locator("[id^='channel-panel-']");
+    // Dental WhatsApp turn 1
     await expect(channelPanel.getByText(/Any NHS spaces/i)).toBeVisible();
 
-    // Click the Fitness segment tab in SegmentsShowcase (above ChannelDemos).
-    // SegmentsShowcase tablist is labelled "Segment selector"; ChannelDemos tablist is "Channel selector".
     const segmentsList = page.getByRole("tablist", { name: /Segment selector/i });
     await segmentsList.getByRole("tab", { name: /Fitness studios/i }).click();
 
-    // ChannelDemos panel should now show fitness WhatsApp turn 1 — without a page reload.
+    // Chat panel should now show fitness WhatsApp turn 1 — without a page reload.
     await expect(channelPanel.getByText(/How much are classes/i)).toBeVisible();
   });
 
-  test("ArrowRight cycles channel tabs", async ({ page }) => {
+  test("ArrowRight cycles from Phone to Chat", async ({ page }) => {
     await page.goto("/?v=dental");
     const phoneTab = page.getByRole("tab", { name: /Phone/i });
     await phoneTab.focus();
     await page.keyboard.press("ArrowRight");
-    await expect(page.getByRole("tab", { name: /WhatsApp/i })).toHaveAttribute("aria-selected", "true");
+    await expect(page.getByRole("tab", { name: /Chat/i })).toHaveAttribute("aria-selected", "true");
   });
 
   test("Home and End jump tabs", async ({ page }) => {
     await page.goto("/?v=dental");
-    await page.getByRole("tab", { name: /Instagram/i }).focus();
-    await page.keyboard.press("End");
-    await expect(page.getByRole("tab", { name: /Web chat/i })).toHaveAttribute("aria-selected", "true");
+    await page.getByRole("tab", { name: /Chat/i }).focus();
     await page.keyboard.press("Home");
     await expect(page.getByRole("tab", { name: /Phone/i })).toHaveAttribute("aria-selected", "true");
+    await page.keyboard.press("End");
+    await expect(page.getByRole("tab", { name: /Chat/i })).toHaveAttribute("aria-selected", "true");
   });
 });
 
@@ -74,9 +70,7 @@ const MOBILE = { width: 375, height: 800 };
 
 const CHANNEL_TABS = [
   { key: "phone", label: /Phone/i },
-  { key: "whatsapp", label: /WhatsApp/i },
-  { key: "instagram", label: /Instagram/i },
-  { key: "web", label: /Web chat/i },
+  { key: "chat", label: /Chat/i },
 ] as const;
 
 async function snapPanel(page: import("@playwright/test").Page, name: string) {
@@ -109,21 +103,12 @@ test.describe("Channel demos — visual baselines", () => {
     });
   }
 
-  test("desktop 1440 · ?v=vet · whatsapp (longest WA thread)", async ({ browser }) => {
+  test("desktop 1440 · ?v=vet · chat (longest thread)", async ({ browser }) => {
     const ctx = await browser.newContext({ reducedMotion: "reduce", viewport: DESKTOP });
     const page = await ctx.newPage();
     await page.goto("/?v=vet");
-    await page.locator('section[aria-labelledby="channel-demos-heading"]').getByRole("tab", { name: /WhatsApp/i }).click();
-    await snapPanel(page, "channel-demos-desktop-vet-whatsapp");
-    await ctx.close();
-  });
-
-  test("desktop 1440 · ?v=construction · web (longest Web thread)", async ({ browser }) => {
-    const ctx = await browser.newContext({ reducedMotion: "reduce", viewport: DESKTOP });
-    const page = await ctx.newPage();
-    await page.goto("/?v=construction");
-    await page.locator('section[aria-labelledby="channel-demos-heading"]').getByRole("tab", { name: /Web chat/i }).click();
-    await snapPanel(page, "channel-demos-desktop-construction-web");
+    await page.locator('section[aria-labelledby="channel-demos-heading"]').getByRole("tab", { name: /Chat/i }).click();
+    await snapPanel(page, "channel-demos-desktop-vet-chat");
     await ctx.close();
   });
 });

@@ -175,33 +175,55 @@ export function SegmentsShowcase({ initialSegment }: Props) {
           })}
         </div>
 
-        <div className="mt-10 overflow-hidden">
-          <div
-            key={active}
-            className="animate-segment-in"
-            style={{ "--seg-from": dir === 1 ? "1.5rem" : "-1.5rem" } as CSSProperties}
-          >
-            <SegmentPanel
-              content={VERTICALS[active]}
-              panelId={`segment-panel-${active}`}
-              labelledBy={`segment-tab-${active}`}
-              kickerLetter={KICKER_LETTERS[activeIndex] ?? "a"}
-            />
+        {/* On md+ the panel is inset (md:px-14) so the side arrows sit in a
+            reserved gutter — no overflow, no overlap with content. */}
+        <div className="relative mt-10 md:px-14">
+          <div className="overflow-hidden">
+            <div
+              key={active}
+              className="animate-segment-in"
+              style={{ "--seg-from": dir === 1 ? "1.5rem" : "-1.5rem" } as CSSProperties}
+            >
+              <SegmentPanel
+                content={VERTICALS[active]}
+                panelId={`segment-panel-${active}`}
+                labelledBy={`segment-tab-${active}`}
+                kickerLetter={KICKER_LETTERS[activeIndex] ?? "a"}
+              />
+            </div>
           </div>
+
+          {/* Side arrows — desktop only, vertically centred in the gutter. */}
+          <button
+            type="button"
+            onClick={goPrev}
+            aria-label="Previous segment"
+            className="absolute left-0 top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-sage/40 bg-cream-deep text-ink shadow-md transition-colors hover:border-sage focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:flex"
+          >
+            <ChevronLeft className="h-5 w-5" aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            onClick={goNext}
+            aria-label="Next segment"
+            className="absolute right-0 top-1/2 z-20 hidden h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full border border-sage/40 bg-cream-deep text-ink shadow-md transition-colors hover:border-sage focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:flex"
+          >
+            <ChevronRight className="h-5 w-5" aria-hidden="true" />
+          </button>
         </div>
 
+        {/* Controls: dots always; arrows here on mobile (side arrows take over on md+). */}
         <div className="mt-8 flex items-center justify-center gap-4">
           <button
             type="button"
             onClick={goPrev}
             aria-label="Previous segment"
-            className="rounded-full border border-sage/40 p-2 text-ink transition-colors hover:border-sage focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-sage/40 text-ink transition-colors hover:border-sage focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:hidden"
           >
-            <ChevronLeft className="h-5 w-5" aria-hidden="true" />
+            <ChevronLeft className="h-4 w-4" aria-hidden="true" />
           </button>
           {/* Decorative position indicators — keyboard nav lives in the labelled
-              chips + arrows, so these stay out of the a11y tree but remain
-              clickable for mouse users. */}
+              chips + arrows, so these stay out of the a11y tree. */}
           <div className="flex items-center gap-2" aria-hidden="true">
             {VERTICAL_KEYS.map((k) => (
               <span
@@ -219,9 +241,9 @@ export function SegmentsShowcase({ initialSegment }: Props) {
             type="button"
             onClick={goNext}
             aria-label="Next segment"
-            className="rounded-full border border-sage/40 p-2 text-ink transition-colors hover:border-sage focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-sage/40 text-ink transition-colors hover:border-sage focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:hidden"
           >
-            <ChevronRight className="h-5 w-5" aria-hidden="true" />
+            <ChevronRight className="h-4 w-4" aria-hidden="true" />
           </button>
         </div>
       </div>
