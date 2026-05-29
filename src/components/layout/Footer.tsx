@@ -36,6 +36,9 @@ export function Footer() {
             <li><a href="/privacy" className="hover:text-primary transition-colors">Privacy</a></li>
             <li><a href="/terms" className="hover:text-primary transition-colors">Terms</a></li>
           </ul>
+          <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.18em] text-mono-label">
+            UK GDPR · DPA 2018 · ICO registered · ISO 27001-aligned · PCI-compliant deposits via Stripe
+          </p>
           <p className="mt-6 text-xs text-fg-muted">Absolute Financial Services Ltd. ANNA is a trading name. See anna.money for regulatory information.</p>
         </div>
       </div>
