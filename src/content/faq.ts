@@ -20,7 +20,7 @@ export const FAQ: FaqEntry[] = [
   },
   {
     q: "What about WhatsApp and Instagram DMs?",
-    a: "ANNA handles WhatsApp Business threads and Instagram DMs the same way she handles calls — answers, books, follows up. WhatsApp Business needs a verified business number; we walk you through it on the demo call.",
+    a: "ANNA handles WhatsApp Business threads and Instagram DMs the same way she handles calls — answers, books, follows up. Your existing WhatsApp Business number stays yours — ANNA replies under your verified business account, not a new number. Customers see your salon, clinic, or pub on the thread, never ANNA. We walk you through the WhatsApp Business setup on the demo call.",
   },
   {
     q: "Does ANNA give clinical advice?",
