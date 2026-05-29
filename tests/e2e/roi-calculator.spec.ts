@@ -10,7 +10,7 @@ test("ROI calculator: vertical picker → live leak update", async ({ page }) =>
   // The £/month bleeding label and inputs are rendered immediately.
   await expect(page.getByText("£/month bleeding")).toBeVisible();
 
-  const callsInput = page.getByLabel(/new-patient calls per week/i);
+  const callsInput = page.getByLabel(/new-patient enquiries per week/i);
   await callsInput.fill("60");
   // Just assert that some £-formatted leak value is shown.
   await expect(page.locator("text=£").first()).toBeVisible();

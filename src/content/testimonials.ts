@@ -20,7 +20,7 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     vertical: "beauty",
-    quote: "Zero missed bookings since we switched.",
+    quote: "Every WhatsApp gets a reply in under a minute — even on a Sunday.",
     attribution: "Charlie R. · Mane Studio Manchester",
   },
   {

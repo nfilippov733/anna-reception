@@ -41,6 +41,9 @@ export function RoiCalculator({ initialVertical = null }: Props) {
       <h2 id="roi-heading" className="mt-6 font-display text-display-lg text-ink text-balance">
         See your leak in 30 seconds.
       </h2>
+      <p className="mt-3 font-mono text-xs uppercase tracking-[0.18em] text-mono-label">
+        Enquiries = calls + WhatsApp + Instagram DMs + web chat
+      </p>
 
       {!vertical && (
         <div className="mt-12">

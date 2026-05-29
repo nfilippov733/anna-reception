@@ -13,7 +13,7 @@ const OUTCOMES: Outcome[] = [
   {
     icon: Zap,
     headline: "Faster than your competitor.",
-    proof: "First call back wins the job. ANNA picks up in 2 seconds — your competitor's voicemail can't.",
+    proof: "Calls in 2 seconds. WhatsApp and Instagram DMs in under a minute. First reply wins the job — your competitor's voicemail and unread inbox can't.",
   },
   {
     icon: RotateCcw,

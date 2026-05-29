@@ -18,7 +18,7 @@ describe("RoiCalculator", () => {
 
   it("updates the leak number when inputs change", async () => {
     render(<RoiCalculator initialVertical="dental" />);
-    const callsInput = screen.getByLabelText(/new-patient calls per week/i);
+    const callsInput = screen.getByLabelText(/new-patient enquiries per week/i);
     await userEvent.clear(callsInput);
     await userEvent.type(callsInput, "30");
     // Leak block updates - we don't assert exact pence here, just that the £ figure is present.

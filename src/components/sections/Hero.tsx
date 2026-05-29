@@ -38,6 +38,9 @@ export function Hero({ initialSegment }: Props = {}) {
             <span aria-hidden="true" className="text-sage">·</span>
             <span className="font-mono text-xs uppercase tracking-wider text-mono-label">100,000+ UK SMBs on ANNA</span>
           </div>
+          <p className="mt-3 font-mono text-xs uppercase tracking-[0.18em] text-mono-label">
+            Phone · WhatsApp · Instagram DMs · Web chat — all one inbox
+          </p>
         </div>
         <div aria-hidden="true" className="hidden md:block relative">
           <Image

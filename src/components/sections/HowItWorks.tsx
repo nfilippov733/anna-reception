@@ -1,3 +1,4 @@
+import { PhoneIncoming, MessageCircle, Instagram, MessagesSquare } from "lucide-react";
 import { Kicker } from "@/components/primitives/Kicker";
 import { NumberMarker } from "@/components/primitives/NumberMarker";
 import { Reveal } from "@/components/primitives/Reveal";
@@ -15,8 +16,8 @@ const STEPS = [
   },
   {
     num: "03",
-    title: "Calls answered 24/7",
-    body: "From the second you flip the switch, ANNA picks up every call — at 11pm, on bank holidays, when you're on-site.",
+    title: "Answered 24/7 — every channel",
+    body: "From the second you flip the switch, ANNA picks up every call, every WhatsApp thread, and every DM — at 11pm, on bank holidays, when you're on-site.",
   },
 ];
 
@@ -40,6 +41,21 @@ export function HowItWorks() {
           </Reveal>
         ))}
       </ol>
+      <div className="mt-12 flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-xs uppercase tracking-[0.18em] text-mono-label">
+        <span>Same flow runs on</span>
+        <span className="inline-flex items-center gap-1.5">
+          <PhoneIncoming className="h-3.5 w-3.5 text-primary" aria-hidden="true" /> Phone
+        </span>
+        <span className="inline-flex items-center gap-1.5">
+          <MessageCircle className="h-3.5 w-3.5 text-sage" aria-hidden="true" /> WhatsApp
+        </span>
+        <span className="inline-flex items-center gap-1.5">
+          <Instagram className="h-3.5 w-3.5 text-sage" aria-hidden="true" /> Instagram DMs
+        </span>
+        <span className="inline-flex items-center gap-1.5">
+          <MessagesSquare className="h-3.5 w-3.5 text-sage" aria-hidden="true" /> Web chat
+        </span>
+      </div>
     </section>
   );
 }

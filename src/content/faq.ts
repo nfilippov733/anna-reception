@@ -23,6 +23,14 @@ export const FAQ: FaqEntry[] = [
     a: "ANNA handles WhatsApp Business threads and Instagram DMs the same way she handles calls — answers, books, follows up. Your existing WhatsApp Business number stays yours — ANNA replies under your verified business account, not a new number. Customers see your salon, clinic, or pub on the thread, never ANNA. We walk you through the WhatsApp Business setup on the demo call.",
   },
   {
+    q: "How fast does ANNA reply to WhatsApp and DMs?",
+    a: "Under a minute, day or night. A first reply within 60 seconds is what tips a DM lead from window-shopping to booked — by the time most operators check their phone between clients, ANNA has already confirmed the slot and sent the calendar invite.",
+  },
+  {
+    q: "Will ANNA's WhatsApp and DM replies sound like a robot?",
+    a: "No. ANNA uses the same tone and phrasing she learned for your phone script — same business name, same booking flow, same warmth. A customer who messages on Instagram on Tuesday and calls on Thursday gets a consistent experience, because it's one conversation memory across every channel.",
+  },
+  {
     q: "Does ANNA give clinical advice?",
     a: "No. ANNA triages — she asks structured questions (e.g. 'Is the stop-tap off?', 'Any blood or unusual food intake?') and routes the call. Clinical decisions stay with your team. We've built this into the script so ANNA never crosses the line, including in dental and vet contexts where it matters most.",
   },

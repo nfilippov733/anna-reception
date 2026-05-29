@@ -46,8 +46,8 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
     roi: {
       inputs: [
         { id: "avgValue", label: "Avg new-patient lifetime value (£)", default: 2400, min: 500, max: 10000, step: 100, unit: "gbp" },
-        { id: "callsPerWeek", label: "New-patient calls per week", default: 15, min: 1, max: 200, step: 1, unit: "count" },
-        { id: "missedPct", label: "% of those calls missed", default: 30, min: 0, max: 100, step: 5, unit: "percent" },
+        { id: "callsPerWeek", label: "New-patient enquiries per week", default: 15, min: 1, max: 200, step: 1, unit: "count" },
+        { id: "missedPct", label: "% missed across channels", default: 30, min: 0, max: 100, step: 5, unit: "percent" },
       ],
       leakFormula: ({ avgValue, callsPerWeek, missedPct }) =>
         (callsPerWeek ?? 0) * ((missedPct ?? 0) / 100) * (avgValue ?? 0) * 4,
@@ -79,7 +79,7 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
       attribution: "2,140 WhatsApp bookings in 90 days — industry estimate, 2025",
     },
     customerStory: {
-      quote: "Zero missed bookings since we switched.",
+      quote: "Every WhatsApp gets a reply in under a minute — even on a Sunday.",
       attribution: "Charlie R. · Mane Studio Manchester",
     },
     demoH1: "See ANNA book a Saturday balayage.",
@@ -96,8 +96,8 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
     roi: {
       inputs: [
         { id: "avgValue", label: "Avg booking value (£)", default: 65, min: 10, max: 500, step: 5, unit: "gbp" },
-        { id: "callsPerWeek", label: "Booking calls per week", default: 40, min: 1, max: 500, step: 1, unit: "count" },
-        { id: "missedPct", label: "% of those calls missed", default: 25, min: 0, max: 100, step: 5, unit: "percent" },
+        { id: "callsPerWeek", label: "Booking enquiries per week", default: 40, min: 1, max: 500, step: 1, unit: "count" },
+        { id: "missedPct", label: "% missed across channels", default: 25, min: 0, max: 100, step: 5, unit: "percent" },
       ],
       leakFormula: ({ avgValue, callsPerWeek, missedPct }) =>
         (callsPerWeek ?? 0) * ((missedPct ?? 0) / 100) * (avgValue ?? 0) * 4,
@@ -147,8 +147,8 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
     roi: {
       inputs: [
         { id: "avgValue", label: "Avg cover spend (£)", default: 45, min: 10, max: 200, step: 5, unit: "gbp" },
-        { id: "callsPerWeek", label: "Booking calls per week", default: 80, min: 1, max: 500, step: 1, unit: "count" },
-        { id: "missedPct", label: "% of those calls missed", default: 30, min: 0, max: 100, step: 5, unit: "percent" },
+        { id: "callsPerWeek", label: "Booking enquiries per week", default: 80, min: 1, max: 500, step: 1, unit: "count" },
+        { id: "missedPct", label: "% missed across channels", default: 30, min: 0, max: 100, step: 5, unit: "percent" },
       ],
       leakFormula: ({ avgValue, callsPerWeek, missedPct }) =>
         (callsPerWeek ?? 0) * ((missedPct ?? 0) / 100) * (avgValue ?? 0) * 4 * 4,
@@ -200,8 +200,8 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
     roi: {
       inputs: [
         { id: "avgValue", label: "Avg job value (£)", default: 350, min: 50, max: 5000, step: 50, unit: "gbp" },
-        { id: "callsPerWeek", label: "Lead calls per week", default: 25, min: 1, max: 300, step: 1, unit: "count" },
-        { id: "missedPct", label: "% of those calls lost to faster competitor", default: 30, min: 0, max: 100, step: 5, unit: "percent" },
+        { id: "callsPerWeek", label: "Lead enquiries per week", default: 25, min: 1, max: 300, step: 1, unit: "count" },
+        { id: "missedPct", label: "% lost to faster competitor", default: 30, min: 0, max: 100, step: 5, unit: "percent" },
       ],
       leakFormula: ({ avgValue, callsPerWeek, missedPct }) =>
         (callsPerWeek ?? 0) * ((missedPct ?? 0) / 100) * (avgValue ?? 0) * 4,
@@ -251,8 +251,8 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
     roi: {
       inputs: [
         { id: "avgValue", label: "Avg monthly membership (£)", default: 65, min: 20, max: 300, step: 5, unit: "gbp" },
-        { id: "callsPerWeek", label: "Trial-booking calls per week", default: 30, min: 1, max: 300, step: 1, unit: "count" },
-        { id: "missedPct", label: "% of trial calls missed", default: 30, min: 0, max: 100, step: 5, unit: "percent" },
+        { id: "callsPerWeek", label: "Trial enquiries per week", default: 30, min: 1, max: 300, step: 1, unit: "count" },
+        { id: "missedPct", label: "% missed across channels", default: 30, min: 0, max: 100, step: 5, unit: "percent" },
       ],
       // Annualised: weekly missed × conversion 0.4 × 12 months membership
       leakFormula: ({ avgValue, callsPerWeek, missedPct }) =>
@@ -303,8 +303,8 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
     roi: {
       inputs: [
         { id: "avgValue", label: "Avg consultation + treatment (£)", default: 220, min: 50, max: 2000, step: 10, unit: "gbp" },
-        { id: "callsPerWeek", label: "Booking calls per week", default: 60, min: 1, max: 500, step: 1, unit: "count" },
-        { id: "missedPct", label: "% of those calls missed", default: 25, min: 0, max: 100, step: 5, unit: "percent" },
+        { id: "callsPerWeek", label: "Booking enquiries per week", default: 60, min: 1, max: 500, step: 1, unit: "count" },
+        { id: "missedPct", label: "% missed across channels", default: 25, min: 0, max: 100, step: 5, unit: "percent" },
       ],
       leakFormula: ({ avgValue, callsPerWeek, missedPct }) =>
         (callsPerWeek ?? 0) * ((missedPct ?? 0) / 100) * (avgValue ?? 0) * 4,
