@@ -39,6 +39,8 @@ export type VerticalContent = {
   // v3 additions
   outcomeStat: OutcomeStat;
   customerStory: CustomerStory;
+  // v4 Sprint E: 2-3 short feature chips shown above the channel mix bar.
+  featureChips?: string[];
   // v4 Sprint D: per-segment H1s that read naturally as a sentence.
   demoH1: string;
   auditH1: string;

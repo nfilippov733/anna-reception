@@ -41,6 +41,7 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
       { key: "web", label: "Web chat", pct: 0 },
     ],
     demoCtaLabel: "Book a dental demo",
+    featureChips: ["Distinguishes emergency vs routine", "Confirms payment route (NHS / Denplan / private)"],
     roi: {
       inputs: [
         { id: "avgValue", label: "Avg new-patient lifetime value (£)", default: 2400, min: 500, max: 10000, step: 100, unit: "gbp" },
@@ -89,6 +90,7 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
       { key: "web", label: "Web chat", pct: 0 },
     ],
     demoCtaLabel: "Book a beauty demo",
+    featureChips: ["Knows your menu + which stylist", "Deposit at booking via Stripe SMS"],
     roi: {
       inputs: [
         { id: "avgValue", label: "Avg booking value (£)", default: 65, min: 10, max: 500, step: 5, unit: "gbp" },
@@ -138,6 +140,7 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
       { key: "web", label: "Web chat", pct: 5 },
     ],
     demoCtaLabel: "Book a gastropub demo",
+    featureChips: ["FSA 14-allergen flagged at booking", "Deposit for private hire / 8+ covers"],
     roi: {
       inputs: [
         { id: "avgValue", label: "Avg cover spend (£)", default: 45, min: 10, max: 200, step: 5, unit: "gbp" },
@@ -189,6 +192,7 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
       { key: "web", label: "Web chat", pct: 5 },
     ],
     demoCtaLabel: "Book a trades demo",
+    featureChips: ["Captures Gas Safe / NICEIC numbers", "Emergency triage (stop-tap, isolation, safety)"],
     roi: {
       inputs: [
         { id: "avgValue", label: "Avg job value (£)", default: 350, min: 50, max: 5000, step: 50, unit: "gbp" },
@@ -238,6 +242,7 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
       { key: "web", label: "Web chat", pct: 5 },
     ],
     demoCtaLabel: "Book a fitness demo",
+    featureChips: ["Outbound class-fill chase", "Trial → membership conversion follow-ups"],
     roi: {
       inputs: [
         { id: "avgValue", label: "Avg monthly membership (£)", default: 65, min: 20, max: 300, step: 5, unit: "gbp" },
@@ -288,6 +293,7 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
       { key: "web", label: "Web chat", pct: 10 },
     ],
     demoCtaLabel: "Book a vet demo",
+    featureChips: ["Structured emergency triage", "Never gives clinical advice — routes to vet"],
     roi: {
       inputs: [
         { id: "avgValue", label: "Avg consultation + treatment (£)", default: 220, min: 50, max: 2000, step: 10, unit: "gbp" },

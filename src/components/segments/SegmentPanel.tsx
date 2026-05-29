@@ -65,6 +65,22 @@ export function SegmentPanel({ content, panelId, labelledBy, kickerLetter }: Pro
         <p className="mt-8 font-mono text-xs uppercase tracking-[0.18em] text-mono-label">The pain</p>
         <p className="mt-3 text-ink leading-[1.55]">{content.painFraming}</p>
 
+        {content.featureChips && content.featureChips.length > 0 && (
+          <>
+            <p className="mt-8 font-mono text-xs uppercase tracking-[0.18em] text-mono-label">Key features</p>
+            <ul className="mt-3 flex flex-wrap gap-2">
+              {content.featureChips.map((chip) => (
+                <li
+                  key={chip}
+                  className="inline-flex items-center rounded-full border border-sage/40 px-3 py-1 text-xs text-ink bg-cream-deep/50"
+                >
+                  {chip}
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
+
         <p className="mt-8 font-mono text-xs uppercase tracking-[0.18em] text-mono-label">Channel mix here</p>
         <div className="mt-3">
           <ChannelMixBar slices={slices} />
