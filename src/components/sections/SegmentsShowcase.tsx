@@ -96,7 +96,10 @@ export function SegmentsShowcase({ initialSegment }: Props) {
     const el = regionRef.current;
     if (!el || typeof IntersectionObserver === "undefined") return;
     const io = new IntersectionObserver(
-      ([entry]) => setVisible(entry.isIntersecting && entry.intersectionRatio >= 0.4),
+      (entries) => {
+        const entry = entries[0];
+        if (entry) setVisible(entry.isIntersecting && entry.intersectionRatio >= 0.4);
+      },
       { threshold: 0.4 }
     );
     io.observe(el);

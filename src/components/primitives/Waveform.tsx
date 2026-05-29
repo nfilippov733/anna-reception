@@ -25,7 +25,7 @@ export function Waveform({ playing }: Props) {
 
     const resetToIdle = () => {
       bars.forEach((bar, i) => {
-        const h = IDLE[i];
+        const h = IDLE[i] ?? 0;
         bar.setAttribute("height", String(h));
         bar.setAttribute("y", String((VIEW_H - h) / 2));
       });
