@@ -19,7 +19,7 @@ test.describe("Conversion paths", () => {
 
   test("Path C: Test-call phone chip in header", async ({ page }) => {
     await page.goto("/");
-    const chip = page.getByRole("link", { name: /test call anna reception/i }).first();
+    const chip = page.getByRole("link", { name: /try a sample call to anna/i }).first();
     await expect(chip).toBeVisible();
     await expect(chip).toHaveAttribute("href", /^tel:/);
   });

@@ -21,7 +21,7 @@ const CHANNEL_META: Record<Channel, { icon: LucideIcon; label: string; caption: 
     icon: Instagram,
     label: "Instagram",
     caption: "Your business profile",
-    iconColor: "text-terracotta",
+    iconColor: "text-primary",
     incomingBg: "bg-terracotta-soft",
   },
   web: {

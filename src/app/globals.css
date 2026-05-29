@@ -4,26 +4,29 @@
 
 @layer base {
   :root {
-    /* Light theme tokens — values approximate ANNA.money's brand */
-    --anna-green: 142 71% 26%;       /* hsl; darkened for WCAG AA text on white (>=4.5:1) */
-    --on-primary: 0 0% 100%;         /* white text on primary green (>=4.5:1 contrast) */
+    /* Light theme tokens — aligned with anna.money brand */
+    --anna-green: 142 71% 26%;       /* hsl; kept for gain/leak references */
+    --primary: 9 60% 50%;            /* terracotta #cc4a33 — interactive primary (WCAG AA 4.5:1 vs white) */
+    --primary-vivid: 11 78% 61%;     /* logo-fill terracotta #e9624e — decorative only */
+    --primary-dark: 9 60% 44%;       /* terracotta-dark #b4412d — hover state */
+    --on-primary: 0 0% 100%;         /* white text on primary */
     --bg: 0 0% 100%;
-    --bg-alt: 100 33% 98%;
+    --bg-alt: 10 50% 98%;            /* warm peach tint (was yellowish-green) */
     --fg: 222 47% 11%;
-    --fg-muted: 215 16% 47%;
+    --fg-muted: 215 16% 44%;         /* darkened slightly for WCAG AA on peach cream-deep */
     --border: 220 13% 91%;
     --leak: 16 90% 40%;              /* deep coral; WCAG AA contrast (>=4.5:1) on white/bg-alt */
     --gain: 142 71% 26%;             /* matches anna-green */
-    /* Editorial ANNA Warm tokens (v1 redesign) */
-    --ink: 155 25% 6%;               /* near-black, slightly green-tinted */
-    --cream-deep: 100 25% 95%;       /* banded sections, marquee bg */
-    --sage: 142 22% 38%;             /* hairlines, muted brand accents; AA on white/cream-deep */
+    --accent-green: 163 100% 26%;    /* #008660 — anna.money sparse green accent */
+    /* Editorial ANNA Warm tokens (Sprint G — peach/espresso family) */
+    --ink: 9 56% 10%;                /* espresso brown #270e0b */
+    --cream-deep: 10 55% 95%;        /* peach cream #faedeb */
+    --sage: 142 22% 38%;             /* KEEP — WhatsApp channel tinting */
     --sage-mute: 142 12% 75%;        /* card borders */
-    --mono-label: 155 15% 35%;       /* mono kicker labels, tech chips */
-    --terracotta: 17 55% 52%;          /* warm clay accent — Instagram tint */
-    --terracotta-soft: 17 55% 92%;     /* light wash for incoming Instagram bubbles */
-    --sage-soft: 142 22% 92%;          /* light wash for incoming WhatsApp bubbles */
-    --ink-soft: 155 25% 92%;           /* light wash for incoming Web chat bubbles */
+    --mono-label: 9 12% 35%;         /* warm label, same hue family as ink */
+    --terracotta-soft: 17 55% 92%;   /* KEEP — light wash for incoming Instagram bubbles */
+    --sage-soft: 142 22% 92%;        /* KEEP — light wash for incoming WhatsApp bubbles */
+    --ink-soft: 9 56% 92%;           /* warm wash for incoming Web chat bubbles */
   }
   .dark {
     --bg: 222 47% 6%;

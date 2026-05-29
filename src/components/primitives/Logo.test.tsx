@@ -3,10 +3,10 @@ import { render, screen } from "@testing-library/react";
 import { Logo } from "./Logo";
 
 describe("Logo", () => {
-  it("renders an SVG mark + wordmark", () => {
-    const { container } = render(<Logo />);
-    expect(container.querySelector("svg")).toBeInTheDocument();
+  it("renders wordmark text + ANNA image", () => {
+    render(<Logo />);
     expect(screen.getByText(/ANNA Reception/)).toBeInTheDocument();
+    expect(screen.getByAltText("ANNA")).toBeInTheDocument();
   });
 
   it("has accessible name 'ANNA Reception, by ANNA'", () => {
@@ -15,8 +15,8 @@ describe("Logo", () => {
   });
 
   it("renders only the mark when variant=mark", () => {
-    const { container } = render(<Logo variant="mark" />);
-    expect(container.querySelector("svg")).toBeInTheDocument();
-    expect(screen.queryByText(/by anna/i)).not.toBeInTheDocument();
+    render(<Logo variant="mark" />);
+    expect(screen.queryByText(/ANNA Reception/)).not.toBeInTheDocument();
+    expect(screen.getByAltText("ANNA")).toBeInTheDocument();
   });
 });

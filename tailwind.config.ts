@@ -6,8 +6,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: "hsl(var(--anna-green) / <alpha-value>)",
+        primary: "hsl(var(--primary) / <alpha-value>)",
+        "primary-vivid": "hsl(var(--primary-vivid) / <alpha-value>)",
+        "primary-dark": "hsl(var(--primary-dark) / <alpha-value>)",
         "on-primary": "hsl(var(--on-primary) / <alpha-value>)",
+        "accent-green": "hsl(var(--accent-green) / <alpha-value>)",
         bg: "hsl(var(--bg) / <alpha-value>)",
         "bg-alt": "hsl(var(--bg-alt) / <alpha-value>)",
         fg: "hsl(var(--fg) / <alpha-value>)",
@@ -22,7 +25,6 @@ const config: Config = {
         sage: "hsl(var(--sage) / <alpha-value>)",
         "sage-mute": "hsl(var(--sage-mute) / <alpha-value>)",
         "mono-label": "hsl(var(--mono-label) / <alpha-value>)",
-        terracotta: "hsl(var(--terracotta) / <alpha-value>)",
         "terracotta-soft": "hsl(var(--terracotta-soft) / <alpha-value>)",
         "sage-soft": "hsl(var(--sage-soft) / <alpha-value>)",
         "ink-soft": "hsl(var(--ink-soft) / <alpha-value>)",
