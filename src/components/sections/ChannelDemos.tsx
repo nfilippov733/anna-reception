@@ -120,7 +120,7 @@ export function ChannelDemos({ initialSegment }: Props) {
                 aria-hidden="true"
                 className={cn(
                   "h-0.5 w-12 transition-colors duration-200 motion-reduce:transition-none",
-                  isActive ? "bg-sage" : "bg-transparent"
+                  isActive ? "bg-primary" : "bg-transparent"
                 )}
               />
             </button>

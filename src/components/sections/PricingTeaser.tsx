@@ -26,8 +26,8 @@ export function PricingTeaser() {
             <dd className="mt-2 font-display text-2xl text-ink leading-none tabular-nums">£99<span className="text-base text-fg-muted">/mo</span></dd>
             <dd className="mt-2 text-xs text-fg-muted">Up to ~50 booking calls/month. Single location.</dd>
           </div>
-          <div className="rounded-xl border border-sage p-4 bg-cream-deep">
-            <dt className="font-mono text-xs uppercase tracking-[0.18em] text-mono-label">Standard</dt>
+          <div className="rounded-xl border-2 border-primary p-4 bg-cream-deep">
+            <dt className="font-mono text-xs uppercase tracking-[0.18em] text-primary">Standard · Recommended</dt>
             <dd className="mt-2 font-display text-2xl text-ink leading-none tabular-nums">£179<span className="text-base text-fg-muted">/mo</span></dd>
             <dd className="mt-2 text-xs text-fg-muted">~150 calls/month. Typical for a busy single-site practice.</dd>
           </div>

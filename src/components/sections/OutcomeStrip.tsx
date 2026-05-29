@@ -45,7 +45,7 @@ export function OutcomeStrip() {
               i % 2 !== 0 ? "md:border-l md:border-sage/30" : "",
             ].join(" ")}
           >
-            <Icon className="h-8 w-8 text-sage" aria-hidden="true" />
+            <Icon className="h-8 w-8 text-primary" aria-hidden="true" />
             <p className="mt-4 text-2xl font-medium text-ink leading-tight">{headline}</p>
             <p className="mt-3 text-fg-muted leading-[1.55] max-w-prose">{proof}</p>
           </Reveal>
