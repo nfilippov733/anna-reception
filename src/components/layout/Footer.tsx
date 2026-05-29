@@ -10,7 +10,7 @@ export function Footer() {
         <div>
           <Logo variant="mark" />
           <div className="mt-4 font-semibold text-ink">ANNA Reception</div>
-          <p className="mt-2 text-fg-muted">By ANNA — the business account 100,000+ UK businesses already use.</p>
+          <p className="mt-2 text-fg-muted">By ANNA — the UK business account 100,000+ small businesses use for banking, invoicing, and tax filing. Reception is the newest tool.</p>
           <PhoneChip number={DEMO_PHONE} className="mt-4" />
         </div>
         <div>
