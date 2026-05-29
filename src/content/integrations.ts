@@ -23,4 +23,8 @@ export const INTEGRATION_LOGOS: Array<{ name: string; src: string | null; catego
   { name: "WhatsApp Business", src: null, category: "messaging" },
   { name: "Instagram", src: null, category: "messaging" },
   { name: "Intercom", src: null, category: "web-chat" },
+  { name: "Mindbody", src: null },
+  { name: "TeamUp", src: null },
+  { name: "Glofox", src: null },
+  { name: "ClubRight", src: null },
 ];
