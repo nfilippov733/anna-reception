@@ -21,6 +21,9 @@ export function Hero() {
             <Button href="/demo" data-event="hero_cta_demo_clicked">Book a demo</Button>
             <Button variant="ghost" href="/audit" data-event="hero_cta_audit_clicked">Get my free revenue audit</Button>
           </div>
+          <p className="mt-4 font-mono text-xs uppercase tracking-[0.18em] text-mono-label">
+            3-minute live demo on your booking system · no slides · no sales pressure
+          </p>
           <div className="mt-10 inline-flex flex-wrap items-center gap-3 rounded-full border border-sage/40 bg-cream-deep/50 px-4 py-2.5">
             <span aria-label="Trustpilot rating: five stars" className="text-primary font-medium tracking-wider">★★★★★</span>
             <span className="font-mono text-xs uppercase tracking-wider text-mono-label">Trustpilot · Excellent</span>
