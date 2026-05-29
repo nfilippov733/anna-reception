@@ -20,7 +20,7 @@ export const CHANNEL_DEMOS: Record<VerticalKey, Record<DemoChannel, Thread>> = {
       { from: "caller", text: "Hi, my crown fell out yesterday." },
       { from: "anna", text: "I can fit you in at 16:30 with Dr. Patel." },
       { from: "caller", text: "Yes please." },
-      { from: "anna", text: "Booked. SMS on its way.", meta: "Audio sample available at launch" },
+      { from: "anna", text: "Booked. SMS on its way.", meta: "SMS sent ✓" },
     ],
     whatsapp: [
       { from: "caller", text: "Hi, my crown fell out yesterday. Can someone see me today?" },
@@ -53,7 +53,7 @@ export const CHANNEL_DEMOS: Record<VerticalKey, Record<DemoChannel, Thread>> = {
       { from: "caller", text: "Can I book a balayage with Jess for Saturday?" },
       { from: "anna", text: "11:00 or 15:00 — both 3 hrs." },
       { from: "caller", text: "15:00 please." },
-      { from: "anna", text: "Booked. Deposit link incoming.", meta: "Audio sample available at launch" },
+      { from: "anna", text: "Booked. Deposit link incoming.", meta: "Deposit link sent ✓" },
     ],
     whatsapp: [
       { from: "caller", text: "Hi, can I book a balayage with Jess for Saturday?" },
@@ -86,7 +86,7 @@ export const CHANNEL_DEMOS: Record<VerticalKey, Record<DemoChannel, Thread>> = {
       { from: "caller", text: "Table for 6 Friday around 19:30?" },
       { from: "anna", text: "19:00 or 20:00 — kitchen's slammed at 19:30." },
       { from: "caller", text: "20:00." },
-      { from: "anna", text: "Booked. Allergens to flag?", meta: "Audio sample available at launch" },
+      { from: "anna", text: "Booked. Allergens to flag?", meta: "Table confirmed ✓" },
     ],
     whatsapp: [
       { from: "caller", text: "Table for 6 Friday around 19:30?" },
@@ -119,7 +119,7 @@ export const CHANNEL_DEMOS: Record<VerticalKey, Record<DemoChannel, Thread>> = {
       { from: "caller", text: "Boiler leaking, water everywhere." },
       { from: "anna", text: "Is the stop-tap off?" },
       { from: "caller", text: "Just turned it." },
-      { from: "anna", text: "Mark D in your postcode 14:00 — holding the slot.", meta: "Audio sample available at launch" },
+      { from: "anna", text: "Mark D in your postcode 14:00 — holding the slot.", meta: "Slot held ✓" },
     ],
     whatsapp: [
       { from: "caller", text: "Boiler leaking, water everywhere. Can you come today?" },
@@ -152,7 +152,7 @@ export const CHANNEL_DEMOS: Record<VerticalKey, Record<DemoChannel, Thread>> = {
       { from: "caller", text: "Do you have a 6pm spin tonight?" },
       { from: "anna", text: "18:00 full, 18:45 has 4 bikes left." },
       { from: "caller", text: "Yes." },
-      { from: "anna", text: "Held. First class is free.", meta: "Audio sample available at launch" },
+      { from: "anna", text: "Held. First class is free.", meta: "Spot held — first class free ✓" },
     ],
     whatsapp: [
       { from: "caller", text: "Do you have a 6pm spin class tonight?" },

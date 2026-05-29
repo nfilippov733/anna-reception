@@ -8,7 +8,6 @@ import type { VerticalKey } from "@/lib/verticals";
 import { track } from "@/lib/analytics";
 
 const DEMO_PHONE = process.env.NEXT_PUBLIC_DEMO_PHONE ?? "+44 20 7946 0000";
-const GENERIC_AUDIO_SRC = process.env.NEXT_PUBLIC_GENERIC_AUDIO_SRC ?? "";
 
 type Props = { segment: VerticalKey };
 
@@ -19,10 +18,10 @@ export function PhoneDemoPanel({ segment }: Props) {
   const thread = CHANNEL_DEMOS[segment].phone;
   const lastTurn = thread[thread.length - 1];
   const meta = lastTurn?.meta ?? "";
-  const hasAudio = GENERIC_AUDIO_SRC.length > 0;
+  // Per-segment dialogue clips live in public/assets/audio/<segment>.mp3.
+  const audioSrc = `/assets/audio/${segment}.mp3`;
 
   function togglePlay() {
-    if (!hasAudio) return;
     const a = ref.current;
     if (!a) return;
     if (playing) {
@@ -39,23 +38,18 @@ export function PhoneDemoPanel({ segment }: Props) {
     <div>
       <div className="rounded-2xl border border-sage/40 p-6 md:p-8">
         <div className="flex items-center gap-4">
-          <PlayButton
-            playing={playing}
-            onToggle={hasAudio ? togglePlay : () => {}}
-          />
+          <PlayButton playing={playing} onToggle={togglePlay} />
           <Waveform playing={playing} />
         </div>
-        {hasAudio && (
-          <audio
-            ref={ref}
-            src={GENERIC_AUDIO_SRC}
-            preload="metadata"
-            onEnded={() => {
-              setPlaying(false);
-              track("audio_demo_completed_30s");
-            }}
-          />
-        )}
+        <audio
+          ref={ref}
+          src={audioSrc}
+          preload="metadata"
+          onEnded={() => {
+            setPlaying(false);
+            track("audio_demo_completed_30s");
+          }}
+        />
         <div className="mt-6 border-t border-sage/30 pt-6">
           <p className="font-mono text-xs uppercase tracking-wider text-mono-label">
             Sample transcript

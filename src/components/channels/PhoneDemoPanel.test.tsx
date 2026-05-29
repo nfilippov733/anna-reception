@@ -14,12 +14,19 @@ describe("PhoneDemoPanel", () => {
     expect(waveform).not.toBeNull();
   });
 
-  it("renders segment-aware transcript when no audio src configured", () => {
+  it("renders segment-aware transcript with the booking-confirmation meta", () => {
     render(<PhoneDemoPanel segment="beauty" />);
     // Beauty phone turn 1: "Can I book a balayage with Jess for Saturday?"
     expect(screen.getByText(/balayage with Jess/i)).toBeInTheDocument();
-    // Last turn meta: "Audio sample available at launch"
-    expect(screen.getByText(/Audio sample available at launch/i)).toBeInTheDocument();
+    // Last turn meta now reflects the completed booking, not a launch placeholder.
+    expect(screen.getByText(/Deposit link sent/i)).toBeInTheDocument();
+  });
+
+  it("wires a per-segment audio source", () => {
+    const { container } = render(<PhoneDemoPanel segment="vet" />);
+    const audio = container.querySelector("audio");
+    expect(audio).not.toBeNull();
+    expect(audio?.getAttribute("src")).toBe("/assets/audio/vet.mp3");
   });
 
   it("renders all 4 turns of the construction phone transcript", () => {
