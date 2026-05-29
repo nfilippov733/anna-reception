@@ -83,7 +83,10 @@ export function SegmentPanel({ content, panelId, labelledBy, kickerLetter }: Pro
 
         <blockquote className="mt-8 border-l-2 border-sage pl-4">
           <p className="text-ink text-lg leading-snug">&ldquo;{content.customerStory.quote}&rdquo;</p>
-          <footer className="mt-2 text-sm text-fg-muted">— {content.customerStory.attribution}</footer>
+          <footer className="mt-2 text-sm text-fg-muted">
+            — {content.customerStory.attribution}
+            <span className="ml-2 font-mono text-xs uppercase tracking-wider text-mono-label">· Illustrative</span>
+          </footer>
         </blockquote>
 
         <Button href={`/demo?v=${content.key}`} className="mt-8">
