@@ -13,7 +13,7 @@ type Channel = { icon: LucideIcon; label: string; sub: string };
 
 const CHANNELS: Channel[] = [
   { icon: PhoneIncoming, label: "Inbound calls", sub: "Answered 24/7" },
-  { icon: PhoneOutgoing, label: "Outbound calls", sub: "No-show recovery, dormant lead chase" },
+  { icon: PhoneOutgoing, label: "Outbound calls", sub: "No-show recovery · Dormant lead chase · Opt-in per campaign" },
   { icon: MessageCircle, label: "WhatsApp", sub: "WhatsApp Business booking threads" },
   { icon: Instagram, label: "Instagram DMs", sub: "Salon & aesthetics booking" },
   { icon: MessagesSquare, label: "Web chat", sub: "Embeddable widget" },
