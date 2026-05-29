@@ -2,7 +2,7 @@ import { Eyebrow } from "@/components/primitives/Eyebrow";
 import { Reveal } from "@/components/primitives/Reveal";
 
 const SIGNALS = [
-  { stat: "100,000+", label: "100,000+ UK SMBs on ANNA" },
+  { stat: "100,000+", label: "UK SMBs on ANNA" },
   { stat: "★★★★★", label: "Trustpilot · Excellent" },
   { stat: "24/7", label: "24/7 reception" },
   { stat: "200+", label: "200+ tools integrated" },
