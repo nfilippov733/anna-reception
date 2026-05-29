@@ -23,10 +23,12 @@ export function PullQuote({ quote, attribution, role, business, metric, classNam
       </blockquote>
       <figcaption className="mt-6">
         <div className="text-base font-medium text-ink">{attribution}</div>
-        <div className="text-sm text-fg-muted">
-          {role} · {business}
-        </div>
-        <div className="mt-2 font-mono text-xs tabular-nums text-primary">{metric}</div>
+        {(role || business) && (
+          <div className="text-sm text-fg-muted">
+            {[role, business].filter(Boolean).join(" · ")}
+          </div>
+        )}
+        {metric && <div className="mt-2 font-mono text-xs tabular-nums text-primary">{metric}</div>}
       </figcaption>
     </figure>
   );

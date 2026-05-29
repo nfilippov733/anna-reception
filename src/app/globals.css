@@ -51,3 +51,25 @@
     font-variant-numeric: tabular-nums;
   }
 }
+
+/* Segment carousel slide-in. --seg-from is set inline per direction. */
+@keyframes segment-in {
+  from {
+    opacity: 0;
+    transform: translateX(var(--seg-from, 1.5rem));
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-segment-in {
+  animation: segment-in 0.45s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-segment-in {
+    animation: none;
+  }
+}
