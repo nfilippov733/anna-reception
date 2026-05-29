@@ -142,7 +142,7 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
       inputs: [
         { id: "avgValue", label: "Avg cover spend (£)", default: 45, min: 10, max: 200, step: 5, unit: "gbp" },
         { id: "callsPerWeek", label: "Booking calls per week", default: 80, min: 1, max: 500, step: 1, unit: "count" },
-        { id: "missedPct", label: "% of those calls missed", default: 35, min: 0, max: 100, step: 5, unit: "percent" },
+        { id: "missedPct", label: "% of those calls missed", default: 30, min: 0, max: 100, step: 5, unit: "percent" },
       ],
       leakFormula: ({ avgValue, callsPerWeek, missedPct }) =>
         (callsPerWeek ?? 0) * ((missedPct ?? 0) / 100) * (avgValue ?? 0) * 4 * 4,
@@ -193,7 +193,7 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
       inputs: [
         { id: "avgValue", label: "Avg job value (£)", default: 350, min: 50, max: 5000, step: 50, unit: "gbp" },
         { id: "callsPerWeek", label: "Lead calls per week", default: 25, min: 1, max: 300, step: 1, unit: "count" },
-        { id: "missedPct", label: "% of those calls lost to faster competitor", default: 45, min: 0, max: 100, step: 5, unit: "percent" },
+        { id: "missedPct", label: "% of those calls lost to faster competitor", default: 30, min: 0, max: 100, step: 5, unit: "percent" },
       ],
       leakFormula: ({ avgValue, callsPerWeek, missedPct }) =>
         (callsPerWeek ?? 0) * ((missedPct ?? 0) / 100) * (avgValue ?? 0) * 4,
