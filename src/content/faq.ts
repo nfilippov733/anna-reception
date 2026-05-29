@@ -15,6 +15,10 @@ export const FAQ: FaqEntry[] = [
     a: "Most don't ask. ANNA introduces herself by your business name, books the appointment, and SMSes a confirmation. If a caller asks directly, she's straightforward about being your automated reception.",
   },
   {
+    q: "Can ANNA sound like me?",
+    a: "ANNA learns your business name, your booking flow, and your tone. On the demo call we capture a 60-second sample of you talking through your top three booking scenarios — ANNA mirrors phrasing, pace, and any specific language you use (e.g. 'mate', 'love', clinical terminology). She's never trying to impersonate you — just to sound like she works for you.",
+  },
+  {
     q: "What about WhatsApp and Instagram DMs?",
     a: "ANNA handles WhatsApp Business threads and Instagram DMs the same way she handles calls — answers, books, follows up. WhatsApp Business needs a verified business number; we walk you through it on the demo call.",
   },
