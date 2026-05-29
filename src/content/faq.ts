@@ -23,6 +23,10 @@ export const FAQ: FaqEntry[] = [
     a: "ANNA handles WhatsApp Business threads and Instagram DMs the same way she handles calls — answers, books, follows up. WhatsApp Business needs a verified business number; we walk you through it on the demo call.",
   },
   {
+    q: "Does ANNA give clinical advice?",
+    a: "No. ANNA triages — she asks structured questions (e.g. 'Is the stop-tap off?', 'Any blood or unusual food intake?') and routes the call. Clinical decisions stay with your team. We've built this into the script so ANNA never crosses the line, including in dental and vet contexts where it matters most.",
+  },
+  {
     q: "Does ANNA do outbound calls?",
     a: "Yes. No-show recovery, dormant quote chase, appointment confirmations — opt-in per campaign. You stay in control of who she calls and when.",
   },
