@@ -10,7 +10,7 @@ describe("PhoneChip", () => {
   });
   it("includes an accessible label", () => {
     render(<PhoneChip number="+44 20 7946 0000" />);
-    expect(screen.getByLabelText(/Test call ANNA Reception/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/Try a sample call to ANNA on/i)).toBeInTheDocument();
   });
   it("renders an SVG phone icon, not the 📞 emoji", () => {
     const { container } = render(<PhoneChip number="+44 20 7946 0000" />);
