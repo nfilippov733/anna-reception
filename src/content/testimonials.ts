@@ -10,7 +10,7 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     vertical: "construction",
     quote: "I won three boiler jobs last month while on a roof.",
-    attribution: "Mark D. · DJ Plumbing & Gas, North London",
+    attribution: "James W. · Westfield Plumbing & Heating, North London",
     hero: true,
   },
   {
@@ -21,21 +21,21 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     vertical: "beauty",
     quote: "Zero missed bookings since we switched.",
-    attribution: "Alex Riley · Mane Studio Manchester",
+    attribution: "Charlie R. · Mane Studio Manchester",
   },
   {
     vertical: "pubs",
     quote: "Our Saturday covers are up 23%.",
-    attribution: "Sarah & Tom · The Black Swan, Cotswolds",
+    attribution: "Emma & Joe · The Black Swan, Cotswolds",
   },
   {
     vertical: "fitness",
     quote: "Class fill is at 94% on weeknights.",
-    attribution: "Priya K. · Form Studio Bristol",
+    attribution: "Maya R. · Form Studio Bristol",
   },
   {
     vertical: "vet",
     quote: "Out-of-hours triage stopped going to voicemail.",
-    attribution: "Dr. Chen · Glasgow Vet Group",
+    attribution: "Dr. Macleod · Glasgow Vet Group",
   },
 ];

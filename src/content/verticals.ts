@@ -77,7 +77,7 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
     },
     customerStory: {
       quote: "Zero missed bookings since we switched.",
-      attribution: "Alex Riley · Mane Studio Manchester",
+      attribution: "Charlie R. · Mane Studio Manchester",
     },
     demoH1: "See ANNA book a Saturday balayage.",
     auditH1: "How much your salon is leaking — in pounds.",
@@ -126,7 +126,7 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
     },
     customerStory: {
       quote: "Our Saturday covers are up 23%.",
-      attribution: "Sarah & Tom · The Black Swan, Cotswolds",
+      attribution: "Emma & Joe · The Black Swan, Cotswolds",
     },
     demoH1: "See ANNA take a Friday booking.",
     auditH1: "How much your pub is leaking — in pounds.",
@@ -177,7 +177,7 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
     },
     customerStory: {
       quote: "I won three boiler jobs last month while on a roof.",
-      attribution: "Mark D. · DJ Plumbing & Gas, North London",
+      attribution: "James W. · Westfield Plumbing & Heating, North London",
     },
     demoH1: "See ANNA win an emergency callout.",
     auditH1: "How much your trade business is leaking — in pounds.",
@@ -226,7 +226,7 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
     },
     customerStory: {
       quote: "Class fill is at 94% on weeknights.",
-      attribution: "Priya K. · Form Studio Bristol",
+      attribution: "Maya R. · Form Studio Bristol",
     },
     demoH1: "See ANNA fill a class trial.",
     auditH1: "How much your studio is leaking — in pounds.",
@@ -276,7 +276,7 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
     },
     customerStory: {
       quote: "Out-of-hours triage stopped going to voicemail.",
-      attribution: "Dr. Chen · Glasgow Vet Group",
+      attribution: "Dr. Macleod · Glasgow Vet Group",
     },
     demoH1: "See ANNA triage an out-of-hours call.",
     auditH1: "How much your practice is leaking — in pounds.",
