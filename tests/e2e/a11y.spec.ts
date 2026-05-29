@@ -1,8 +1,15 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-test("home page has no critical a11y violations (axe)", async ({ page }) => {
+test("home page has no critical a11y violations (axe)", async ({ browser }) => {
+  // Scan a settled DOM: reduced-motion disables the carousel fade-in + autoplay,
+  // so axe measures final full-opacity colours, not mid-animation blends.
+  const ctx = await browser.newContext({ reducedMotion: "reduce", viewport: { width: 1440, height: 900 } });
+  const page = await ctx.newPage();
   await page.goto("/");
+  // Let scroll-reveal/entrance transitions settle so axe measures final
+  // full-opacity colours, not a mid-fade blend (which reads below AA).
+  await page.waitForTimeout(900);
   const results = await new AxeBuilder({ page })
     .withTags(["wcag2a", "wcag2aa"])
     .analyze();
@@ -13,6 +20,7 @@ test("home page has no critical a11y violations (axe)", async ({ page }) => {
     console.log(JSON.stringify(critical, null, 2));
   }
   expect(critical, "no critical or serious WCAG violations").toEqual([]);
+  await ctx.close();
 });
 
 test("home page is operable with keyboard only", async ({ page }) => {

@@ -1,6 +1,6 @@
 "use client";
-import { useRef, useState } from "react";
-import { Phone } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Phone, ChevronLeft, ChevronRight } from "lucide-react";
 import { Waveform } from "@/components/primitives/Waveform";
 import { PhoneChip } from "@/components/primitives/PhoneChip";
 import { PlayButton } from "@/components/primitives/PlayButton";
@@ -10,7 +10,13 @@ import { track } from "@/lib/analytics";
 
 const DEMO_PHONE = process.env.NEXT_PUBLIC_DEMO_PHONE ?? "+44 20 7946 0000";
 
-type Props = { segment: VerticalKey };
+type Props = {
+  segment: VerticalKey;
+  // Topic switcher — cycle the call being sampled, right at the player.
+  segmentLabel?: string;
+  onPrev?: () => void;
+  onNext?: () => void;
+};
 
 function formatTime(totalSeconds: number) {
   const m = Math.floor(totalSeconds / 60);
@@ -18,7 +24,7 @@ function formatTime(totalSeconds: number) {
   return `${m}:${String(s).padStart(2, "0")}`;
 }
 
-export function PhoneDemoPanel({ segment }: Props) {
+export function PhoneDemoPanel({ segment, segmentLabel, onPrev, onNext }: Props) {
   const ref = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
   const [elapsed, setElapsed] = useState(0);
@@ -27,6 +33,17 @@ export function PhoneDemoPanel({ segment }: Props) {
   const lastTurn = thread[thread.length - 1];
   const meta = lastTurn?.meta ?? "";
   const audioSrc = `/assets/audio/${segment}.mp3`;
+
+  // Switching call topic swaps the audio source — stop and reset the player.
+  useEffect(() => {
+    const a = ref.current;
+    if (a) {
+      a.pause();
+      a.load();
+    }
+    setPlaying(false);
+    setElapsed(0);
+  }, [segment]);
 
   function togglePlay() {
     const a = ref.current;
@@ -88,6 +105,33 @@ export function PhoneDemoPanel({ segment }: Props) {
             track("audio_demo_completed_30s");
           }}
         />
+
+        {segmentLabel && onPrev && onNext && (
+          <div className="relative mt-6 flex items-center justify-center gap-4 border-t border-sage/30 pt-5">
+            <button
+              type="button"
+              onClick={onPrev}
+              aria-label="Previous call type"
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-sage/40 bg-bg text-ink transition-colors hover:border-sage focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            >
+              <ChevronLeft className="h-4 w-4" aria-hidden="true" />
+            </button>
+            <span className="min-w-[150px] text-center" aria-live="polite">
+              <span className="block font-mono text-[10px] uppercase tracking-[0.18em] text-mono-label">
+                Sample call
+              </span>
+              <span className="font-medium text-ink">{segmentLabel}</span>
+            </span>
+            <button
+              type="button"
+              onClick={onNext}
+              aria-label="Next call type"
+              className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-sage/40 bg-bg text-ink transition-colors hover:border-sage focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+            >
+              <ChevronRight className="h-4 w-4" aria-hidden="true" />
+            </button>
+          </div>
+        )}
 
         {/* Full transcript stays in the DOM for screen readers, hidden visually —
             the voice case speaks for itself. */}

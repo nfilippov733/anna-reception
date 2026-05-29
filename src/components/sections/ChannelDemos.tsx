@@ -10,7 +10,8 @@ import { useChannelTab } from "@/lib/useChannelTab";
 import { useSegmentParam } from "@/lib/useSegmentParam";
 import { track } from "@/lib/analytics";
 import { cn } from "@/lib/cn";
-import type { VerticalKey } from "@/lib/verticals";
+import { VERTICALS } from "@/content/verticals";
+import { VERTICAL_KEYS, type VerticalKey } from "@/lib/verticals";
 
 type Props = { initialSegment: VerticalKey };
 
@@ -24,8 +25,15 @@ const TAB_META: Record<"phone" | "whatsapp", { icon: LucideIcon; label: string }
 };
 
 export function ChannelDemos({ initialSegment }: Props) {
-  const [activeSegment] = useSegmentParam(initialSegment);
+  const [activeSegment, selectSegment] = useSegmentParam(initialSegment);
   const [activeChannel, selectChannel] = useChannelTab("phone");
+
+  const cycleSegment = (delta: number) => {
+    const idx = VERTICAL_KEYS.indexOf(activeSegment);
+    const next = VERTICAL_KEYS[(idx + delta + VERTICAL_KEYS.length) % VERTICAL_KEYS.length] as VerticalKey;
+    selectSegment(next);
+    track("segment_tab_changed", { segment: next });
+  };
   const tabRefs = useRef<Record<DemoChannel, HTMLButtonElement | null>>({} as Record<DemoChannel, HTMLButtonElement | null>);
   const activeIndex = VISIBLE_CHANNELS.indexOf(activeChannel);
 
@@ -128,7 +136,12 @@ export function ChannelDemos({ initialSegment }: Props) {
         className="mt-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded-lg"
       >
         {activeChannel === "phone" ? (
-          <PhoneDemoPanel segment={activeSegment} />
+          <PhoneDemoPanel
+            segment={activeSegment}
+            segmentLabel={VERTICALS[activeSegment].label}
+            onPrev={() => cycleSegment(-1)}
+            onNext={() => cycleSegment(1)}
+          />
         ) : (
           <MessagingThread thread={CHANNEL_DEMOS[activeSegment].whatsapp} />
         )}
