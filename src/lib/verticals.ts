@@ -39,6 +39,9 @@ export type VerticalContent = {
   // v3 additions
   outcomeStat: OutcomeStat;
   customerStory: CustomerStory;
+  // v4 Sprint D: per-segment H1s that read naturally as a sentence.
+  demoH1: string;
+  auditH1: string;
   channelMix: ChannelMixSlice[];
   demoCtaLabel: string;
   roi: {

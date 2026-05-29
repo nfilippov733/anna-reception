@@ -31,6 +31,8 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
       quote: "47 new patients in month 1.",
       attribution: "Dr. Patel · Bright Smiles Cardiff",
     },
+    demoH1: "See ANNA book a new patient.",
+    auditH1: "How much your clinic is leaking — in pounds.",
     channelMix: [
       { key: "inbound", label: "Inbound", pct: 71 },
       { key: "outbound", label: "Outbound", pct: 18 },
@@ -77,6 +79,8 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
       quote: "Zero missed bookings since we switched.",
       attribution: "Alex Riley · Mane Studio Manchester",
     },
+    demoH1: "See ANNA book a Saturday balayage.",
+    auditH1: "How much your salon is leaking — in pounds.",
     channelMix: [
       { key: "inbound", label: "Inbound", pct: 40 },
       { key: "outbound", label: "Outbound", pct: 15 },
@@ -124,6 +128,8 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
       quote: "Our Saturday covers are up 23%.",
       attribution: "Sarah & Tom · The Black Swan, Cotswolds",
     },
+    demoH1: "See ANNA take a Friday booking.",
+    auditH1: "How much your pub is leaking — in pounds.",
     channelMix: [
       { key: "inbound", label: "Inbound", pct: 65 },
       { key: "outbound", label: "Outbound", pct: 5 },
@@ -173,6 +179,8 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
       quote: "I won three boiler jobs last month while on a roof.",
       attribution: "Mark D. · DJ Plumbing & Gas, North London",
     },
+    demoH1: "See ANNA win an emergency callout.",
+    auditH1: "How much your trade business is leaking — in pounds.",
     channelMix: [
       { key: "inbound", label: "Inbound", pct: 60 },
       { key: "outbound", label: "Outbound", pct: 25 },
@@ -220,6 +228,8 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
       quote: "Class fill is at 94% on weeknights.",
       attribution: "Priya K. · Form Studio Bristol",
     },
+    demoH1: "See ANNA fill a class trial.",
+    auditH1: "How much your studio is leaking — in pounds.",
     channelMix: [
       { key: "inbound", label: "Inbound", pct: 35 },
       { key: "outbound", label: "Outbound", pct: 30 },
@@ -268,6 +278,8 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
       quote: "Out-of-hours triage stopped going to voicemail.",
       attribution: "Dr. Chen · Glasgow Vet Group",
     },
+    demoH1: "See ANNA triage an out-of-hours call.",
+    auditH1: "How much your practice is leaking — in pounds.",
     channelMix: [
       { key: "inbound", label: "Inbound", pct: 60 },
       { key: "outbound", label: "Outbound", pct: 10 },
