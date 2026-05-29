@@ -12,7 +12,7 @@ test.describe("Channel demos — functional", () => {
     // Scope to the ChannelDemos tabpanel (id starts with "channel-panel-") to avoid
     // strict-mode collision with SegmentsShowcase's "Sample call" paragraph.
     const channelPanel = page.locator("[id^='channel-panel-']");
-    await expect(channelPanel.getByText(/balayage with Jess/i)).toBeVisible();
+    await expect(channelPanel.getByText(/balayage Saturday/i)).toBeVisible();
   });
 
   test("clicking WhatsApp tab swaps panel; URL ?v= unchanged", async ({ page }) => {
@@ -21,18 +21,18 @@ test.describe("Channel demos — functional", () => {
     await expect(page).toHaveURL(/[?&]v=beauty\b/);
     // Beauty WhatsApp turn 1
     const channelPanel = page.locator("[id^='channel-panel-']");
-    await expect(channelPanel.getByText(/can I book a balayage/i)).toBeVisible();
+    await expect(channelPanel.getByText(/can I push it/i)).toBeVisible();
   });
 
   test("change segment via URL re-renders panel for current channel", async ({ page }) => {
     await page.goto("/?v=beauty");
     await page.getByRole("tablist", { name: /Channel selector/i }).getByRole("tab", { name: /WhatsApp/i }).click();
     const channelPanel = page.locator("[id^='channel-panel-']");
-    await expect(channelPanel.getByText(/can I book a balayage/i)).toBeVisible();
+    await expect(channelPanel.getByText(/can I push it/i)).toBeVisible();
     await page.goto("/?v=construction");
     await page.getByRole("tablist", { name: /Channel selector/i }).getByRole("tab", { name: /WhatsApp/i }).click();
     // Construction WhatsApp turn 1
-    await expect(channelPanel.getByText(/Boiler leaking, water everywhere/i)).toBeVisible();
+    await expect(channelPanel.getByText(/do you cover Camden/i)).toBeVisible();
   });
 
   test("clicking a segment tab in SegmentsShowcase updates ChannelDemos panel without reload", async ({ page }) => {
@@ -40,7 +40,7 @@ test.describe("Channel demos — functional", () => {
     await page.getByRole("tablist", { name: /Channel selector/i }).getByRole("tab", { name: /WhatsApp/i }).click();
     // Dental WhatsApp turn 1
     const channelPanel = page.locator("[id^='channel-panel-']");
-    await expect(channelPanel.getByText(/Hi, my crown fell out/i)).toBeVisible();
+    await expect(channelPanel.getByText(/Any NHS spaces/i)).toBeVisible();
 
     // Click the Fitness segment tab in SegmentsShowcase (above ChannelDemos).
     // SegmentsShowcase tablist is labelled "Segment selector"; ChannelDemos tablist is "Channel selector".
@@ -48,7 +48,7 @@ test.describe("Channel demos — functional", () => {
     await segmentsList.getByRole("tab", { name: /Fitness studios/i }).click();
 
     // ChannelDemos panel should now show fitness WhatsApp turn 1 — without a page reload.
-    await expect(channelPanel.getByText(/Do you have a 6pm spin class tonight/i)).toBeVisible();
+    await expect(channelPanel.getByText(/How much are classes/i)).toBeVisible();
   });
 
   test("ArrowRight cycles channel tabs", async ({ page }) => {

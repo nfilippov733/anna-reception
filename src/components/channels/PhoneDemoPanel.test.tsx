@@ -16,8 +16,8 @@ describe("PhoneDemoPanel", () => {
 
   it("renders segment-aware transcript with the booking-confirmation meta", () => {
     render(<PhoneDemoPanel segment="beauty" />);
-    // Beauty phone turn 1: "Can I book a balayage with Jess for Saturday?"
-    expect(screen.getByText(/balayage with Jess/i)).toBeInTheDocument();
+    // Beauty phone turn 1: "Can I get a balayage Saturday — but only if it's with Jess?"
+    expect(screen.getByText(/balayage Saturday/i)).toBeInTheDocument();
     // Last turn meta now reflects the completed booking, not a launch placeholder.
     expect(screen.getByText(/Deposit link sent/i)).toBeInTheDocument();
   });
@@ -29,11 +29,11 @@ describe("PhoneDemoPanel", () => {
     expect(audio?.getAttribute("src")).toBe("/assets/audio/vet.mp3");
   });
 
-  it("renders all 4 turns of the construction phone transcript", () => {
+  it("renders the construction phone transcript with objection handling", () => {
     render(<PhoneDemoPanel segment="construction" />);
-    expect(screen.getByText(/Boiler leaking, water everywhere/i)).toBeInTheDocument();
-    expect(screen.getByText(/Is the stop-tap off\?/i)).toBeInTheDocument();
-    expect(screen.getByText(/Just turned it/i)).toBeInTheDocument();
-    expect(screen.getByText(/Mark D in your postcode/i)).toBeInTheDocument();
+    expect(screen.getByText(/Boiler's pouring water/i)).toBeInTheDocument();
+    expect(screen.getByText(/is the stop-tap off/i)).toBeInTheDocument();
+    expect(screen.getByText(/off now\. It's slowing/i)).toBeInTheDocument();
+    expect(screen.getByText(/two streets away/i)).toBeInTheDocument();
   });
 });

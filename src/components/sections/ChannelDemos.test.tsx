@@ -31,8 +31,8 @@ describe("ChannelDemos", () => {
     const whatsappTab = screen.getByRole("tab", { name: /WhatsApp/i });
     await user.click(whatsappTab);
     expect(whatsappTab).toHaveAttribute("aria-selected", "true");
-    // Beauty WhatsApp turn 1: "Hi, can I book a balayage with Jess for Saturday?"
-    expect(screen.getByText(/can I book a balayage/i)).toBeInTheDocument();
+    // Beauty WhatsApp turn 1: "I'm booked 15:00 today but stuck at work — can I push it?"
+    expect(screen.getByText(/can I push it/i)).toBeInTheDocument();
   });
 
   it("ArrowRight from Phone moves to WhatsApp", async () => {
@@ -66,8 +66,8 @@ describe("ChannelDemos", () => {
 
   it("panel content uses the initialSegment prop", () => {
     render(<ChannelDemos initialSegment="construction" />);
-    // Construction phone turn 1: "Boiler leaking, water everywhere."
-    expect(screen.getByText(/Boiler leaking/i)).toBeInTheDocument();
+    // Construction phone turn 1: "Boiler's pouring water, the kitchen's flooding."
+    expect(screen.getByText(/Boiler's pouring water/i)).toBeInTheDocument();
   });
 
   it("footer CTAs carry ?v=<segment> in href", () => {
