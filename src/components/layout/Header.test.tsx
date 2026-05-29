@@ -13,7 +13,7 @@ describe("Header", () => {
   });
   it("includes a click-to-call phone chip", () => {
     render(<Header />);
-    expect(screen.getByRole("link", { name: /test call anna reception/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /try a sample call to anna/i })).toBeInTheDocument();
   });
   it("renders the Logo SVG mark (not just a text wordmark)", () => {
     const { container } = render(<Header />);
