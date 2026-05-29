@@ -20,6 +20,23 @@ export function PricingTeaser() {
         <p className="mt-2 font-mono text-xs uppercase tracking-[0.18em] text-mono-label">
           Pays for itself in the first week · Cancel anytime
         </p>
+        <dl className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl">
+          <div className="rounded-xl border border-sage/30 p-4">
+            <dt className="font-mono text-xs uppercase tracking-[0.18em] text-mono-label">Solo</dt>
+            <dd className="mt-2 font-display text-2xl text-ink leading-none tabular-nums">£99<span className="text-base text-fg-muted">/mo</span></dd>
+            <dd className="mt-2 text-xs text-fg-muted">Up to ~50 booking calls/month. Single location.</dd>
+          </div>
+          <div className="rounded-xl border border-sage p-4 bg-cream-deep">
+            <dt className="font-mono text-xs uppercase tracking-[0.18em] text-mono-label">Standard</dt>
+            <dd className="mt-2 font-display text-2xl text-ink leading-none tabular-nums">£179<span className="text-base text-fg-muted">/mo</span></dd>
+            <dd className="mt-2 text-xs text-fg-muted">~150 calls/month. Typical for a busy single-site practice.</dd>
+          </div>
+          <div className="rounded-xl border border-sage/30 p-4">
+            <dt className="font-mono text-xs uppercase tracking-[0.18em] text-mono-label">Multi-site</dt>
+            <dd className="mt-2 font-display text-2xl text-ink leading-none tabular-nums">£299<span className="text-base text-fg-muted">/mo</span></dd>
+            <dd className="mt-2 text-xs text-fg-muted">300+ calls or 2+ locations. Custom quote on request.</dd>
+          </div>
+        </dl>
         <Button
           href="/demo"
           className="mt-8"
