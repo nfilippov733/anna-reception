@@ -46,6 +46,9 @@ export type VerticalContent = {
   auditH1: string;
   channelMix: ChannelMixSlice[];
   demoCtaLabel: string;
+  // v4 Sprint F: short noun for what the missed-£ figure represents (e.g. "patient bookings", "covers").
+  // Shown as a secondary line on the RoiCalculator output.
+  outcomeUnit: string;
   roi: {
     inputs: Array<{
       id: string;

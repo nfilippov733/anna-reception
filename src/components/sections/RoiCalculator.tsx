@@ -30,6 +30,10 @@ export function RoiCalculator({ initialVertical = null }: Props) {
 
   const leak = useMemo(() => (config ? config.roi.leakFormula(values) : 0), [config, values]);
   const recovery = useMemo(() => computeRecovery(leak), [leak]);
+  const unitsMissed = useMemo(
+    () => (values.callsPerWeek ?? 0) * ((values.missedPct ?? 0) / 100) * 4,
+    [values]
+  );
 
   return (
     <section id="roi" className="mx-auto max-w-page px-4 py-24 md:py-32" aria-labelledby="roi-heading">
@@ -114,6 +118,12 @@ export function RoiCalculator({ initialVertical = null }: Props) {
             <p className="mt-2 font-display text-display-md text-primary leading-none tabular-nums">
               <AnimatedNumber value={recovery} format="gbp" />
             </p>
+            <div className="mt-3">
+              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-mono-label">≈ ANNA recovers</p>
+              <p className="font-display text-2xl text-ink tabular-nums leading-none">
+                {Math.round(unitsMissed * 0.8)} <span className="text-base text-fg-muted">{config.outcomeUnit}/mo</span>
+              </p>
+            </div>
           </aside>
         </div>
       )}

@@ -7,6 +7,7 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
     key: "dental",
     label: "Dental clinics",
     cardHook: "Never miss a new patient call.",
+    outcomeUnit: "patient bookings",
     headlineRoi: "Avg new-patient lifetime value: £1,800–£3,000 [Source: industry estimate, 2025] — one missed call = one lost patient.",
     painFraming:
       "New-patient enquiries spike outside 9–5. Your reception is closed; your competitors' aren't. ANNA answers at 11pm, triages urgency, books an exam.",
@@ -57,6 +58,7 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
     key: "beauty",
     label: "Beauty salons",
     cardHook: "Book while you blow-dry.",
+    outcomeUnit: "client bookings",
     headlineRoi: "Avg booking £40–£90 · 30% of calls come while stylists' hands are full [Source: industry estimate, 2025].",
     painFraming:
       "Phone rings mid-colour. You can't pick up. By the time you call back, she booked round the corner. ANNA knows your menu, your stylists, your slots.",
@@ -106,6 +108,7 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
     key: "pubs",
     label: "Gastropubs",
     cardHook: "Reservations don't have to ring out.",
+    outcomeUnit: "covers",
     headlineRoi: "Avg 4-cover gastro table £140–£220 · busiest service = most missed calls [Source: industry estimate, 2025].",
     painFraming:
       "7pm Saturday. Phone rings. Floor is in the weeds. ANNA takes the booking, checks the floor plan, confirms allergens, asks about high chairs. Reservation-led gastropubs only — not wet-led.",
@@ -156,6 +159,7 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
     key: "construction",
     label: "Trades",
     cardHook: "Win the job while you're on the roof.",
+    outcomeUnit: "jobs",
     headlineRoi: "Avg repair £180 · avg install £1,200 · 60% of trade leads call ≥2 numbers [Source: industry estimate, 2025].",
     painFraming:
       "Hands full. Drill running. Boots in mud. ANNA picks up first, captures the job, books the diary, SMSes a quote ETA.",
@@ -208,6 +212,7 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
     key: "fitness",
     label: "Fitness studios",
     cardHook: "Fill the class while you teach it.",
+    outcomeUnit: "trial bookings",
     headlineRoi: "Avg monthly membership £50–£90 · trial calls peak at 6pm [Source: industry estimate, 2025].",
     painFraming:
       "Phone rings during a 7am HIIT class. By the time you wrap, the lead is at the studio round the corner. ANNA picks up, books a trial, follows up to convert it.",
@@ -259,6 +264,7 @@ export const VERTICALS: Record<VerticalKey, VerticalContent> = {
     key: "vet",
     label: "Vet clinics",
     cardHook: "Triage every call, never miss an emergency.",
+    outcomeUnit: "consults",
     headlineRoi: "Avg consultation + treatment £150–£300 · out-of-hours triage is the moat [Source: industry estimate, 2025].",
     painFraming:
       "9pm. A worried owner calls. Your line is on voicemail. ANNA picks up, triages whether it's emergency or 'wait till morning', books the slot, SMSes the address.",
