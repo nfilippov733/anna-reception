@@ -58,7 +58,7 @@ export function HiringComparison() {
     track("hiring_comparison_changed", { salary: clamped });
   };
 
-  const altLabel = mode === "receptionist" ? "In-house receptionist" : "Answering service";
+  const altLabel = mode === "receptionist" ? "In-house hire" : "Answering service";
   const altCaption =
     mode === "receptionist"
       ? "True cost incl. NI, pension, holiday & sick cover"
@@ -72,8 +72,8 @@ export function HiringComparison() {
         Cheaper than the front desk you&rsquo;d hire.
       </h2>
       <p className="mt-4 max-w-prose text-lg leading-[1.55] text-fg-muted">
-        A receptionist answers 9–5. An answering service just takes a message. ANNA answers everything,
-        all the time — and actually books it.
+        A front-desk hire answers 9–5. An answering service just takes a message. ANNA Reception answers
+        everything, all the time — and actually books it.
       </p>
 
       {/* Mode toggle */}
@@ -89,7 +89,7 @@ export function HiringComparison() {
               mode === m ? "bg-primary text-white" : "text-fg-muted hover:text-ink"
             )}
           >
-            {m === "receptionist" ? "Receptionist" : "Answering service"}
+            {m === "receptionist" ? "In-house hire" : "Answering service"}
           </button>
         ))}
       </div>
@@ -99,12 +99,12 @@ export function HiringComparison() {
         {mode === "receptionist" ? (
           <label className="block max-w-md">
             <span className="font-mono text-xs uppercase tracking-wider text-mono-label">
-              A receptionist&rsquo;s salary (£/year)
+              A front-desk salary (£/year)
             </span>
             <input
               type="number"
               inputMode="numeric"
-              aria-label="Receptionist salary per year"
+              aria-label="Front-desk salary per year"
               value={salary}
               min={20000}
               max={45000}
@@ -114,7 +114,7 @@ export function HiringComparison() {
             />
             <input
               type="range"
-              aria-label="Receptionist salary slider"
+              aria-label="Front-desk salary slider"
               value={salary}
               min={20000}
               max={45000}

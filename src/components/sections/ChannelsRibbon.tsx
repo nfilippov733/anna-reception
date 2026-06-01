@@ -21,7 +21,7 @@ const CHANNELS: Channel[] = [
 
 export function ChannelsRibbon() {
   return (
-    <section className="bg-cream-deep border-y border-sage/30" aria-labelledby="channels-heading">
+    <section id="channels" className="bg-cream-deep border-y border-sage/30 scroll-mt-20" aria-labelledby="channels-heading">
       <div className="mx-auto max-w-page px-4 py-16 md:py-20">
         <Kicker number="02" label="Channels" />
         <h2

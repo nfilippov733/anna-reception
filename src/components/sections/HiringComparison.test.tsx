@@ -30,7 +30,7 @@ describe("HiringComparison", () => {
     // Default £28,000 → loaded £35,000 → savings £35,000 - £2,148 = £32,852
     expect(screen.getByText(/£32,852/)).toBeInTheDocument();
 
-    const input = screen.getByLabelText(/Receptionist salary per year/i);
+    const input = screen.getByLabelText(/Front-desk salary per year/i);
     fireEvent.change(input, { target: { value: "40000" } });
     // £40,000 → loaded £50,000 → savings £47,852
     expect(screen.getByText(/£47,852/)).toBeInTheDocument();

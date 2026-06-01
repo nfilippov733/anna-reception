@@ -38,6 +38,12 @@
   }
   html {
     color-scheme: light dark;
+    scroll-padding-top: 5rem; /* clear the sticky header on anchor jumps */
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
   body {
     background-color: hsl(var(--bg));

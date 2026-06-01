@@ -12,8 +12,9 @@ export function Footer() {
         <div>
           <div className="font-mono text-xs uppercase tracking-wider text-mono-label">Product</div>
           <ul className="mt-3 space-y-2 text-fg-muted">
+            <li><a href="#channels" className="hover:text-primary transition-colors">Channels</a></li>
             <li><a href="#how-it-works" className="hover:text-primary transition-colors">How it works</a></li>
-            <li><a href="#verticals" className="hover:text-primary transition-colors">Verticals</a></li>
+            <li><a href="#segments" className="hover:text-primary transition-colors">Who it&rsquo;s for</a></li>
             <li><a href="#pricing" className="hover:text-primary transition-colors">Pricing</a></li>
             <li><a href="/demo" className="hover:text-primary transition-colors">Book a demo</a></li>
           </ul>
