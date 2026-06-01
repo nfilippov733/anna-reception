@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { describe, it, expect, beforeEach, vi } from "vitest";
 import { HiringComparison } from "./HiringComparison";
 
@@ -38,5 +39,15 @@ describe("HiringComparison", () => {
   it("shows ANNA's fixed annual cost", () => {
     render(<HiringComparison />);
     expect(screen.getByText(/£2,148/)).toBeInTheDocument();
+  });
+
+  it("switches to the answering-service comparison", async () => {
+    const user = userEvent.setup();
+    render(<HiringComparison />);
+    await user.click(screen.getByRole("button", { name: /Answering service/i }));
+    expect(screen.getByLabelText("Calls per month")).toBeInTheDocument();
+    expect(screen.getByText(/ANNA books the appointment/i)).toBeInTheDocument();
+    // 150 calls × £1.20 × 12 = £2,160
+    expect(screen.getByText(/£2,160/)).toBeInTheDocument();
   });
 });
