@@ -9,12 +9,13 @@ test.describe("Conversion paths", () => {
     await expect(page).toHaveURL(/\/demo/);
   });
 
-  test("Path B: Free revenue audit ghost button in hero", async ({ page }) => {
+  test("Path B: 'See your revenue leak' in hero scrolls to the calculator", async ({ page }) => {
     await page.goto("/");
-    const audit = page.getByRole("link", { name: /get my free revenue audit/i }).first();
-    await expect(audit).toBeVisible();
-    await audit.click();
-    await expect(page).toHaveURL(/\/audit/);
+    const leak = page.getByRole("link", { name: /see your revenue leak/i }).first();
+    await expect(leak).toBeVisible();
+    await leak.click();
+    await expect(page).toHaveURL(/#roi$/);
+    await expect(page.getByRole("heading", { name: /see your leak in 30 seconds/i })).toBeVisible();
   });
 
   test("Path C: Pricing tier opens and links to demo with the plan", async ({ page }) => {

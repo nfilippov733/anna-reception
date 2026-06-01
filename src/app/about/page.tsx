@@ -20,7 +20,7 @@ export default function AboutPage() {
       </p>
       <div className="mt-10 flex flex-wrap gap-3">
         <Button href="/demo" data-event="about_cta_demo_clicked">Book a demo</Button>
-        <Button variant="ghost" href="/audit" data-event="about_cta_audit_clicked">Get my free revenue audit</Button>
+        <Button variant="ghost" href="/#roi" data-event="about_cta_audit_clicked">See your revenue leak</Button>
       </div>
     </section>
   );

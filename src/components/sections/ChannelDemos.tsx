@@ -159,13 +159,13 @@ export function ChannelDemos({ initialSegment }: Props) {
         </Button>
         <Button
           variant="ghost"
-          href={`/audit?v=${activeSegment}`}
+          href="#roi"
           data-event="channel_demos_audit_clicked"
           onClick={() =>
             track("channel_demos_audit_clicked", { segment: activeSegment, channel: activeChannel })
           }
         >
-          Get my free revenue audit
+          See your revenue leak
         </Button>
       </div>
     </section>

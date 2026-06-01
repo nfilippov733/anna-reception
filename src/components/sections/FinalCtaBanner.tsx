@@ -25,8 +25,8 @@ export function FinalCtaBanner() {
             <Button href="/demo" data-event="final_cta_demo_clicked">
               Book a demo
             </Button>
-            <Button variant="ghost" href="/audit" data-event="final_cta_audit_clicked">
-              Get my free revenue audit
+            <Button variant="ghost" href="#roi" data-event="final_cta_audit_clicked">
+              See your revenue leak
             </Button>
           </div>
         </div>

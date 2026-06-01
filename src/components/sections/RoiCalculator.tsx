@@ -101,7 +101,7 @@ export function RoiCalculator({ initialVertical = null }: Props) {
                 href="/audit"
                 data-event="roi_cta_audit_clicked"
               >
-                Get my full audit
+                Want it verified? Get a full audit
               </LinkArrow>
               <button
                 type="button"

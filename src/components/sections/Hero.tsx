@@ -22,7 +22,7 @@ export function Hero({ initialSegment }: Props = {}) {
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button href="/demo" data-event="hero_cta_demo_clicked">Book a demo</Button>
-            <Button variant="ghost" href="/audit" data-event="hero_cta_audit_clicked">Get my free revenue audit</Button>
+            <Button variant="ghost" href="#roi" data-event="hero_cta_audit_clicked">See your revenue leak</Button>
           </div>
           <p className="mt-4 font-mono text-xs uppercase tracking-[0.18em] text-mono-label">
             3-minute live demo on your booking system · no slides · no sales pressure

@@ -23,6 +23,6 @@ describe("Hero", () => {
   it("renders both primary and secondary CTAs", () => {
     render(<Hero />);
     expect(screen.getByRole("link", { name: /Book a demo/i })).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /Get my free revenue audit/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /See your revenue leak/i })).toHaveAttribute("href", "#roi");
   });
 });

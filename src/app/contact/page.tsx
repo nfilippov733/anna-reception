@@ -17,7 +17,7 @@ export default function ContactPage() {
       </p>
       <div className="mt-10 flex flex-wrap gap-3">
         <Button href="/demo" data-event="contact_cta_demo_clicked">Book a demo</Button>
-        <Button variant="ghost" href="/audit" data-event="contact_cta_audit_clicked">Get my free revenue audit</Button>
+        <Button variant="ghost" href="/#roi" data-event="contact_cta_audit_clicked">See your revenue leak</Button>
       </div>
       <p className="mt-16 text-sm text-fg-muted">
         For corporate enquiries, see <a href="https://anna.money" className="text-primary underline-offset-4 hover:underline">anna.money</a>.

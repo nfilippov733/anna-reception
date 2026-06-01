@@ -68,12 +68,12 @@ describe("ChannelDemos", () => {
     expect(screen.getByText(/Boiler's pouring water/i)).toBeInTheDocument();
   });
 
-  it("footer CTAs carry ?v=<segment> in href", () => {
+  it("footer CTAs: demo carries ?v=<segment>; leak CTA scrolls to the calculator", () => {
     render(<ChannelDemos initialSegment="vet" />);
     const demoCta = screen.getByRole("link", { name: /Book a demo/i });
-    const auditCta = screen.getByRole("link", { name: /Get my free revenue audit/i });
+    const leakCta = screen.getByRole("link", { name: /See your revenue leak/i });
     expect(demoCta).toHaveAttribute("href", "/demo?v=vet");
-    expect(auditCta).toHaveAttribute("href", "/audit?v=vet");
+    expect(leakCta).toHaveAttribute("href", "#roi");
   });
 
   it("clicking Chat fires channel_tab_changed with { segment, channel } payload", async () => {
