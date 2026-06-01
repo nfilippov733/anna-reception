@@ -94,22 +94,12 @@ export function PricingTeaser() {
           Pays for itself in the first week · Cancel anytime · All prices + VAT
         </p>
 
-        {/* 14-day trial — a shared offer, not tied to any single tier. */}
-        <div className="mt-6 flex flex-col gap-3 rounded-xl border border-primary/40 bg-cream-deep px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-start gap-2">
-            <Check aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-            <span className="text-sm text-ink">
-              <span className="font-semibold">14-day free trial</span> — full Business features, no card, cancel anytime.
-            </span>
-          </div>
-          <Button
-            href="/demo?trial=1"
-            className="shrink-0"
-            data-event="trial_cta_clicked"
-            onClick={() => track("trial_cta_clicked")}
-          >
-            Start your free trial
-          </Button>
+        {/* 14-day trial — available on every plan, started from each tier below. */}
+        <div className="mt-6 flex items-start gap-2 rounded-xl border border-primary/40 bg-cream-deep px-4 py-3">
+          <Check aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+          <span className="text-sm text-ink">
+            <span className="font-semibold">14-day free trial on every plan</span> — full Business features, no card, cancel anytime.
+          </span>
         </div>
 
         <ul className="mt-6 grid grid-cols-1 gap-3 lg:grid-cols-3">
@@ -157,7 +147,7 @@ export function PricingTeaser() {
                   </button>
 
                   {isOpen && (
-                    <div id={panelId} className="px-4 pb-4">
+                    <div id={panelId} className="px-4">
                       <ul className="space-y-2 border-t border-sage/30 pt-4">
                         {tier.features.map((f) => (
                           <li key={f} className="flex items-start gap-2 text-sm text-ink">
@@ -166,17 +156,21 @@ export function PricingTeaser() {
                           </li>
                         ))}
                       </ul>
-                      <Button
-                        href={`/demo?plan=${tier.key}`}
-                        variant={tier.recommended ? "primary" : "ghost"}
-                        className="mt-5 w-full justify-center"
-                        data-event="pricing_tier_cta_clicked"
-                        onClick={() => track("pricing_tier_cta_clicked", { plan: tier.key })}
-                      >
-                        Start with {tier.name}
-                      </Button>
                     </div>
                   )}
+
+                  {/* Trial CTA — present on every tier. */}
+                  <div className="mt-auto p-4 pt-3">
+                    <Button
+                      href={`/demo?plan=${tier.key}`}
+                      variant={tier.recommended ? "primary" : "ghost"}
+                      className="w-full justify-center"
+                      data-event="pricing_tier_cta_clicked"
+                      onClick={() => track("pricing_tier_cta_clicked", { plan: tier.key })}
+                    >
+                      Book a demo and start a trial
+                    </Button>
+                  </div>
                 </div>
               </li>
             );

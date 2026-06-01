@@ -11,27 +11,32 @@ describe("PricingTeaser", () => {
     expect(screen.getByRole("button", { name: /Big Business/i })).toBeInTheDocument();
   });
 
-  it("shows VAT and a shared 14-day trial CTA (not tied to a tier)", () => {
+  it("shows VAT, the every-plan trial, and a trial CTA on every tier", () => {
     render(<PricingTeaser />);
     expect(screen.getAllByText(/\+ VAT/i).length).toBeGreaterThan(0);
-    expect(screen.getByText(/14-day free trial/i)).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /Start your free trial/i })).toHaveAttribute("href", "/demo?trial=1");
+    expect(screen.getByText(/14-day free trial on every plan/i)).toBeInTheDocument();
+    const ctas = screen.getAllByRole("link", { name: /Book a demo and start a trial/i });
+    expect(ctas).toHaveLength(3);
+    const hrefs = ctas.map((c) => c.getAttribute("href"));
+    expect(hrefs).toEqual(
+      expect.arrayContaining(["/demo?plan=sole", "/demo?plan=business", "/demo?plan=big"])
+    );
   });
 
-  it("opens the Business tier by default with its own CTA", () => {
+  it("opens the Business tier by default", () => {
     render(<PricingTeaser />);
     expect(screen.getByRole("button", { name: /^Business/i })).toHaveAttribute("aria-expanded", "true");
     expect(screen.getByText(/Outbound recovery/i)).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /Start with Business/i })).toHaveAttribute("href", "/demo?plan=business");
   });
 
-  it("expands the Sole Trader tier on click, revealing its CTA", async () => {
+  it("expands the Sole Trader tier on click, revealing its features", async () => {
     const user = userEvent.setup();
     render(<PricingTeaser />);
     const sole = screen.getByRole("button", { name: /Sole Trader/i });
     expect(sole).toHaveAttribute("aria-expanded", "false");
+    expect(screen.queryByText(/SMS confirmations/i)).not.toBeInTheDocument();
     await user.click(sole);
     expect(sole).toHaveAttribute("aria-expanded", "true");
-    expect(screen.getByRole("link", { name: /Start with Sole Trader/i })).toHaveAttribute("href", "/demo?plan=sole");
+    expect(screen.getByText(/SMS confirmations/i)).toBeInTheDocument();
   });
 });

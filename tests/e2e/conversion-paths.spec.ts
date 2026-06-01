@@ -18,12 +18,14 @@ test.describe("Conversion paths", () => {
     await expect(page.getByRole("heading", { name: /see your leak in 30 seconds/i })).toBeVisible();
   });
 
-  test("Path C: Pricing tier opens and links to demo with the plan", async ({ page }) => {
+  test("Path C: every pricing tier has a trial CTA linking to its plan", async ({ page }) => {
     await page.goto("/#pricing");
-    const sole = page.getByRole("button", { name: /Sole Trader/i });
-    await sole.click();
-    const cta = page.getByRole("link", { name: /Start with Sole Trader/i });
-    await expect(cta).toBeVisible();
-    await expect(cta).toHaveAttribute("href", "/demo?plan=sole");
+    // A trial CTA per tier, always visible.
+    await expect(page.locator('a[href="/demo?plan=sole"]')).toHaveText(/Book a demo and start a trial/i);
+    await expect(page.locator('a[href="/demo?plan=business"]')).toBeVisible();
+    await expect(page.locator('a[href="/demo?plan=big"]')).toBeVisible();
+    // Expanding a tier reveals its features.
+    await page.getByRole("button", { name: /Sole Trader/i }).click();
+    await expect(page.getByText(/SMS confirmations/i)).toBeVisible();
   });
 });
