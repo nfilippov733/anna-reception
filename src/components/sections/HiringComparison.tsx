@@ -174,12 +174,12 @@ export function HiringComparison() {
 
         {/* ANNA */}
         <div className="rounded-2xl border-2 border-primary bg-cream-deep p-8">
-          <p className="font-mono text-xs uppercase tracking-wider text-ink">ANNA Reception · Standard</p>
+          <p className="font-mono text-xs uppercase tracking-wider text-ink">ANNA Reception · Business</p>
           <p className="mt-2 font-display text-display-md leading-none tabular-nums text-ink">
             <AnimatedNumber value={ANNA_ANNUAL} format="gbp" />
-            <span className="text-base text-fg-muted">/yr</span>
+            <span className="text-base text-fg-muted">/yr + VAT</span>
           </p>
-          <p className="mt-2 text-xs text-fg-muted">£179/mo · no contract · cancel anytime</p>
+          <p className="mt-2 text-xs text-fg-muted">£179/mo + VAT · no contract · cancel anytime</p>
           <ul className="mt-6 space-y-2">
             {ANNA_PROS.map((p) => (
               <li key={p} className="flex items-start gap-2 text-sm text-ink">

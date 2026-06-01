@@ -19,10 +19,10 @@ test.describe("Conversion paths", () => {
 
   test("Path C: Pricing tier opens and links to demo with the plan", async ({ page }) => {
     await page.goto("/#pricing");
-    const solo = page.getByRole("button", { name: /Solo/i });
-    await solo.click();
-    const cta = page.getByRole("link", { name: /Start with Solo/i });
+    const sole = page.getByRole("button", { name: /Sole Trader/i });
+    await sole.click();
+    const cta = page.getByRole("link", { name: /Start with Sole Trader/i });
     await expect(cta).toBeVisible();
-    await expect(cta).toHaveAttribute("href", "/demo?plan=solo");
+    await expect(cta).toHaveAttribute("href", "/demo?plan=sole");
   });
 });

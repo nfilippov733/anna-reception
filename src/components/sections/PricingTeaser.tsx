@@ -15,10 +15,12 @@ type Tier = {
   recommended?: boolean;
 };
 
+// Plan names follow the ANNA Money house style — plain, confident, scale-based
+// ("Business" / "Big Business").
 const TIERS: Tier[] = [
   {
-    key: "solo",
-    name: "Solo",
+    key: "sole",
+    name: "Sole Trader",
     price: "£99",
     blurb: "Up to ~50 booking calls/month. Single location.",
     features: [
@@ -31,13 +33,13 @@ const TIERS: Tier[] = [
     ],
   },
   {
-    key: "standard",
-    name: "Standard",
+    key: "business",
+    name: "Business",
     price: "£179",
     blurb: "~150 calls/month. Typical for a busy single-site practice.",
     recommended: true,
     features: [
-      "Everything in Solo",
+      "Everything in Sole Trader",
       "~150 calls/month",
       "Every channel — phone, WhatsApp, Instagram, web",
       "Outbound recovery (no-shows + dormant quotes)",
@@ -46,12 +48,12 @@ const TIERS: Tier[] = [
     ],
   },
   {
-    key: "multi",
-    name: "Multi-site",
+    key: "big",
+    name: "Big Business",
     price: "£299",
     blurb: "300+ calls or 2+ locations. Custom quote on request.",
     features: [
-      "Everything in Standard",
+      "Everything in Business",
       "300+ calls or 2+ locations",
       "Multi-location call routing",
       "Custom integrations",
@@ -62,8 +64,8 @@ const TIERS: Tier[] = [
 ];
 
 export function PricingTeaser() {
-  // Standard (the recommended tier) starts open so its detail is visible.
-  const [openKey, setOpenKey] = useState<string | null>("standard");
+  // Business (the recommended tier) starts open so its detail is visible.
+  const [openKey, setOpenKey] = useState<string | null>("business");
 
   const toggle = (key: string) => {
     setOpenKey((prev) => {
@@ -83,15 +85,24 @@ export function PricingTeaser() {
       <div className="mt-12 rounded-3xl border border-sage/40 p-6 md:p-10">
         <p className="font-display text-display-xl text-ink leading-none tabular-nums">
           From £99–£299<span className="text-display-md text-fg-muted">/mo</span>
+          <span className="ml-2 align-top text-base font-mono uppercase tracking-[0.18em] text-mono-label">+ VAT</span>
         </p>
         <p className="mt-4 font-mono text-xs uppercase tracking-[0.18em] text-mono-label">
           Depending on call volume · No long contracts · Setup in 3 minutes
         </p>
         <p className="mt-2 font-mono text-xs uppercase tracking-[0.18em] text-mono-label">
-          Pays for itself in the first week · Cancel anytime
+          Pays for itself in the first week · Cancel anytime · All prices + VAT
         </p>
 
-        <ul className="mt-8 grid grid-cols-1 gap-3 lg:grid-cols-3">
+        {/* 14-day trial highlight */}
+        <div className="mt-6 flex flex-wrap items-center gap-2 rounded-xl border border-primary/40 bg-cream-deep px-4 py-3">
+          <Check aria-hidden="true" className="h-4 w-4 shrink-0 text-primary" />
+          <span className="text-sm text-ink">
+            <span className="font-semibold">14-day free trial</span> on the full Business plan — no card, cancel anytime.
+          </span>
+        </div>
+
+        <ul className="mt-6 grid grid-cols-1 gap-3 lg:grid-cols-3">
           {TIERS.map((tier) => {
             const isOpen = openKey === tier.key;
             const panelId = `tier-panel-${tier.key}`;
@@ -122,6 +133,7 @@ export function PricingTeaser() {
                       <p className="mt-2 font-display text-2xl leading-none tabular-nums text-ink">
                         {tier.price}
                         <span className="text-base text-fg-muted">/mo</span>
+                        <span className="ml-1 text-xs text-fg-muted">+ VAT</span>
                       </p>
                       <p className="mt-2 text-xs text-fg-muted">{tier.blurb}</p>
                     </div>
@@ -151,7 +163,7 @@ export function PricingTeaser() {
                         data-event="pricing_tier_cta_clicked"
                         onClick={() => track("pricing_tier_cta_clicked", { plan: tier.key })}
                       >
-                        Start with {tier.name}
+                        {tier.recommended ? "Start 14-day free trial" : `Start with ${tier.name}`}
                       </Button>
                     </div>
                   )}
