@@ -1,6 +1,5 @@
 "use client";
-import { useState } from "react";
-import { ChevronDown, Check } from "lucide-react";
+import { Check } from "lucide-react";
 import { Button } from "@/components/primitives/Button";
 import { Kicker } from "@/components/primitives/Kicker";
 import { track } from "@/lib/analytics";
@@ -64,17 +63,6 @@ const TIERS: Tier[] = [
 ];
 
 export function PricingTeaser() {
-  // Business (the recommended tier) starts open so its detail is visible.
-  const [openKey, setOpenKey] = useState<string | null>("business");
-
-  const toggle = (key: string) => {
-    setOpenKey((prev) => {
-      const next = prev === key ? null : key;
-      if (next) track("pricing_tier_expanded", { plan: next });
-      return next;
-    });
-  };
-
   return (
     <section id="pricing" className="mx-auto max-w-page px-4 py-24 md:py-32" aria-labelledby="pricing-heading">
       <Kicker number="12" label="Honest pricing" />
@@ -103,78 +91,55 @@ export function PricingTeaser() {
         </div>
 
         <ul className="mt-6 grid grid-cols-1 gap-3 lg:grid-cols-3">
-          {TIERS.map((tier) => {
-            const isOpen = openKey === tier.key;
-            const panelId = `tier-panel-${tier.key}`;
-            return (
-              <li key={tier.key}>
-                <div
-                  className={cn(
-                    "flex h-full flex-col rounded-xl border transition-colors",
-                    tier.recommended ? "border-2 border-primary bg-cream-deep" : "border-sage/30 hover:border-sage"
-                  )}
-                >
-                  <button
-                    type="button"
-                    onClick={() => toggle(tier.key)}
-                    aria-expanded={isOpen}
-                    aria-controls={panelId}
-                    className="flex w-full items-start gap-3 rounded-xl p-4 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-                  >
-                    <div className="flex-1">
-                      <div className="flex items-center justify-between gap-2">
-                        <span className="font-mono text-xs uppercase tracking-[0.18em] text-ink">{tier.name}</span>
-                        {tier.recommended && (
-                          <span className="inline-block rounded-full bg-primary px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white">
-                            Recommended
-                          </span>
-                        )}
-                      </div>
-                      <p className="mt-2 font-display text-2xl leading-none tabular-nums text-ink">
-                        {tier.price}
-                        <span className="text-base text-fg-muted">/mo</span>
-                        <span className="ml-1 text-xs text-fg-muted">+ VAT</span>
-                      </p>
-                      <p className="mt-2 text-xs text-fg-muted">{tier.blurb}</p>
-                    </div>
-                    <ChevronDown
-                      aria-hidden="true"
-                      className={cn(
-                        "mt-1 h-5 w-5 shrink-0 text-mono-label transition-transform duration-200 motion-reduce:transition-none",
-                        isOpen && "rotate-180"
-                      )}
-                    />
-                  </button>
-
-                  {isOpen && (
-                    <div id={panelId} className="px-4">
-                      <ul className="space-y-2 border-t border-sage/30 pt-4">
-                        {tier.features.map((f) => (
-                          <li key={f} className="flex items-start gap-2 text-sm text-ink">
-                            <Check aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                            <span>{f}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-
-                  {/* Trial CTA — present on every tier. */}
-                  <div className="mt-auto p-4 pt-3">
-                    <Button
-                      href={`/demo?plan=${tier.key}`}
-                      variant={tier.recommended ? "primary" : "ghost"}
-                      className="w-full justify-center"
-                      data-event="pricing_tier_cta_clicked"
-                      onClick={() => track("pricing_tier_cta_clicked", { plan: tier.key })}
-                    >
-                      Book a demo and start a trial
-                    </Button>
+          {TIERS.map((tier) => (
+            <li key={tier.key}>
+              <div
+                className={cn(
+                  "flex h-full flex-col rounded-xl border transition-colors",
+                  tier.recommended ? "border-2 border-primary bg-cream-deep" : "border-sage/30"
+                )}
+              >
+                <div className="p-4">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-mono text-xs uppercase tracking-[0.18em] text-ink">{tier.name}</span>
+                    {tier.recommended && (
+                      <span className="inline-block rounded-full bg-primary px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white">
+                        Recommended
+                      </span>
+                    )}
                   </div>
+                  <p className="mt-2 font-display text-2xl leading-none tabular-nums text-ink">
+                    {tier.price}
+                    <span className="text-base text-fg-muted">/mo</span>
+                    <span className="ml-1 text-xs text-fg-muted">+ VAT</span>
+                  </p>
+                  <p className="mt-2 text-xs text-fg-muted">{tier.blurb}</p>
+
+                  <ul className="mt-4 space-y-2 border-t border-sage/30 pt-4">
+                    {tier.features.map((f) => (
+                      <li key={f} className="flex items-start gap-2 text-sm text-ink">
+                        <Check aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                        <span>{f}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              </li>
-            );
-          })}
+
+                {/* Trial CTA — present on every tier. */}
+                <div className="mt-auto p-4 pt-3">
+                  <Button
+                    href={`/demo?plan=${tier.key}`}
+                    variant={tier.recommended ? "primary" : "ghost"}
+                    className="w-full justify-center"
+                    data-event="pricing_tier_cta_clicked"
+                    onClick={() => track("pricing_tier_cta_clicked", { plan: tier.key })}
+                  >
+                    Book a demo and start a trial
+                  </Button>
+                </div>
+              </div>
+            </li>
+          ))}
         </ul>
 
         <Button

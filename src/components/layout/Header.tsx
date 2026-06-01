@@ -8,7 +8,9 @@ import { cn } from "@/lib/cn";
 
 const NAV_LINKS = [
   { label: "Channels", href: "#channels" },
+  { label: "Who it's for", href: "#segments" },
   { label: "How it works", href: "#how-it-works" },
+  { label: "vs. hiring", href: "#hiring" },
   { label: "Pricing", href: "#pricing" },
   { label: "FAQ", href: "#faq" },
 ];
@@ -38,7 +40,7 @@ export function Header() {
           <Logo />
         </Link>
 
-        <nav aria-label="Sections" className="hidden md:flex items-center gap-6 text-sm">
+        <nav aria-label="Sections" className="hidden lg:flex items-center gap-5 text-sm">
           {NAV_LINKS.map((l) => (
             <a key={l.href} href={l.href} className="text-ink hover:text-primary transition-colors">
               {l.label}
@@ -56,7 +58,7 @@ export function Header() {
             aria-expanded={menuOpen}
             aria-controls="mobile-nav"
             onClick={() => setMenuOpen((v) => !v)}
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-sage/40 text-ink transition-colors hover:border-sage focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary md:hidden"
+            className="flex h-11 w-11 items-center justify-center rounded-full border border-sage/40 text-ink transition-colors hover:border-sage focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary lg:hidden"
           >
             {menuOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
           </button>
@@ -67,7 +69,7 @@ export function Header() {
         <nav
           id="mobile-nav"
           aria-label="Sections"
-          className="md:hidden border-t border-sage/30 bg-bg px-4 py-2"
+          className="lg:hidden border-t border-sage/30 bg-bg px-4 py-2"
         >
           {NAV_LINKS.map((l) => (
             <a

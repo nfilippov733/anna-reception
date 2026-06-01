@@ -71,7 +71,7 @@ export function HiringComparison() {
   const altCons = mode === "receptionist" ? RECEPTIONIST_CONS : SERVICE_CONS;
 
   return (
-    <section className="mx-auto max-w-page px-4 py-24 md:py-32" aria-labelledby="hiring-heading">
+    <section id="hiring" className="mx-auto max-w-page px-4 py-24 md:py-32" aria-labelledby="hiring-heading">
       <Kicker number="11" label="vs the alternatives" />
       <h2 id="hiring-heading" className="mt-6 font-display text-display-lg text-ink text-balance">
         Cheaper than the front desk you&rsquo;d hire.
