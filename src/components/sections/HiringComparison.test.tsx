@@ -47,7 +47,10 @@ describe("HiringComparison", () => {
     await user.click(screen.getByRole("button", { name: /Answering service/i }));
     expect(screen.getByLabelText("Calls per month")).toBeInTheDocument();
     expect(screen.getByText(/ANNA books the appointment/i)).toBeInTheDocument();
-    // 150 calls × £1.20 × 12 = £2,160
+    // 150 calls × £1.20 × 12 = £2,160 (answering service)
     expect(screen.getByText(/£2,160/)).toBeInTheDocument();
+    // ANNA is compared on the cheapest tier here: Sole Trader £99 × 12 = £1,188
+    expect(screen.getByText(/£1,188/)).toBeInTheDocument();
+    expect(screen.getByText(/ANNA Reception · Sole Trader/i)).toBeInTheDocument();
   });
 });

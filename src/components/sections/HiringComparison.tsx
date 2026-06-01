@@ -7,8 +7,10 @@ import { Kicker } from "@/components/primitives/Kicker";
 import { track } from "@/lib/analytics";
 import { cn } from "@/lib/cn";
 
-// Standard plan, billed monthly.
-const ANNA_ANNUAL = 179 * 12;
+// A full hire is a fuller role → compare against Business. An answering service
+// is a low-end message-taker → compare against the cheapest tier, Sole Trader.
+const ANNA_BUSINESS_ANNUAL = 179 * 12;
+const ANNA_SOLE_ANNUAL = 99 * 12;
 // Employer NI + pension + holiday/sick cover + recruitment, amortised.
 const LOADED_MULTIPLIER = 1.25;
 // Typical UK pay-per-call answering service rate.
@@ -20,7 +22,7 @@ const ANNA_PROS = [
   "24/7/365 — every call, every night",
   "Books straight into your calendar",
   "Phone, WhatsApp, Instagram & web",
-  "Flat £179/mo — no per-call fees",
+  "Flat monthly fee — never per-call",
 ];
 
 const RECEPTIONIST_CONS = [
@@ -45,7 +47,10 @@ export function HiringComparison() {
   const loaded = Math.round(salary * LOADED_MULTIPLIER);
   const serviceAnnual = Math.round(calls * SERVICE_PER_CALL * 12);
   const altCost = mode === "receptionist" ? loaded : serviceAnnual;
-  const savings = Math.max(0, altCost - ANNA_ANNUAL);
+  const annaAnnual = mode === "receptionist" ? ANNA_BUSINESS_ANNUAL : ANNA_SOLE_ANNUAL;
+  const annaPlan = mode === "receptionist" ? "Business" : "Sole Trader";
+  const annaCaption = mode === "receptionist" ? "£179/mo + VAT" : "£99/mo + VAT";
+  const savings = Math.max(0, loaded - ANNA_BUSINESS_ANNUAL);
 
   const onSalary = (v: number) => {
     const clamped = Math.min(45000, Math.max(20000, v || 0));
@@ -174,12 +179,12 @@ export function HiringComparison() {
 
         {/* ANNA */}
         <div className="rounded-2xl border-2 border-primary bg-cream-deep p-8">
-          <p className="font-mono text-xs uppercase tracking-wider text-ink">ANNA Reception · Business</p>
+          <p className="font-mono text-xs uppercase tracking-wider text-ink">ANNA Reception · {annaPlan}</p>
           <p className="mt-2 font-display text-display-md leading-none tabular-nums text-ink">
-            <AnimatedNumber value={ANNA_ANNUAL} format="gbp" />
+            <AnimatedNumber value={annaAnnual} format="gbp" />
             <span className="text-base text-fg-muted">/yr + VAT</span>
           </p>
-          <p className="mt-2 text-xs text-fg-muted">£179/mo + VAT · no contract · cancel anytime</p>
+          <p className="mt-2 text-xs text-fg-muted">{annaCaption} · no contract · cancel anytime</p>
           <ul className="mt-6 space-y-2">
             {ANNA_PROS.map((p) => (
               <li key={p} className="flex items-start gap-2 text-sm text-ink">
@@ -201,7 +206,7 @@ export function HiringComparison() {
           <p className="max-w-xl font-display text-2xl text-ink">
             An answering service takes a message.{" "}
             <span className="text-primary">ANNA books the appointment</span>
-            <span className="text-fg-muted"> — for the same money, on every channel.</span>
+            <span className="text-fg-muted"> — from £99/mo, no per-call fees, on every channel.</span>
           </p>
         )}
         <Button href="/demo" data-event="pricing_teaser_clicked" onClick={() => track("pricing_teaser_clicked")}>
