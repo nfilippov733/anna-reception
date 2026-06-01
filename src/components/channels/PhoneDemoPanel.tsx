@@ -2,13 +2,10 @@
 import { useEffect, useRef, useState } from "react";
 import { Phone, ChevronLeft, ChevronRight } from "lucide-react";
 import { Waveform } from "@/components/primitives/Waveform";
-import { PhoneChip } from "@/components/primitives/PhoneChip";
 import { PlayButton } from "@/components/primitives/PlayButton";
 import { CHANNEL_DEMOS } from "@/content/channelDemos";
 import type { VerticalKey } from "@/lib/verticals";
 import { track } from "@/lib/analytics";
-
-const DEMO_PHONE = process.env.NEXT_PUBLIC_DEMO_PHONE ?? "+44 20 7946 0000";
 
 type Props = {
   segment: VerticalKey;
@@ -147,11 +144,6 @@ export function PhoneDemoPanel({ segment, segmentLabel, onPrev, onNext }: Props)
           </dl>
           {meta && <p>{meta}</p>}
         </div>
-      </div>
-
-      <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-fg-muted">
-        <span>Or hear her live yourself:</span>
-        <PhoneChip number={DEMO_PHONE} />
       </div>
     </div>
   );

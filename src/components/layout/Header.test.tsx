@@ -11,10 +11,6 @@ describe("Header", () => {
     render(<Header />);
     expect(screen.getByRole("link", { name: /book a demo/i })).toHaveAttribute("href", "/demo");
   });
-  it("includes a click-to-call phone chip", () => {
-    render(<Header />);
-    expect(screen.getByRole("link", { name: /try a sample call to anna/i })).toBeInTheDocument();
-  });
   it("renders the ANNA wordmark image in the Logo", () => {
     render(<Header />);
     expect(screen.getByAltText("ANNA")).toBeInTheDocument();

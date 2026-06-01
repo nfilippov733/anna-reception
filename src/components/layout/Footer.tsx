@@ -1,7 +1,4 @@
-import { PhoneChip } from "@/components/primitives/PhoneChip";
 import { Logo } from "@/components/primitives/Logo";
-
-const DEMO_PHONE = process.env.NEXT_PUBLIC_DEMO_PHONE ?? "+44 20 7946 0000";
 
 export function Footer() {
   return (
@@ -11,7 +8,6 @@ export function Footer() {
           <Logo variant="mark" />
           <div className="mt-4 font-semibold text-ink">ANNA Reception</div>
           <p className="mt-2 text-fg-muted">By ANNA — the UK business account 100,000+ small businesses use for banking, invoicing, and tax filing. Reception is the newest tool.</p>
-          <PhoneChip number={DEMO_PHONE} className="mt-4" />
         </div>
         <div>
           <div className="font-mono text-xs uppercase tracking-wider text-mono-label">Product</div>

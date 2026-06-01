@@ -12,6 +12,9 @@ export type AnalyticsEvent =
   | { event: "vertical_tile_expanded"; vertical: VerticalKey }
   | { event: "segment_tab_changed"; segment: VerticalKey }
   | { event: "pricing_teaser_clicked" }
+  | { event: "pricing_tier_expanded"; plan: string }
+  | { event: "pricing_tier_cta_clicked"; plan: string }
+  | { event: "hiring_comparison_changed"; salary: number }
   | { event: "demo_submitted"; vertical: VerticalKey; source: "A" | "B" }
   | { event: "final_cta_demo_clicked" }
   | { event: "final_cta_audit_clicked" }

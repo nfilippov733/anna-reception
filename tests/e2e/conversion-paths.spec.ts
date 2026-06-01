@@ -17,10 +17,12 @@ test.describe("Conversion paths", () => {
     await expect(page).toHaveURL(/\/audit/);
   });
 
-  test("Path C: Test-call phone chip in header", async ({ page }) => {
-    await page.goto("/");
-    const chip = page.getByRole("link", { name: /try a sample call to anna/i }).first();
-    await expect(chip).toBeVisible();
-    await expect(chip).toHaveAttribute("href", /^tel:/);
+  test("Path C: Pricing tier opens and links to demo with the plan", async ({ page }) => {
+    await page.goto("/#pricing");
+    const solo = page.getByRole("button", { name: /Solo/i });
+    await solo.click();
+    const cta = page.getByRole("link", { name: /Start with Solo/i });
+    await expect(cta).toBeVisible();
+    await expect(cta).toHaveAttribute("href", "/demo?plan=solo");
   });
 });
