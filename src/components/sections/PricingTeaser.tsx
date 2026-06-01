@@ -94,12 +94,22 @@ export function PricingTeaser() {
           Pays for itself in the first week · Cancel anytime · All prices + VAT
         </p>
 
-        {/* 14-day trial highlight */}
-        <div className="mt-6 flex flex-wrap items-center gap-2 rounded-xl border border-primary/40 bg-cream-deep px-4 py-3">
-          <Check aria-hidden="true" className="h-4 w-4 shrink-0 text-primary" />
-          <span className="text-sm text-ink">
-            <span className="font-semibold">14-day free trial</span> on the full Business plan — no card, cancel anytime.
-          </span>
+        {/* 14-day trial — a shared offer, not tied to any single tier. */}
+        <div className="mt-6 flex flex-col gap-3 rounded-xl border border-primary/40 bg-cream-deep px-4 py-4 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex items-start gap-2">
+            <Check aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+            <span className="text-sm text-ink">
+              <span className="font-semibold">14-day free trial</span> — full Business features, no card, cancel anytime.
+            </span>
+          </div>
+          <Button
+            href="/demo?trial=1"
+            className="shrink-0"
+            data-event="trial_cta_clicked"
+            onClick={() => track("trial_cta_clicked")}
+          >
+            Start your free trial
+          </Button>
         </div>
 
         <ul className="mt-6 grid grid-cols-1 gap-3 lg:grid-cols-3">
@@ -163,7 +173,7 @@ export function PricingTeaser() {
                         data-event="pricing_tier_cta_clicked"
                         onClick={() => track("pricing_tier_cta_clicked", { plan: tier.key })}
                       >
-                        {tier.recommended ? "Start 14-day free trial" : `Start with ${tier.name}`}
+                        Start with {tier.name}
                       </Button>
                     </div>
                   )}

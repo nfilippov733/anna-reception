@@ -11,17 +11,18 @@ describe("PricingTeaser", () => {
     expect(screen.getByRole("button", { name: /Big Business/i })).toBeInTheDocument();
   });
 
-  it("shows VAT and the 14-day trial", () => {
+  it("shows VAT and a shared 14-day trial CTA (not tied to a tier)", () => {
     render(<PricingTeaser />);
     expect(screen.getAllByText(/\+ VAT/i).length).toBeGreaterThan(0);
-    expect(screen.getAllByText(/14-day free trial/i).length).toBeGreaterThan(0);
+    expect(screen.getByText(/14-day free trial/i)).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /Start your free trial/i })).toHaveAttribute("href", "/demo?trial=1");
   });
 
-  it("opens the Business tier by default with the trial CTA", () => {
+  it("opens the Business tier by default with its own CTA", () => {
     render(<PricingTeaser />);
     expect(screen.getByRole("button", { name: /^Business/i })).toHaveAttribute("aria-expanded", "true");
     expect(screen.getByText(/Outbound recovery/i)).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /Start 14-day free trial/i })).toHaveAttribute("href", "/demo?plan=business");
+    expect(screen.getByRole("link", { name: /Start with Business/i })).toHaveAttribute("href", "/demo?plan=business");
   });
 
   it("expands the Sole Trader tier on click, revealing its CTA", async () => {
