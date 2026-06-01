@@ -14,7 +14,7 @@ describe("PricingTeaser", () => {
   it("shows VAT, the every-plan trial, and a trial CTA on every tier", () => {
     render(<PricingTeaser />);
     expect(screen.getAllByText(/\+ VAT/i).length).toBeGreaterThan(0);
-    expect(screen.getByText(/14-day free trial on every plan/i)).toBeInTheDocument();
+    expect(screen.getByText(/14 days free on any plan/i)).toBeInTheDocument();
     const ctas = screen.getAllByRole("link", { name: /Book a demo and start a trial/i });
     expect(ctas).toHaveLength(3);
     const hrefs = ctas.map((c) => c.getAttribute("href"));

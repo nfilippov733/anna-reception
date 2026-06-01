@@ -8,6 +8,7 @@ import { SegmentsShowcase } from "@/components/sections/SegmentsShowcase";
 import { TestimonialWall } from "@/components/sections/TestimonialWall";
 import { OutcomeStrip } from "@/components/sections/OutcomeStrip";
 import { IntegrationsMarquee } from "@/components/sections/IntegrationsMarquee";
+import { ComplementsBooking } from "@/components/sections/ComplementsBooking";
 import { HiringComparison } from "@/components/sections/HiringComparison";
 import { PricingTeaser } from "@/components/sections/PricingTeaser";
 import { FaqAccordion } from "@/components/sections/FaqAccordion";
@@ -36,6 +37,7 @@ export default async function HomePage({ searchParams }: Props) {
       <RoiCalculator initialVertical={initialVertical} />
       <HowItWorks />
       <TestimonialWall />
+      <ComplementsBooking />
       <IntegrationsMarquee />
       <HiringComparison />
       <PricingTeaser />

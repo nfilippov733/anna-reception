@@ -77,7 +77,7 @@ export function PricingTeaser() {
 
   return (
     <section id="pricing" className="mx-auto max-w-page px-4 py-24 md:py-32" aria-labelledby="pricing-heading">
-      <Kicker number="11" label="Honest pricing" />
+      <Kicker number="12" label="Honest pricing" />
       <h2 id="pricing-heading" className="mt-6 font-display text-display-lg text-ink text-balance">
         Honest pricing.
       </h2>
@@ -98,7 +98,7 @@ export function PricingTeaser() {
         <div className="mt-6 flex items-start gap-2 rounded-xl border border-primary/40 bg-cream-deep px-4 py-3">
           <Check aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
           <span className="text-sm text-ink">
-            <span className="font-semibold">14-day free trial on every plan</span> — full Business features, no card, cancel anytime.
+            <span className="font-semibold">14 days free on any plan</span> — start it on a quick setup call (3 min, paste your site). No card, cancel anytime.
           </span>
         </div>
 

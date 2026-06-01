@@ -17,7 +17,7 @@ export function FinalCtaBanner() {
           </svg>
         </span>
         <div className="relative">
-          <Kicker number="13" label="Time to stop missing calls" className="!text-mono-label text-center" />
+          <Kicker number="14" label="Time to stop missing calls" className="!text-mono-label text-center" />
           <h2 className="mt-6 font-display text-display-xl text-ink text-balance">
             Stop letting the phone steal your day. Set up in three minutes, paid back in the first week.
           </h2>
