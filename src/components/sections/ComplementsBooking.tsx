@@ -1,5 +1,6 @@
 import { PhoneIncoming, CalendarCheck, Check, X, ArrowRight } from "lucide-react";
 import { Kicker } from "@/components/primitives/Kicker";
+import { INTEGRATION_LOGOS } from "@/content/integrations";
 
 const SYSTEM_DOES = [
   { ok: true, text: "Online self-service bookings" },
@@ -19,7 +20,7 @@ const ANNA_DOES = [
 export function ComplementsBooking() {
   return (
     <section className="mx-auto max-w-page px-4 py-24 md:py-32" aria-labelledby="complements-heading">
-      <Kicker number="10" label="Works with your booking system" />
+      <Kicker number="09" label="Works with your booking system" />
       <h2 id="complements-heading" className="mt-6 font-display text-display-lg text-ink text-balance">
         Keeps your booking system. Answers everything it can&rsquo;t.
       </h2>
@@ -81,6 +82,22 @@ export function ComplementsBooking() {
       <p className="mt-8 font-display text-2xl text-ink text-balance">
         ANNA is the front desk — <span className="text-fg-muted">not another booking page.</span>
       </p>
+
+      <div className="mt-12 border-t border-sage/30 pt-8">
+        <p className="font-mono text-xs uppercase tracking-[0.18em] text-mono-label">
+          Works with the tools you already use · 200+ integrations
+        </p>
+        <ul className="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2">
+          {INTEGRATION_LOGOS.map((l) => (
+            <li
+              key={l.name}
+              className="inline-flex h-8 items-center rounded-full border border-sage/40 px-3 font-mono text-xs tracking-wide text-ink"
+            >
+              {l.name}
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }
