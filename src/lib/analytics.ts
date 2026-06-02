@@ -4,6 +4,7 @@ import type { VerticalKey } from "./verticals";
 export type AnalyticsEvent =
   | { event: "hero_cta_demo_clicked" }
   | { event: "hero_cta_audit_clicked" }
+  | { event: "hear_anna_cta_clicked" }
   | { event: "header_cta_call_clicked" }
   | { event: "audio_demo_played" }
   | { event: "audio_demo_completed_30s" }
