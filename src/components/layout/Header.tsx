@@ -10,7 +10,7 @@ const NAV_LINKS = [
   { label: "Channels", href: "#channels" },
   { label: "Who it's for", href: "#segments" },
   { label: "How it works", href: "#how-it-works" },
-  { label: "vs. hiring", href: "#hiring" },
+  { label: "Why not hire?", href: "#hiring" },
   { label: "Pricing", href: "#pricing" },
   { label: "FAQ", href: "#faq" },
 ];
