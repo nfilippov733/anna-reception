@@ -28,14 +28,15 @@ export function HowItWorks() {
       <h2 id="how-heading" className="mt-6 font-display text-display-lg text-ink text-balance">
         Set up in three minutes.
       </h2>
-      <ol className="mt-16 grid gap-16 md:grid-cols-3 md:gap-8 relative">
-        <span
-          aria-hidden="true"
-          className="hidden md:block absolute top-6 left-[16.67%] right-[16.67%] h-px bg-sage/40"
-        />
+      <ol className="mt-16 grid gap-16 md:grid-cols-3 md:gap-8">
         {STEPS.map((s, i) => (
           <Reveal as="li" key={s.num} delayMs={i * 60} className="relative">
-            <NumberMarker>{s.num}</NumberMarker>
+            <div className="flex items-center gap-4">
+              <NumberMarker>{s.num}</NumberMarker>
+              {i < STEPS.length - 1 && (
+                <span aria-hidden="true" className="hidden h-px flex-1 bg-sage/40 md:block" />
+              )}
+            </div>
             <p className="mt-6 text-xl font-medium text-ink leading-tight">{s.title}</p>
             <p className="mt-3 text-fg-muted max-w-prose">{s.body}</p>
           </Reveal>
