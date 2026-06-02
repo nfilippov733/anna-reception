@@ -30,7 +30,7 @@ const OUTCOMES: Outcome[] = [
 export function OutcomeStrip() {
   return (
     <section className="mx-auto max-w-page px-4 py-24 md:py-32" aria-labelledby="outcomes-heading">
-      <Kicker number="05" label="The outcomes" />
+      <Kicker number="06" label="The outcomes" />
       <h2 id="outcomes-heading" className="mt-6 font-display text-display-lg text-ink text-balance">
         What you actually get.
       </h2>

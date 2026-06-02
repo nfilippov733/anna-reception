@@ -71,7 +71,7 @@ export function HiringComparison() {
 
   return (
     <section id="hiring" className="mx-auto max-w-page px-4 py-24 md:py-32" aria-labelledby="hiring-heading">
-      <Kicker number="11" label="vs the alternatives" />
+      <Kicker number="10" label="vs the alternatives" />
       <h2 id="hiring-heading" className="mt-6 font-display text-display-lg text-ink text-balance">
         Cheaper than the front desk you&rsquo;d hire.
       </h2>

@@ -122,7 +122,7 @@ export function SegmentsShowcase({ initialSegment }: Props) {
       className="mx-auto max-w-page px-4 py-24 md:py-32"
       aria-labelledby="segments-heading"
     >
-      <Kicker number="04" label="Built for how you actually run" />
+      <Kicker number="05" label="Built for how you actually run" />
       <h2
         id="segments-heading"
         className="mt-6 font-display text-display-lg text-ink text-balance"
