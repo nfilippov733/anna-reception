@@ -7,9 +7,8 @@ import { Kicker } from "@/components/primitives/Kicker";
 import { track } from "@/lib/analytics";
 import { cn } from "@/lib/cn";
 
-// A full hire is a fuller role → compare against Business. An answering service
-// is a low-end message-taker → compare against the cheapest tier, Sole Trader.
-const ANNA_BUSINESS_ANNUAL = 179 * 12;
+// ANNA's entry tier (Sole Trader, £99/mo) is the comparison anchor in both
+// modes — the cheapest plan still beats a hire or a pay-per-call service.
 const ANNA_SOLE_ANNUAL = 99 * 12;
 // Employer NI + pension + holiday/sick cover + recruitment, amortised.
 const LOADED_MULTIPLIER = 1.25;
@@ -47,10 +46,10 @@ export function HiringComparison() {
   const loaded = Math.round(salary * LOADED_MULTIPLIER);
   const serviceAnnual = Math.round(calls * SERVICE_PER_CALL * 12);
   const altCost = mode === "receptionist" ? loaded : serviceAnnual;
-  const annaAnnual = mode === "receptionist" ? ANNA_BUSINESS_ANNUAL : ANNA_SOLE_ANNUAL;
-  const annaPlan = mode === "receptionist" ? "Business" : "Sole Trader";
-  const annaCaption = mode === "receptionist" ? "£179/mo + VAT" : "£99/mo + VAT";
-  const savings = Math.max(0, loaded - ANNA_BUSINESS_ANNUAL);
+  const annaAnnual = ANNA_SOLE_ANNUAL;
+  const annaPlan = "Sole Trader";
+  const annaCaption = "£99/mo + VAT";
+  const savings = Math.max(0, altCost - ANNA_SOLE_ANNUAL);
 
   const onSalary = (v: number) => {
     const clamped = Math.min(45000, Math.max(20000, v || 0));
@@ -202,11 +201,15 @@ export function HiringComparison() {
             You save <AnimatedNumber value={savings} format="gbp" className="text-primary" />
             <span className="text-fg-muted"> /year — and never miss a call.</span>
           </p>
+        ) : savings > 0 ? (
+          <p className="max-w-xl font-display text-2xl text-ink">
+            You save <AnimatedNumber value={savings} format="gbp" className="text-primary" />
+            <span className="text-fg-muted"> /year — and ANNA books the appointment, not just a message.</span>
+          </p>
         ) : (
           <p className="max-w-xl font-display text-2xl text-ink">
-            An answering service takes a message.{" "}
             <span className="text-primary">ANNA books the appointment</span>
-            <span className="text-fg-muted"> — from £99/mo, no per-call fees, on every channel.</span>
+            <span className="text-fg-muted"> — flat £99/mo, no per-call fees, on every channel.</span>
           </p>
         )}
         <Button href="/demo" data-event="pricing_teaser_clicked" onClick={() => track("pricing_teaser_clicked")}>
