@@ -44,7 +44,7 @@ export function HearAnna() {
                 {DEMO_LINE}
               </a>
             ) : (
-              <p className="font-display text-2xl text-ink" aria-disabled="true">
+              <p className="font-display text-2xl text-ink">
                 Live demo line — launching soon
               </p>
             )}
@@ -65,7 +65,7 @@ export function HearAnna() {
             href="#channel-demos"
             className="font-mono text-xs uppercase tracking-[0.18em] text-mono-label hover:text-primary"
           >
-            Or hear a sample call ↓
+            Or hear a sample call <span aria-hidden="true">↓</span>
           </a>
         </div>
       </div>

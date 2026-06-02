@@ -52,8 +52,8 @@ export function TestimonialWall() {
         )}
         <Reveal delayMs={120}>
           <div className="grid gap-8">
-            {rest.slice(0, 2).map((t, i) => (
-              <figure key={i}>
+            {rest.slice(0, 2).map((t) => (
+              <figure key={t.attribution}>
                 <blockquote className="text-ink">&ldquo;{t.quote}&rdquo;</blockquote>
                 <figcaption className="mt-4 flex items-center gap-3">
                   <span
@@ -72,8 +72,8 @@ export function TestimonialWall() {
       {rest.length > 2 && (
         <Reveal delayMs={120}>
           <div className="mt-12 grid gap-8 md:grid-cols-3">
-            {rest.slice(2).map((t, i) => (
-              <figure key={i}>
+            {rest.slice(2).map((t) => (
+              <figure key={t.attribution}>
                 <blockquote className="text-ink">&ldquo;{t.quote}&rdquo;</blockquote>
                 <figcaption className="mt-4 flex items-center gap-3">
                   <span
