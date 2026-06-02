@@ -1,13 +1,12 @@
 import { Hero } from "@/components/sections/Hero";
 import { ChannelsRibbon } from "@/components/sections/ChannelsRibbon";
-import { SocialProofLogos } from "@/components/sections/SocialProofLogos";
+import { HearAnna } from "@/components/sections/HearAnna";
 import { ChannelDemos } from "@/components/sections/ChannelDemos";
 import { RoiCalculator } from "@/components/sections/RoiCalculator";
 import { HowItWorks } from "@/components/sections/HowItWorks";
 import { SegmentsShowcase } from "@/components/sections/SegmentsShowcase";
 import { TestimonialWall } from "@/components/sections/TestimonialWall";
 import { OutcomeStrip } from "@/components/sections/OutcomeStrip";
-import { IntegrationsMarquee } from "@/components/sections/IntegrationsMarquee";
 import { ComplementsBooking } from "@/components/sections/ComplementsBooking";
 import { HiringComparison } from "@/components/sections/HiringComparison";
 import { PricingTeaser } from "@/components/sections/PricingTeaser";
@@ -29,17 +28,16 @@ export default async function HomePage({ searchParams }: Props) {
     <>
       <Hero initialSegment={initialVerticalFromUrl ?? undefined} />
       <ChannelsRibbon />
-      <SocialProofLogos />
+      <HearAnna />
+      <ChannelDemos initialSegment={initialVertical} />
       <SegmentsShowcase initialSegment={initialVertical} />
       <OutcomeStrip />
       <SquiggleDivider />
-      <ChannelDemos initialSegment={initialVertical} />
       <RoiCalculator initialVertical={initialVertical} />
       <HowItWorks />
-      <TestimonialWall />
       <ComplementsBooking />
-      <IntegrationsMarquee />
       <HiringComparison />
+      <TestimonialWall />
       <PricingTeaser />
       <FaqAccordion />
       <FinalCtaBanner />

@@ -76,10 +76,11 @@ export function ChannelDemos({ initialSegment }: Props) {
 
   return (
     <section
+      id="channel-demos"
       className="mx-auto max-w-page px-4 py-16 md:py-20"
       aria-labelledby="channel-demos-heading"
     >
-      <Kicker number="06" label="Channel demos" />
+      <Kicker number="04" label="Channel demos" />
       <h2
         id="channel-demos-heading"
         className="mt-6 font-display text-display-lg text-ink text-balance"
