@@ -27,18 +27,19 @@ describe("HiringComparison", () => {
 
   it("computes savings from the salary input", () => {
     render(<HiringComparison />);
-    // Default £28,000 → loaded £35,000 → savings £35,000 - £2,148 = £32,852
-    expect(screen.getByText(/£32,852/)).toBeInTheDocument();
+    // Default £28,000 → loaded £35,000 → savings £35,000 - £1,188 (Sole Trader) = £33,812
+    expect(screen.getByText(/£33,812/)).toBeInTheDocument();
 
     const input = screen.getByLabelText(/Front-desk salary per year/i);
     fireEvent.change(input, { target: { value: "40000" } });
-    // £40,000 → loaded £50,000 → savings £47,852
-    expect(screen.getByText(/£47,852/)).toBeInTheDocument();
+    // £40,000 → loaded £50,000 → savings £50,000 - £1,188 = £48,812
+    expect(screen.getByText(/£48,812/)).toBeInTheDocument();
   });
 
-  it("shows ANNA's fixed annual cost", () => {
+  it("shows ANNA's fixed annual cost (Sole Trader, £99/mo)", () => {
     render(<HiringComparison />);
-    expect(screen.getByText(/£2,148/)).toBeInTheDocument();
+    expect(screen.getByText(/£1,188/)).toBeInTheDocument();
+    expect(screen.getByText(/ANNA Reception · Sole Trader/i)).toBeInTheDocument();
   });
 
   it("switches to the answering-service comparison", async () => {

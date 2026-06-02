@@ -1,14 +1,13 @@
 import { render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import { describe, it, expect } from "vitest";
 import { PricingTeaser } from "./PricingTeaser";
 
 describe("PricingTeaser", () => {
   it("renders the three ANNA-style tiers", () => {
     render(<PricingTeaser />);
-    expect(screen.getByRole("button", { name: /Sole Trader/i })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /^Business/i })).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: /Big Business/i })).toBeInTheDocument();
+    expect(screen.getByText("Sole Trader")).toBeInTheDocument();
+    expect(screen.getByText("Business")).toBeInTheDocument();
+    expect(screen.getByText("Big Business")).toBeInTheDocument();
   });
 
   it("shows VAT, the every-plan trial, and a trial CTA on every tier", () => {
@@ -23,20 +22,11 @@ describe("PricingTeaser", () => {
     );
   });
 
-  it("opens the Business tier by default", () => {
+  it("shows every tier's features without interaction (always expanded)", () => {
     render(<PricingTeaser />);
-    expect(screen.getByRole("button", { name: /^Business/i })).toHaveAttribute("aria-expanded", "true");
-    expect(screen.getByText(/Outbound recovery/i)).toBeInTheDocument();
-  });
-
-  it("expands the Sole Trader tier on click, revealing its features", async () => {
-    const user = userEvent.setup();
-    render(<PricingTeaser />);
-    const sole = screen.getByRole("button", { name: /Sole Trader/i });
-    expect(sole).toHaveAttribute("aria-expanded", "false");
-    expect(screen.queryByText(/SMS confirmations/i)).not.toBeInTheDocument();
-    await user.click(sole);
-    expect(sole).toHaveAttribute("aria-expanded", "true");
-    expect(screen.getByText(/SMS confirmations/i)).toBeInTheDocument();
+    // One feature unique to each tier is visible with no clicks — no accordion.
+    expect(screen.getByText(/SMS confirmations/i)).toBeInTheDocument(); // Sole Trader
+    expect(screen.getByText(/Outbound recovery/i)).toBeInTheDocument(); // Business
+    expect(screen.getByText(/Multi-location call routing/i)).toBeInTheDocument(); // Big Business
   });
 });
